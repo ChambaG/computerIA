@@ -1,0 +1,170 @@
+<a class="detailsLink" href="/locations/438/abilene">Abilene (TX)</a>
+<a class="detailsLink" href="/locations/901/adesabirmingham">ADESA Birmingham (AL)</a>
+<a class="detailsLink" href="/locations/660/akroncanton">Akron-Canton (OH)</a>
+<a class="detailsLink" href="/locations/631/albany">Albany (NY)</a>
+<a class="detailsLink" href="/locations/140/albuquerque">Albuquerque (NM)</a>
+<a class="detailsLink" href="/locations/626/altoona">Altoona (PA)</a>
+<a class="detailsLink" href="/locations/437/amarillo">Amarillo (TX)</a>
+<a class="detailsLink" href="/locations/131/anaheim">Anaheim (CA)</a>
+<a class="detailsLink" href="/locations/372/anchorage">Anchorage (AK)</a>
+<a class="detailsLink" href="/locations/522/appleton">Appleton (WI)</a>
+<a class="detailsLink" href="/locations/751/asheville">Asheville (NC)</a>
+<a class="detailsLink" href="/locations/651/ashland">Ashland (KY)</a>
+<a class="detailsLink" href="/locations/710/atlanta">Atlanta (GA)</a>
+<a class="detailsLink" href="/locations/707/atlantaeast">Atlanta East (GA)</a>
+<a class="detailsLink" href="/locations/706/atlantanorth">Atlanta North (GA)</a>
+<a class="detailsLink" href="/locations/705/atlantasouth">Atlanta South (GA)</a>
+<a class="detailsLink" href="/locations/418/austin">Austin (TX)</a>
+<a class="detailsLink" href="/locations/607/avenelnewjersey">Avenel New Jersey (NJ)</a>
+<a class="detailsLink" href="/locations/719/baltimore">Baltimore (MD)</a>
+<a class="detailsLink" href="/locations/422/batonrouge">Baton Rouge (LA)</a>
+<a class="detailsLink" href="/locations/361/billings">Billings (MT)</a>
+<a class="detailsLink" href="/locations/727/birmingham">Birmingham (AL)</a>
+<a class="detailsLink" href="/locations/341/boise">Boise (ID)</a>
+<a class="detailsLink" href="/locations/609/bostonshirley">Boston - Shirley (MA)</a>
+<a class="detailsLink" href="/locations/658/bowlinggreen">Bowling Green (KY)</a>
+<a class="detailsLink" href="/locations/647/bridgeport">Bridgeport (PA)</a>
+<a class="detailsLink" href="/locations/652/buckhannon">Buckhannon (WV)</a>
+<a class="detailsLink" href="/locations/624/buffalo">Buffalo (NY)</a>
+<a class="detailsLink" href="/locations/645/burlington">Burlington (VT)</a>
+<a class="detailsLink" href="/locations/376/casper">Casper (WY)</a>
+<a class="detailsLink" href="/locations/614/centralnewjersey">Central New Jersey (NJ)</a>
+<a class="detailsLink" href="/locations/720/charleston">Charleston (SC)</a>
+<a class="detailsLink" href="/locations/714/charlotte">Charlotte (NC)</a>
+<a class="detailsLink" href="/locations/752/chattanooga">Chattanooga (TN)</a>
+<a class="detailsLink" href="/locations/514/chicagonorth">Chicago-North (IL)</a>
+<a class="detailsLink" href="/locations/515/chicagosouth">Chicago-South (IL)</a>
+<a class="detailsLink" href="/locations/511/chicagowest">Chicago-West (IL)</a>
+<a class="detailsLink" href="/locations/653/cincinnati">Cincinnati (OH)</a>
+<a class="detailsLink" href="/locations/661/cincinnatisouth">Cincinnati-South (OH)</a>
+<a class="detailsLink" href="/locations/745/clearwater">Clearwater (FL)</a>
+<a class="detailsLink" href="/locations/663/cleveland">Cleveland (OH)</a>
+<a class="detailsLink" href="/locations/113/colton">Colton (CA)</a>
+<a class="detailsLink" href="/locations/762/columbia">Columbia (SC)</a>
+<a class="detailsLink" href="/locations/662/columbus">Columbus (OH)</a>
+<a class="detailsLink" href="/locations/746/concord">Concord (NC)</a>
+<a class="detailsLink" href="/locations/412/corpuschristi">Corpus Christi (TX)</a>
+<a class="detailsLink" href="/locations/726/culpeper">Culpeper (VA)</a>
+<a class="detailsLink" href="/locations/441/dallas">Dallas (TX)</a>
+<a class="detailsLink" href="/locations/534/davenport">Davenport (IA)</a>
+<a class="detailsLink" href="/locations/656/dayton">Dayton (OH)</a>
+<a class="detailsLink" href="/locations/370/denver">Denver (CO)</a>
+<a class="detailsLink" href="/locations/374/denvereast">Denver East (CO)</a>
+<a class="detailsLink" href="/locations/536/desmoines">Des Moines (IA)</a>
+<a class="detailsLink" href="/locations/516/detroit">Detroit (MI)</a>
+<a class="detailsLink" href="/locations/731/dothan">Dothan (AL)</a>
+<a class="detailsLink" href="/locations/770/dundalk">Dundalk (MD)</a>
+<a class="detailsLink" href="/locations/332/eastbay">East Bay (CA)</a>
+<a class="detailsLink" href="/locations/420/elpaso">El Paso (TX)</a>
+<a class="detailsLink" href="/locations/629/erie">Erie (PA)</a>
+<a class="detailsLink" href="/locations/309/eugene">Eugene (OR)</a>
+<a class="detailsLink" href="/locations/363/fargo">Fargo (ND)</a>
+<a class="detailsLink" href="/locations/435/fayetteville">Fayetteville (AR)</a>
+<a class="detailsLink" href="/locations/502/flint">Flint (MI)</a>
+<a class="detailsLink" href="/locations/132/fontana">Fontana (CA)</a>
+<a class="detailsLink" href="/locations/749/fortmyers">Fort Myers (FL)</a>
+<a class="detailsLink" href="/locations/763/fortpierce">Fort Pierce (FL)</a>
+<a class="detailsLink" href="/locations/465/fortworthnorth">Fort Worth North (TX)</a>
+<a class="detailsLink" href="/locations/772/fredericksburgsouth">Fredericksburg-South (VA)</a>
+<a class="detailsLink" href="/locations/334/fremont">Fremont (CA)</a>
+<a class="detailsLink" href="/locations/337/fresno">Fresno (CA)</a>
+<a class="detailsLink" href="/locations/518/grandrapids">Grand Rapids (MI)</a>
+<a class="detailsLink" href="/locations/501/greatlakes">Great Lakes (MI)</a>
+<a class="detailsLink" href="/locations/715/greensboro">Greensboro (NC)</a>
+<a class="detailsLink" href="/locations/761/greenville">Greenville (SC)</a>
+<a class="detailsLink" href="/locations/428/grenada">Grenada (MS)</a>
+<a class="detailsLink" href="/locations/427/gulfcoast">Gulf Coast (MS)</a>
+<a class="detailsLink" href="/locations/623/hartford">Hartford (CT)</a>
+<a class="detailsLink" href="/locations/638/hartfordsouth">Hartford-South (CT)</a>
+<a class="detailsLink" href="/locations/133/highdesert">High Desert (CA)</a>
+<a class="detailsLink" href="/locations/114/honolulu">Honolulu (HI)</a>
+<a class="detailsLink" href="/locations/456/houston">Houston (TX)</a>
+<a class="detailsLink" href="/locations/440/houstonnorth">Houston-North (TX)</a>
+<a class="detailsLink" href="/locations/729/huntsville">Huntsville (AL)</a>
+<a class="detailsLink" href="/locations/443/iaadallasftworth">IAA Dallas/Ft Worth (TX)</a>
+<a class="detailsLink" href="/locations/520/iaaigniteauctionportage">IAA Ignite Auction Portage (WI)</a>
+<a class="detailsLink" href="/locations/541/indianapolis">Indianapolis (IN)</a>
+<a class="detailsLink" href="/locations/425/jackson">Jackson (MS)</a>
+<a class="detailsLink" href="/locations/712/jacksonville">Jacksonville (FL)</a>
+<a class="detailsLink" href="/locations/527/kansascity">Kansas City (KS)</a>
+<a class="detailsLink" href="/locations/754/knoxville">Knoxville (TN)</a>
+<a class="detailsLink" href="/locations/760/lafayette">Lafayette (LA)</a>
+<a class="detailsLink" href="/locations/152/lasvegas">Las Vegas (NV)</a>
+<a class="detailsLink" href="/locations/722/laurel">Laurel (MD)</a>
+<a class="detailsLink" href="/locations/509/lincoln">Lincoln (IL)</a>
+<a class="detailsLink" href="/locations/423/littlerock">Little Rock (AR)</a>
+<a class="detailsLink" href="/locations/613/longisland">Long Island (NY)</a>
+<a class="detailsLink" href="/locations/419/longview">Longview (TX)</a>
+<a class="detailsLink" href="/locations/134/losangeles">Los Angeles (CA)</a>
+<a class="detailsLink" href="/locations/665/louisville">Louisville (KY)</a>
+<a class="detailsLink" href="/locations/669/louisvillenorth">Louisville North (KY)</a>
+<a class="detailsLink" href="/locations/402/lubbock">Lubbock (TX)</a>
+<a class="detailsLink" href="/locations/734/macon">Macon (GA)</a>
+<a class="detailsLink" href="/locations/643/manchester">Manchester (NH)</a>
+<a class="detailsLink" href="/locations/461/mcallen">McAllen (TX)</a>
+<a class="detailsLink" href="/locations/738/memphis">Memphis (TN)</a>
+<a class="detailsLink" href="/locations/721/metrodc">Metro DC (MD)</a>
+<a class="detailsLink" href="/locations/742/miami">Miami (FL)</a>
+<a class="detailsLink" href="/locations/736/miaminorth">Miami-North (FL)</a>
+<a class="detailsLink" href="/locations/521/milwaukee">Milwaukee (WI)</a>
+<a class="detailsLink" href="/locations/526/minneapolisstpaul">Minneapolis/St. Paul (MN)</a>
+<a class="detailsLink" href="/locations/360/missoula">Missoula (MT)</a>
+<a class="detailsLink" href="/locations/753/nashville">Nashville (TN)</a>
+<a class="detailsLink" href="/locations/620/newcastle">New Castle (DE)</a>
+<a class="detailsLink" href="/locations/759/neworleans">New Orleans (LA)</a>
+<a class="detailsLink" href="/locations/432/neworleanseast">New Orleans East (LA)</a>
+<a class="detailsLink" href="/locations/635/newburgh">Newburgh (NY)</a>
+<a class="detailsLink" href="/locations/111/northhollywood">North Hollywood (CA)</a>
+<a class="detailsLink" href="/locations/611/northernnewjersey">Northern New Jersey (NJ)</a>
+<a class="detailsLink" href="/locations/723/northernvirginia">Northern Virginia (VA)</a>
+<a class="detailsLink" href="/locations/421/oklahomacity">Oklahoma City (OK)</a>
+<a class="detailsLink" href="/locations/525/omaha">Omaha (NE)</a>
+<a class="detailsLink" href="/locations/732/orlando">Orlando (FL)</a>
+<a class="detailsLink" href="/locations/743/orlandonorth">Orlando-North (FL)</a>
+<a class="detailsLink" href="/locations/659/paducah">Paducah (KY)</a>
+<a class="detailsLink" href="/locations/737/pensacola">Pensacola (FL)</a>
+<a class="detailsLink" href="/locations/416/permianbasin">Permian Basin (TX)</a>
+<a class="detailsLink" href="/locations/622/philadelphia">Philadelphia (PA)</a>
+<a class="detailsLink" href="/locations/151/phoenix">Phoenix (AZ)</a>
+<a class="detailsLink" href="/locations/649/pittsburgh">Pittsburgh (PA)</a>
+<a class="detailsLink" href="/locations/619/pittsburghnorth">Pittsburgh-North (PA)</a>
+<a class="detailsLink" href="/locations/523/portage">Portage (WI)</a>
+<a class="detailsLink" href="/locations/308/portland">Portland (OR)</a>
+<a class="detailsLink" href="/locations/670/portlandgorham">Portland - Gorham (ME)</a>
+<a class="detailsLink" href="/locations/311/portlandwest">Portland West (OR)</a>
+<a class="detailsLink" href="/locations/644/providence">Providence (RI)</a>
+<a class="detailsLink" href="/locations/724/pulaski">Pulaski (VA)</a>
+<a class="detailsLink" href="/locations/747/raleigh">Raleigh (NC)</a>
+<a class="detailsLink" href="/locations/154/reno">Reno (NV)</a>
+<a class="detailsLink" href="/locations/711/richmond">Richmond (VA)</a>
+<a class="detailsLink" href="/locations/671/rochester">Rochester (NY)</a>
+<a class="detailsLink" href="/locations/331/sacramento">Sacramento (CA)</a>
+<a class="detailsLink" href="/locations/342/saltlakecity">Salt Lake City (UT)</a>
+<a class="detailsLink" href="/locations/415/sanantonio">San Antonio (TX)</a>
+<a class="detailsLink" href="/locations/442/sanantoniosouth">San Antonio-South (TX)</a>
+<a class="detailsLink" href="/locations/116/sandiego">San Diego (CA)</a>
+<a class="detailsLink" href="/locations/704/savannah">Savannah (GA)</a>
+<a class="detailsLink" href="/locations/636/scranton">Scranton (PA)</a>
+<a class="detailsLink" href="/locations/327/seattle">Seattle (WA)</a>
+<a class="detailsLink" href="/locations/679/shadyspring">Shady Spring (WV)</a>
+<a class="detailsLink" href="/locations/434/shreveport">Shreveport (LA)</a>
+<a class="detailsLink" href="/locations/362/siouxfalls">Sioux Falls (SD)</a>
+<a class="detailsLink" href="/locations/542/southbend">South Bend (IN)</a>
+<a class="detailsLink" href="/locations/612/southernnewjersey">Southern New Jersey (NJ)</a>
+<a class="detailsLink" href="/locations/811/specialtydivision">Specialty Division (IL)</a>
+<a class="detailsLink" href="/locations/322/spokane">Spokane (WA)</a>
+<a class="detailsLink" href="/locations/531/springfield">Springfield (MO)</a>
+<a class="detailsLink" href="/locations/524/stlouis">St. Louis (IL)</a>
+<a class="detailsLink" href="/locations/765/suffolk">Suffolk (VA)</a>
+<a class="detailsLink" href="/locations/628/syracuse">Syracuse (NY)</a>
+<a class="detailsLink" href="/locations/713/tampa">Tampa (FL)</a>
+<a class="detailsLink" href="/locations/778/tampanorth">Tampa North (FL)</a>
+<a class="detailsLink" href="/locations/640/taunton">Taunton (MA)</a>
+<a class="detailsLink" href="/locations/725/tidewater">Tidewater (VA)</a>
+<a class="detailsLink" href="/locations/703/tifton">Tifton (GA)</a>
+<a class="detailsLink" href="/locations/424/tucson">Tucson (AZ)</a>
+<a class="detailsLink" href="/locations/436/tulsa">Tulsa (OK)</a>
+<a class="detailsLink" href="/locations/371/westerncolorado">Western Colorado (CO)</a>
+<a class="detailsLink" href="/locations/533/wichita">Wichita (KS)</a>
+<a class="detailsLink" href="/locations/733/wilmington">Wilmington (NC)</a>
+<a class="detailsLink" href="/locations/664/yorksprings">York Springs (PA)</a>
