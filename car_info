@@ -1,0 +1,2780 @@
+<body ng-controller="appController" class="" id="mainBody">
+<header id="top" class="header">
+    <div class="header-mid mobilepad20" clicksigninmenu="">
+        <!-- cookie policy message for UK and US-->
+        <div class="container cookie-policymsg row" hide-cookie-banner="" style="display: none;">
+            <span class="fa fa-info-circle fa-2x col-xs-1 cookie-policymsg-icon"></span>
+            <span class="cookie-text col-xs-9" ng-bind-html="locale.messages['app.label.cookieMessage'] | to_trusted">By continuing to use this website, you consent to cookies being used unless you have disabled them. Please note that disabling cookies on your machine or device may prevent parts of our website from functioning properly. <a href="/content/us/en/cookie-policy">Learn more about our Cookie Policy.</a></span>
+            <span class="col-xs-2 cookie-continue-btn">
+                <a class="btn btn-lblue" id="acceptCookieBanner">
+                    Continue
+                </a>
+            </span>
+        </div>
+        <!-- end of cookie policy message -->
+        <div ng-class="userConfig.roles.indexOf('ROLE_ANONYMOUS') != -1 ? 'container-fluid topheader beforelogin ' : 'container-fluid topheader afterlogin' " class="container-fluid topheader beforelogin">
+            <div class="row">
+                <!----><div class="col-md-12 col-sm-12 col-xs-12 desktopView" ng-if="!mobileShow">
+                    <div class="col-lg-8   col-md-7 col-sm-12 col-xs-12 leftheader  pad0">
+                        <div class="logodiv col-lg-3 col-md-3 col-sm-3 col-xs-3 pad0">
+                            <time-modal></time-modal>
+                            <div class="logo">
+                                <a href="./" ng-click="routeReload('/')" data-uname="copartLogo" class="logo copart-img">
+                                    <img src="/images/logo.svg" alt="Copart" class="img-responsive copart-img">
+                                </a>
+                                <!-- for crashed Toys-->
+                                <a href="./" ng-click="routeReload('/')" data-uname="crashedtoysLogo" class="logo nodisplay  crashedtoys-img">
+                                    <img src="/images/crashedtoys/CT-logo.svg" alt="Copart" class="img-responsive nodisplay crashedtoys-img">
+                                </a>
+                                <!-- End for crashed Toys-->
+                                <a href="./" ng-click="routeReload('/')" data-uname="DriveLogo" class="logo nodisplay  drive-img">
+                                    <img src="/images/drive/DRIVE_logo_light.svg" alt="Drive" class="img-responsive nodisplay drive-img">
+                                </a>
+                            </div>
+                        </div>
+                        <!--  {{locale.messages['app.label.searchPlaceHolder']}} -->
+                        <div class="searchdiv col-lg-9 col-md-9  col-sm-9 col-xs-9  text-center">
+                            <div>
+    <form class="ng-pristine ng-valid" role="search" method="get" ng-submit="search()" id="search-form" name="">
+        <div ng-controller="freeTextSearchController" place-text="Search by Make, Model, Description, VIN or Lot number" searchplaceholder="">
+            <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6 pad0">
+                <div class="input-group searchinputgroup">
+               <span class="input-group-btn">
+               <button class="btn btn-default search-icon" type="submit" ng-click="search()" data-uname="homepageHeadersearchsubmiticon">
+               <img ng-src="/images/icons/icon_Search_Desktop.svg" src="/images/icons/icon_Search_Desktop.svg">
+               </button>
+               </span>
+                    <!-- <input type="text" class="form-control" name="x" placeholder="Search term...">-->
+                    <input type="text" class="form-control my_textarea newsearch ng-pristine ng-untouched ng-valid ng-empty" placeholder="Search" autocomplete="off" onfocus="this.placeholder = ''" id="input-search" name="" ng-model="searchText" value="" data-uname="homeFreeFormSearch" uib-typeahead="suggestion | lowercase for suggestion in getSuggestion($viewValue)" typeahead-min-length="3" typeahead-focus-first="false" aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-13-2040"><ul class="dropdown-menu ng-hide" ng-show="isOpen() &amp;&amp; !moveInProgress" ng-style="{top: position().top+'px', left: position().left+'px'}" role="listbox" aria-hidden="true" uib-typeahead-popup="" id="typeahead-13-2040" matches="matches" active="activeIdx" select="select(activeIdx, evt)" move-in-progress="moveInProgress" query="query" position="position" assign-is-open="assignIsOpen(isOpen)" debounce="debounceUpdate">
+    <!---->
+</ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 pad0 text-left">
+                <button type="submit" ng-click="search()" data-uname="homepageHeadersearchsubmit" class="btn btn-lightblue marginleft15">
+                    Search
+                </button>
+                <span> <a href="./help" class="needhelp hidden-xs" site-catalyst="{'fname':'doTagNeedHelp'}">Need Help?</a></span>
+            </div>
+        </div>
+    </form>
+</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-5 col-sm-5  col-xs-12 col-reg">
+                        <!-- End register -->
+                        <div class="header-top langdiv">
+                            <div class="text-right">
+                                <!----><span ng-if="locale.cldrData &amp;&amp; ds.totalItemsOnSale > 9">
+                                        <span>
+                                            <!----><div class="countertop" data-uname="vehiclesOnSaleCounter" ng-if="locale.messages['app.label.vehicle.saleNow'] &amp;&amp; ds.totalItemsOnSale &amp;&amp; ds.totalItemsOnSale > 9">
+                                                <span class="count">
+                                                    <strong> 139,527</strong>
+                                                </span>
+                                                <span>Vehicles on Sale</span>
+                                            </div><!---->
+                                        </span>
+                                        <span class="pipe pad10">|</span>
+                                </span><!---->
+                                <span ng-click="timePopup($event)" class="timezone-popup">
+                                    <button id="btntest" class="time_select  btnlanguage" style="background: transparent; border: none;padding:0px" data-uname="homepageTimezoneselect">
+                                        <label class="cursor-pointer">05:32 PM CST
+                                       <i class="fa fa-caret-down p-rl10" aria-hidden="true"></i>
+                                       </label>
+                                    </button>
+                                </span>
+                            </div>
+                            <ul class="list-in list-options text-right">
+                                <li>
+                                    
+                                </li>
+                                <!-- Flag -->
+                                <li class="flagpad selectCountryLi countrycursor " pref-code="userHomepageWidget" access-value="countrySelection" ng-click="showFlagDrop($event)">
+                                    <div data-uname="homepageUsaflagslimfooter" class="flaginherit">
+                                        <span class="countryname">USA</span>
+                                        <span id="countryFlag" class="flag flagheader country-flag headerFlag"></span>
+                                        <span class="headerFlagMEA">
+                                            <span id="countryFlag" class="flag flagheader country-flag-UAE" style="vertical-align:middle;"></span>
+                                            <span id="countryFlag" class="flag flagheader country-flag-BH" style="vertical-align:middle;"></span>
+                                            <span id="countryFlag" class="flag flagheader country-flag-OM" style="vertical-align:middle;"></span>
+                                        </span>
+                                    </div>
+
+                                    <!-- Custom dropdown  -->
+                                    <!--US & CRASHEDTOYS & Drive Flag Dropdown-->
+                                    <ul id="lang" data-uname="homepageCountryselect" ng-model="country" class="headerwidth countrycursor langSelectText ng-pristine ng-untouched ng-valid ng-empty ng-hide" ng-click="openLink($event)" ng-show="showFlag">
+        <li class="flagli flagheader flag-us" value="CPRTUS"><a>USA</a></li>
+        <li class="flagli flagheader flag-uk" value="CPRTUK"><a href="https://www.copart.co.uk/" target="_blank">UK</a></li>
+        <li class="flagli flagheader flag-canada" value="CPRTCA"><a href="https://www.copart.ca/" target="_blank">Canada</a></li>
+        <li class="flagli flagheader flag-germany" value="CPRTDE"><a href="https://www.copart.de/" target="_blank">Germany</a></li>
+        <li class="flagli flagheader flag-spain" value="CPRTES"><a href="https://www.copart.es/" target="_blank">Spain</a></li>
+        <li class="flagli flagheader flag-ireland" value=""><a href="https://www.copart.ie/" target="_blank">Ireland</a></li>
+        <li class="flagli flagheader flag-dubai" value=""><a href="https://www.copartmea.com?ref=loc470" target="_blank">UAE (Dubai)</a></li>
+        <li class="flagli flagheader flag-bahrain" value=""><a href="https://www.copartmea.com?ref=loc480" target="_blank">Bahrain </a></li>
+        <li class="flagli flagheader flag-oman" value=""><a href="https://www.copartmea.com?ref=loc475" target="_blank">Oman </a></li>
+        <li class="flagli flagheader flag-brazil" value=""><a href="http://www.copart.com.br/" target="_blank">Brazil</a></li>
+</ul>
+
+                                    <!--Canada Flag Dropdown-->
+                                    
+
+                                    <!--UK Flag Dropdown-->
+                                    
+
+                                    <!--MEA Flag Dropdown-->
+                                    
+
+                                    <!--Ireland Flag Dropdown-->
+                                    
+
+                                    <!--Germany Flag Dropdown-->
+                                    
+
+                                    <!--Spain Flag Dropdown-->
+                                    
+                                    <!-- end of custom dropdown -->
+
+                                    <i class="fa fa-caret-down p-rl10" aria-hidden="true"></i>
+                                </li>
+                                <li class="language_popup" ng-click="togglePopup($event)">
+                                    <button class="language_select btnlanguage" style="background: transparent; border: none" data-uname="homepageLanguageselect">
+                                        <label class="cursor-pointer">
+                                            English
+                                        </label>
+                                    </button>
+                                    <i class="fa fa-caret-down p-rl10" aria-hidden="true"></i>
+                                </li>
+                            </ul>
+
+                            <div id="languagehome" class="langformat_div ng-hide" ng-show="popupToggle">
+                                <div>
+                                    <div class="langformat">
+                                        <a class="settimecolor glyiconremove">
+                                            <span class="glyphicon glyphicon-remove-sign" data-target="#languagehome" ng-click="popupToggle = false"></span>
+                                        </a>
+                                        <div class="col-md-12">
+                                            <div class="col-md-12 langsel">
+                                                <div>
+                                                    <label class="settimecolor settimefont" data-uname="homepageDdlanguageHeading">
+                                                        Select Your Language
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 langdropdown_div">
+                                                <select class="form-control bfh-timezones timezoneborders ng-pristine ng-untouched ng-valid ng-not-empty" data-uname="homepageDdlanguage" ng-model="selectedLang" ng-change="changePopupLanguage(selectedLang)" ng-options="obj.value as obj.name for obj in userConfig.langOptions"><option label="English" value="string:en" selected="selected">English</option><option label="Español" value="string:es">Español</option><option label="Français Canadien" value="string:fr-CA">Français Canadien</option><option label="العربية" value="string:ar">العربية</option><option label="Русский" value="string:ru">Русский</option><option label="Polski" value="string:pl">Polski</option><option label="中文" value="string:zh-HANT">中文</option></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 ">
+                                            <div>
+                                                <div>
+                                                    <p class="pagetextcolor top10" data-uname="homepageDdlanguageTextHeading">
+                                                        Can You Read This Text?
+                                                    </p>
+                                                    <p class="pagetextcolor txtfnt">Members all over the world come to Copart because of our extensive inventory with more than 125,000 vehicles available for bidding each day we have something for everyone.</p>
+                                                </div>
+                                                <div class="timepad_div text-right">
+                                                    <button class="btn btn-dgray btn-inline right" data-uname="homepageDdlanguageCancel" data-target="#languagehome" ng-click="popupToggle = false">
+                                                        Cancel
+                                                    </button>
+                                                    <button site-catalyst="{'fname':'doTagSelectedLanguage'}" class="btn btn-lblue btn-inline" data-uname="homepageDdlanguageYes" ng-click="changeLanguage(selectedLang); popupToggle = false">
+                                                        Yes I Can Read it
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="timezonehome" class="maintimezone_div ng-hide" ng-show="popupTimezone">
+                                <div>
+                                    <div class="timezoneformat timezonect">
+                                        <a class="settimecolor glyiconremove">
+                                            <span class="glyphicon glyphicon-remove-sign" data-target="#timezonehome" ng-click="popupTimezone = false"></span>
+                                        </a>
+                                        <!-- Inner Divs Begins -->
+
+                                        <!-- Col md starts -->
+                                        <div class="col-md-12 settime_div pad0">
+                                            <div>
+                                                <label class="settimecolor settimefont">
+                                                    Set Your Time Zone
+                                                </label>
+                                            </div>
+                                            <select ng-model="userConfig.selectedTimezone" selected="" ng-change="changeTimezone()" id="timeZone" class="form-control bfh-timezones timeborder nopadding ng-pristine ng-untouched ng-valid ng-not-empty" data-country="US" data-uname="homepageSettimezone" style="border:1px solid #dedede;">
+    <option value="Pacific/Niue">(GMT-11:00) Niue</option>
+    <option value="Pacific/Pago_Pago">(GMT-11:00) Pago Pago</option>
+    <option value="Pacific/Honolulu">(GMT-10:00) Hawaii Time</option>
+    <option value="Pacific/Rarotonga">(GMT-10:00) Rarotonga</option>
+    <option value="Pacific/Tahiti">(GMT-10:00) Tahiti</option>
+    <option value="Pacific/Marquesas">(GMT-09:30) Marquesas</option>
+    <option value="Pacific/Gambier">(GMT-09:00) Gambier</option>
+    <option value="America/Anchorage">(GMT-08:00) Alaska Time</option>
+    <option value="Pacific/Pitcairn">(GMT-08:00) Pitcairn</option>
+    <option value="America/Los_Angeles">(GMT-07:00) Pacific Time</option>
+    <option value="America/Tijuana">(GMT-07:00) Pacific Time - Tijuana</option>
+    <option value="America/Vancouver">(GMT-07:00) Pacific Time - Vancouver</option>
+    <option value="America/Whitehorse">(GMT-07:00) Pacific Time - Whitehorse</option>
+    <option value="America/Hermosillo">(GMT-07:00) Mountain Time - Hermosillo</option>
+    <option value="America/Dawson_Creek">(GMT-07:00) Mountain Time - Dawson Creek</option>
+    <option value="America/Phoenix">(GMT-07:00) Mountain Time - Arizona</option>
+    <option value="America/Denver">(GMT-06:00) Mountain Time</option>
+    <option value="America/Edmonton">(GMT-06:00) Mountain Time - Edmonton</option>
+    <option value="America/Mazatlan">(GMT-06:00) Mountain Time - Chihuahua</option>
+    <option value="America/Yellowknife">(GMT-06:00) Mountain Time - Yellowknife</option>
+    <option value="America/Belize">(GMT-06:00) Belize</option>
+    <option value="America/Costa_Rica">(GMT-06:00) Costa Rica</option>
+    <option value="America/El_Salvador">(GMT-06:00) El Salvador</option>
+    <option value="America/Guatemala">(GMT-06:00) Guatemala</option>
+    <option value="America/Managua">(GMT-06:00) Managua</option>
+    <option value="America/Regina">(GMT-06:00) Central Time - Regina</option>
+    <option value="America/Tegucigalpa">(GMT-06:00) Central Time - Tegucigalpa</option>
+    <option value="Pacific/Easter">(GMT-06:00) Easter Island</option>
+    <option value="Pacific/Galapagos">(GMT-06:00) Galapagos</option>
+    <option value="America/Chicago">(GMT-05:00) Central Time</option>
+    <option value="America/Mexico_City">(GMT-05:00) Central Time - Mexico City</option>
+    <option value="America/Winnipeg">(GMT-05:00) Central Time - Winnipeg</option>
+    <option value="America/Bogota">(GMT-05:00) Bogota</option>
+    <option value="America/Cancun">(GMT-05:00) America Cancun</option>
+    <option value="America/Guayaquil">(GMT-05:00) Guayaquil</option>
+    <option value="America/Jamaica">(GMT-05:00) Jamaica</option>
+    <option value="America/Lima">(GMT-05:00) Lima</option>
+    <option value="America/Panama">(GMT-05:00) Panama</option>
+    <option value="America/Port-au-Prince">(GMT-05:00) Port-au-Prince</option>
+    <option value="America/Rio_Branco">(GMT-05:00) Rio Branco</option>
+    <option value="America/Havana">(GMT-04:00) Havana</option>
+    <option value="America/Iqaluit">(GMT-04:00) Eastern Time - Iqaluit</option>
+    <option value="America/Nassau">(GMT-04:00) Nassau</option>
+    <option value="America/New_York">(GMT-04:00) Eastern Time</option>
+    <option value="America/Toronto">(GMT-04:00) Eastern Time - Toronto</option>
+    <option value="America/Asuncion">(GMT-04:00) Asuncion</option>
+    <option value="America/Barbados">(GMT-04:00) Barbados</option>
+    <option value="America/Boa_Vista">(GMT-04:00) Boa Vista</option>
+    <option value="America/Campo_Grande">(GMT-04:00) Campo Grande</option>
+    <option value="America/Caracas">(GMT-04:00) Caracas</option>
+    <option value="America/Cuiaba">(GMT-04:00) Cuiaba</option>
+    <option value="America/Curacao">(GMT-04:00) Curacao</option>
+    <option value="America/Grand_Turk">(GMT-04:00) Grand Turk</option>
+    <option value="America/Guyana">(GMT-04:00) Guyana</option>
+    <option value="America/La_Paz">(GMT-04:00) La Paz</option>
+    <option value="America/Manaus">(GMT-04:00) Manaus</option>
+    <option value="America/Martinique">(GMT-04:00) Martinique</option>
+    <option value="America/Port_of_Spain">(GMT-04:00) Port of Spain</option>
+    <option value="America/Porto_Velho">(GMT-04:00) Porto Velho</option>
+    <option value="America/Puerto_Rico">(GMT-04:00) Puerto Rico</option>
+    <option value="America/Santiago">(GMT-04:00) Santiago</option>
+    <option value="America/Santo_Domingo">(GMT-04:00) Santo Domingo</option>
+    <option value="Antarctica/Palmer">(GMT-04:00) Palmer</option>
+    <option value="America/Halifax">(GMT-03:00) Atlantic Time - Canada</option>
+    <option value="America/Thule">(GMT-03:00) Thule</option>
+    <option value="Atlantic/Bermuda">(GMT-03:00) Bermuda</option>
+    <option value="America/Araguaina">(GMT-03:00) Araguaina</option>
+    <option value="America/Argentina/Buenos_Aires">(GMT-03:00) Buenos Aires</option>
+    <option value="America/Bahia">(GMT-03:00) Salvador</option>
+    <option value="America/Belem">(GMT-03:00) Belem</option>
+    <option value="America/Cayenne">(GMT-03:00) Cayenne</option>
+    <option value="America/Fortaleza">(GMT-03:00) Fortaleza</option>
+    <option value="America/Maceio">(GMT-03:00) Maceio</option>
+    <option value="America/Montevideo">(GMT-03:00) Montevideo</option>
+    <option value="America/Paramaribo">(GMT-03:00) Paramaribo</option>
+    <option value="America/Recife">(GMT-03:00) Recife</option>
+    <option value="America/Sao_Paulo">(GMT-03:00) Sao Paulo</option>
+    <option value="Antarctica/Rothera">(GMT-03:00) Rothera</option>
+    <option value="Atlantic/Stanley">(GMT-03:00) Stanley</option>
+    <option value="America/St_Johns">(GMT-02:30) Newfoundland Time - St. Johns</option>
+    <option value="America/Godthab">(GMT-02:00) Godthab</option>
+    <option value="America/Miquelon">(GMT-02:00) Miquelon</option>
+    <option value="America/Noronha">(GMT-02:00) Noronha</option>
+    <option value="Atlantic/South_Georgia">(GMT-02:00) South Georgia</option>
+    <option value="America/Scoresbysund">(GMT+00:00) Scoresbysund</option>
+    <option value="Atlantic/Azores">(GMT+00:00) Azores</option>
+    <option value="Africa/Abidjan">(GMT+00:00) Abidjan</option>
+    <option value="Africa/Accra">(GMT+00:00) Accra</option>
+    <option value="Africa/Bissau">(GMT+00:00) Bissau</option>
+    <option value="Africa/Monrovia">(GMT+00:00) Monrovia</option>
+    <option value="America/Danmarkshavn">(GMT+00:00) Danmarkshavn</option>
+    <option value="Atlantic/Reykjavik">(GMT+00:00) Reykjavik</option>
+    <option value="Etc/GMT">(GMT+00:00) GMT (no daylight saving)</option>
+    <option value="Atlantic/Cape_Verde">(GMT-01:00) Cape Verde</option>
+    <option value="Africa/Casablanca">(GMT+01:00) Casablanca</option>
+    <option value="Africa/El_Aaiun">(GMT+01:00) El Aaiun</option>
+    <option value="Atlantic/Canary">(GMT+01:00) Canary Islands</option>
+    <option value="Atlantic/Faroe">(GMT+01:00) Faeroe</option>
+    <option value="Europe/Dublin">(GMT+01:00) Dublin</option>
+    <option value="Europe/Lisbon">(GMT+01:00) Lisbon</option>
+    <option value="Europe/London">(GMT+01:00) London</option>
+    <option value="Africa/Algiers">(GMT+01:00) Algiers</option>
+    <option value="Africa/Lagos">(GMT+01:00) Lagos</option>
+    <option value="Africa/Ndjamena">(GMT+01:00) Ndjamena</option>
+    <option value="Africa/Tunis">(GMT+01:00) Tunis</option>
+    <option value="Africa/Windhoek">(GMT+01:00) Windhoek</option>
+    <option value="Europe/Amsterdam">(GMT+02:00) Amsterdam</option>
+    <option value="Europe/Andorra">(GMT+02:00) Andorra</option>
+    <option value="Europe/Belgrade">(GMT+02:00) Central European Time</option>
+    <option value="Europe/Berlin">(GMT+02:00) Berlin</option>
+    <option value="Europe/Brussels">(GMT+02:00) Brussels</option>
+    <option value="Europe/Budapest">(GMT+02:00) Budapest</option>
+    <option value="Africa/Ceuta">(GMT+02:00) Ceuta</option>
+    <option value="Europe/Copenhagen">(GMT+02:00) Copenhagen</option>
+    <option value="Europe/Gibraltar">(GMT+02:00) Gibraltar</option>
+    <option value="Europe/Luxembourg">(GMT+02:00) Luxembourg</option>
+    <option value="Europe/Madrid">(GMT+02:00) Madrid</option>
+    <option value="Europe/Malta">(GMT+02:00) Malta</option>
+    <option value="Europe/Monaco">(GMT+02:00) Monaco</option>
+    <option value="Europe/Kaliningrad">(GMT+02:00) Moscow-01 - Kaliningrad</option>
+    <option value="Europe/Oslo">(GMT+02:00) Oslo</option>
+    <option value="Europe/Paris">(GMT+02:00) Paris</option>
+    <!--<option value="Europe/Prague">(GMT+02:00) Central European Time - Prague</option>-->
+    <option value="Europe/Rome">(GMT+02:00) Rome</option>
+    <option value="Europe/Stockholm">(GMT+02:00) Stockholm</option>
+    <option value="Europe/Tirane">(GMT+02:00) Tirane</option>
+    <option value="Europe/Vienna">(GMT+02:00) Vienna</option>
+    <option value="Europe/Warsaw">(GMT+02:00) Warsaw</option>
+    <option value="Europe/Zurich">(GMT+02:00) Zurich</option>
+    <option value="Africa/Cairo">(GMT+02:00) Cairo</option>
+    <option value="Africa/Johannesburg">(GMT+02:00) Johannesburg</option>
+    <option value="Africa/Maputo">(GMT+02:00) Maputo</option>
+    <option value="Africa/Tripoli">(GMT+02:00) Tripoli</option>
+    <option value="Asia/Amman">(GMT+03:00) Amman</option>
+    <option value="Asia/Beirut">(GMT+03:00) Beirut</option>
+    <option value="Asia/Damascus">(GMT+03:00) Damascus</option>
+    <option value="Asia/Gaza">(GMT+03:00) Gaza</option>
+    <option value="Asia/Jerusalem">(GMT+03:00) Jerusalem</option>
+    <option value="Asia/Nicosia">(GMT+03:00) Nicosia</option>
+    <option value="Europe/Athens">(GMT+03:00) Athens</option>
+    <option value="Europe/Bucharest">(GMT+03:00) Bucharest</option>
+    <option value="Europe/Chisinau">(GMT+03:00) Chisinau</option>
+    <option value="Europe/Helsinki">(GMT+03:00) Helsinki</option>
+    <option value="Europe/Istanbul">(GMT+03:00) Istanbul</option>
+    <option value="Europe/Kiev">(GMT+03:00) Kiev</option>
+    <option value="Europe/Riga">(GMT+03:00) Riga</option>
+    <option value="Europe/Sofia">(GMT+03:00) Sofia</option>
+    <option value="Europe/Tallinn">(GMT+03:00) Tallinn</option>
+    <option value="Europe/Vilnius">(GMT+03:00) Vilnius</option>
+    <option value="Africa/Khartoum">(GMT+03:00) Khartoum</option>
+    <option value="Africa/Nairobi">(GMT+03:00) Nairobi</option>
+    <option value="Antarctica/Syowa">(GMT+03:00) Syowa</option>
+    <option value="Asia/Baghdad">(GMT+03:00) Baghdad</option>
+    <option value="Asia/Qatar">(GMT+03:00) Qatar</option>
+    <option value="Asia/Riyadh">(GMT+03:00) Riyadh</option>
+    <option value="Europe/Minsk">(GMT+03:00) Minsk</option>
+    <option value="Europe/Moscow">(GMT+03:00) Moscow+00 - Moscow</option>
+    <option value="Asia/Baku">(GMT+04:00) Baku</option>
+    <option value="Asia/Dubai">(GMT+04:00) Dubai</option>
+    <option value="Asia/Tbilisi">(GMT+04:00) Tbilisi</option>
+    <option value="Asia/Yerevan">(GMT+04:00) Yerevan</option>
+    <option value="Europe/Samara">(GMT+04:00) Moscow+01 - Samara</option>
+    <option value="Indian/Mahe">(GMT+04:00) Mahe</option>
+    <option value="Indian/Mauritius">(GMT+04:00) Mauritius</option>
+    <option value="Indian/Reunion">(GMT+04:00) Reunion</option>
+    <option value="Asia/Kabul">(GMT+04:30) Kabul</option>
+    <option value="Asia/Tehran">(GMT+04:30) Tehran</option>
+    <option value="Asia/Aqtau">(GMT+05:00) Aqtau</option>
+    <option value="Antarctica/Mawson">(GMT+05:00) Mawson</option>
+    <option value="Asia/Aqtobe">(GMT+05:00) Aqtobe</option>
+    <option value="Asia/Ashgabat">(GMT+05:00) Ashgabat</option>
+    <option value="Asia/Dushanbe">(GMT+05:00) Dushanbe</option>
+    <option value="Asia/Karachi">(GMT+05:00) Karachi</option>
+    <option value="Asia/Tashkent">(GMT+05:00) Tashkent</option>
+    <option value="Asia/Yekaterinburg">(GMT+05:00) Moscow+02 - Yekaterinburg</option>
+    <option value="Indian/Kerguelen">(GMT+05:00) Kerguelen</option>
+    <option value="Indian/Maldives">(GMT+05:00) Maldives</option>
+    <option value="Asia/Calcutta">(GMT+05:30) India Standard Time</option>
+    <option value="Asia/Colombo">(GMT+05:30) Colombo</option>
+    <option value="Asia/Katmandu">(GMT+05:45) Katmandu</option>
+    <option value="Antarctica/Vostok">(GMT+06:00) Vostok</option>
+    <option value="Asia/Almaty">(GMT+06:00) Almaty</option>
+    <option value="Asia/Bishkek">(GMT+06:00) Bishkek</option>
+    <option value="Asia/Dhaka">(GMT+06:00) Dhaka</option>
+    <option value="Asia/Omsk">(GMT+06:00) Moscow+03 - Omsk</option>
+    <option value="Asia/Thimphu">(GMT+06:00) Thimphu</option>
+    <option value="Indian/Chagos">(GMT+06:00) Chagos</option>
+    <option value="Asia/Rangoon">(GMT+06:30) Rangoon</option>
+    <option value="Indian/Cocos">(GMT+06:30) Cocos</option>
+    <option value="Antarctica/Davis">(GMT+07:00) Davis</option>
+    <option value="Asia/Bangkok">(GMT+07:00) Bangkok</option>
+    <option value="Asia/Jakarta">(GMT+07:00) Jakarta</option>
+    <option value="Asia/Krasnoyarsk">(GMT+07:00) Moscow+04 - Krasnoyarsk</option>
+    <option value="Asia/Saigon">(GMT+07:00) Hanoi</option>
+    <option value="Indian/Christmas">(GMT+07:00) Christmas</option>
+    <option value="Antarctica/Casey">(GMT+08:00) Casey</option>
+    <option value="Asia/Brunei">(GMT+08:00) Brunei</option>
+    <option value="Asia/Hong_Kong">(GMT+08:00) Hong Kong</option>
+    <option value="Asia/Hovd">(GMT+08:00) Hovd</option>
+    <option value="Asia/Irkutsk">(GMT+08:00) Moscow+05 - Irkutsk</option>
+    <option value="Asia/Kuala_Lumpur">(GMT+08:00) Kuala Lumpur</option>
+    <option value="Asia/Macau">(GMT+08:00) Macau</option>
+    <option value="Asia/Makassar">(GMT+08:00) Makassar</option>
+    <option value="Asia/Manila">(GMT+08:00) Manila</option>
+    <option value="Asia/Shanghai">(GMT+08:00) China Time - Beijing</option>
+    <option value="Asia/Singapore">(GMT+08:00) Singapore</option>
+    <option value="Asia/Taipei">(GMT+08:00) Taipei</option>
+    <option value="Australia/Perth">(GMT+08:00) Western Time - Perth</option>
+    <option value="Asia/Pyongyang">(GMT+08:30) Pyongyang</option>
+    <option value="Asia/Choibalsan">(GMT+09:00) Choibalsan</option>
+    <option value="Asia/Dili">(GMT+09:00) Dili</option>
+    <option value="Asia/Jayapura">(GMT+09:00) Jayapura</option>
+    <option value="Asia/Seoul">(GMT+09:00) Seoul</option>
+    <option value="Asia/Tokyo">(GMT+09:00) Tokyo</option>
+    <option value="Asia/Yakutsk">(GMT+09:00) Moscow+06 - Yakutsk</option>
+    <option value="Pacific/Palau">(GMT+09:00) Palau</option>
+    <option value="Asia/Ulaanbaatar">(GMT+09:00) Ulaanbaatar</option>
+    <option value="Australia/Adelaide">(GMT+09:30) Central Time - Adelaide</option>
+    <option value="Australia/Darwin">(GMT+09:30) Central Time - Darwin</option>
+    <option value="Antarctica/DumontDUrville">(GMT+10:00) Dumont D'Urville</option>
+    <option value="Asia/Vladivostok">(GMT+10:00) Moscow+07</option>
+    <option value="Australia/Brisbane">(GMT+10:00) Eastern Time - Brisbane</option>
+    <option value="Australia/Hobart">(GMT+10:00) Eastern Time - Hobart</option>
+    <option value="Australia/Sydney">(GMT+10:00) Eastern Time - Sydney</option>
+    <option value="Pacific/Chuuk">(GMT+10:00) Truk</option>
+    <option value="Pacific/Guam">(GMT+10:00) Guam</option>
+    <option value="Pacific/Port_Moresby">(GMT+10:00) Port Moresby</option>
+    <option value="Asia/Magadan">(GMT+11:00) Moscow+08 - Magadan</option>
+    <option value="Pacific/Efate">(GMT+11:00) Efate</option>
+    <option value="Pacific/Guadalcanal">(GMT+11:00) Guadalcanal</option>
+    <option value="Pacific/Kosrae">(GMT+11:00) Kosrae</option>
+    <option value="Pacific/Norfolk">(GMT+11:00) Norfolk</option>
+    <option value="Pacific/Noumea">(GMT+11:00) Noumea</option>
+    <option value="Pacific/Pohnpei">(GMT+11:00) Ponape</option>
+    <option value="Asia/Kamchatka">(GMT+12:00) Moscow+09</option>
+    <option value="Pacific/Auckland">(GMT+12:00) Auckland</option>
+    <option value="Pacific/Fiji">(GMT+12:00) Fiji</option>
+    <option value="Pacific/Funafuti">(GMT+12:00) Funafuti</option>
+    <option value="Pacific/Kwajalein">(GMT+12:00) Kwajalein</option>
+    <option value="Pacific/Majuro">(GMT+12:00) Majuro</option>
+    <option value="Pacific/Nauru">(GMT+12:00) Nauru</option>
+    <option value="Pacific/Tarawa">(GMT+12:00) Tarawa</option>
+    <option value="Pacific/Wake">(GMT+12:00) Wake</option>
+    <option value="Pacific/Wallis">(GMT+12:00) Wallis</option>
+    <option value="Pacific/Apia">(GMT+13:00) Apia</option>
+    <option value="Pacific/Enderbury">(GMT+13:00) Enderbury</option>
+    <option value="Pacific/Fakaofo">(GMT+13:00) Fakaofo</option>
+    <option value="Pacific/Tongatapu">(GMT+13:00) Tongatapu</option>
+    <option value="Pacific/Kiritimati">(GMT+14:00) Kiritimati</option>
+</select>
+                                        </div>
+                                        <!-- col md ends -->
+                                        <!-- col md starts -->
+                                        <div class="col-md-12 showtime_div pad0">
+                                            <p class="timepad"></p>
+                                            <div class="input-group bootstrap-timepicker timepicker timepickheight">
+                                                <input ng-model="userConfig.timeInTimezonePicker" id="timeZoneText" type="text" disabled="" class="form-control input-small zonepicker timepickheight ng-pristine ng-untouched ng-valid ng-not-empty" data-country="US" selected="selected">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-time"></i>
+                                                </span>
+                                            </div>
+                                            <div class="timepad_div text-right">
+                                                <button class="btn btn-dgray btn-inline right" data-target="#timezonehome" ng-click="changeTimezone(false);popupTimezone = false">
+                                                    Cancel
+                                                </button>
+                                                <button class="btn btn-lblue btn-inline" site-catalyst="{'fname':'doTagTimeZone'}" ng-click="changeTimezone(true);popupTimezone=false;">
+                                                    Save My Time Zone
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- col md ends -->
+
+                                        <!-- End of Inner Divs -->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div><!---->
+            </div>
+
+
+            <!-- Show only in mobile--- Header  Mobile View -->
+
+            <!---->
+
+            <!-- Signin menu for mobile view only-->
+            <div class="mobileShow">
+                <div class="modal" id="public-user-modal" role="dialog">
+                    <div class="modal-dialog mobile-signin-block" style="background: none;">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <ul class="nav">
+                                    <li class="mobile-header-menu" pref-code="signInOptions" access-value="member">
+                                        <a class="menu_click fontW600" ng-href="./login" data-uname="homePageMemberSignIn" href="./login" onclick="jQuery('#public-user-modal').modal('hide')">
+                                            Sign In - Member
+                                        </a>
+                                    </li>
+                                    <li class="mobile-header-menu" pref-code="signInOptions" access-value="seller">
+                                        <a class="menu_click fontW600" ng-click="goToSellerLogin()" type="button" onclick="jQuery('#public-user-modal').modal('hide')" data-uname="homePageSellerSignIn" aria-expanded="false">
+                                            Sign In - Seller
+                                        </a>
+                                    </li>
+                                    <li class="mobile-header-menu" pref-code="signInOptions" access-value="counterman">
+                                        <!----><a class="menu_click fontW600" ng-href="./login?accountType=2" ng-if="userConfig.siteCode!='CPRTCA'" data-uname="homePageCountermanSignIn" onclick="jQuery('#public-user-modal').modal('hide')" href="./login?accountType=2" aria-expanded="false">
+                                            Sign In - Counterman
+                                        </a><!---->
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- After Signin menu mobile view only-->
+            <div class="mobileShow">
+                <div class="modal" id="member-modal" role="dialog">
+                    <div class="modal-dialog mobile-signin-block" style="background: none;">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <ul class="nav">
+                                    <li class="mobile-header-menu">
+                                        <a ng-href="./accountInformation/contactInfo" data-uname="accountInformationSubTab" onclick="jQuery('#member-modal').modal('hide')" class="menu_click fontW600" href="./accountInformation/contactInfo">
+                                            Account Information
+                                        </a>
+                                    </li>
+
+                                    <!----><li ng-if="locale.messages['app.depositsUpgrades.label']" class="mobile-header-menu">
+                                        <a href="en/Content/us/en/buyer/Payments/Deposits-and-Upgrades" onclick="jQuery('#member-modal').modal('hide')" data-uname="depositsAndUpgradeSubTab" class="menu_click fontW600">
+                                            Upgrades and Deposits
+                                        </a>
+                                    </li><!---->
+
+                                    <!----><li ng-if="locale.messages['app.memeberFees.label']" class="mobile-header-menu">
+                                        <a ng-href="./memberFees" data-uname="memberFeesSubTab" onclick="jQuery('#member-modal').modal('hide')" class="menu_click fontW600" href="./memberFees">Member Fees
+                                        </a>
+                                    </li><!---->
+
+                                    <li class="mobile-header-menu">
+                                        <a class="menu_click fontW600" onclick="jQuery('#member-modal').modal('hide')">
+                                            <span ng-click="doLogout()" data-uname="loginSignoutlink" style="text-transform: uppercase;">
+                                                Sign Out
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- end mobile View-->
+                </div>
+            </div><!-- Top header ends-->
+        </div>
+    </div>
+    <!--  end header mid -->
+
+    <!-- popup for language modal for mobile only -->
+    <div class="mobileShow">
+        <div class="col-xs-12 closeBox modal" id="contryLangModal" role="dialog">
+            <div class="modal-dialog" style="top: 75px;margin: 0;">
+                <div class="modal-content overflowHidden">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h4 class="text-center selectregion-title" style="display: inline-block;margin: 0;">
+                            Select Region and Language
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="ng-pristine ng-valid">
+                            <div class="form-group col-xs-12">
+                                <select class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="countryselect" ng-model="mySelecturl" ng-change="showSelectUrl(mySelecturl)">
+                                    <option value="">Region</option>
+                                    <option label="USA" value="https://www.copart.com/">USA</option>
+                                    <option label="UK" value="https://www.copart.co.uk/">UK</option>
+                                    <option label="Canada" value="https://www.copart.ca/">Canada</option>
+                                    <option label="Germany" value="https://www.copart.de/">Germany</option>
+                                    <option label="Spain" value="https://www.copart.es/">Spain</option>
+                                    <option label="Ireland" value="https://www.copart.ie/">Ireland</option>
+                                    <option label="UAE" value="https://www.copartmea.com/">UAE</option>
+                                    <option label="Bahrain" value="https://www.copartmea.com/">Bahrain</option>
+                                    <option label="Oman" value="https://www.copartmea.com/">Oman</option>
+                                    <option label="Brazil" value="http://www.copart.com.br/">Brazil</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-xs-12">
+                                <select class="form-control bfh-timezones timezoneborders ng-pristine ng-untouched ng-valid ng-not-empty" data-uname="homepageDdlanguage" ng-model="selectedLang" ng-change="changePopupLanguage(selectedLang)" ng-options="obj.value as obj.name for obj in userConfig.langOptions"><option label="English" value="string:en" selected="selected">English</option><option label="Español" value="string:es">Español</option><option label="Français Canadien" value="string:fr-CA">Français Canadien</option><option label="العربية" value="string:ar">العربية</option><option label="Русский" value="string:ru">Русский</option><option label="Polski" value="string:pl">Polski</option><option label="中文" value="string:zh-HANT">中文</option></select>
+                            </div>
+                            <div class=" text-center padtb20">
+                                <button class="btn btn-dgray btn-inline" data-target="#languagehome" data-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <button class="btn btn-lblue btn-inline" ng-click="changeLanguage(selectedLang);" data-dismiss="modal">
+                                    Go Now
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  End popup for language modal for mobile only -->
+
+    <div class="header-nav">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="header-menu">
+
+                    <nav class="navbar" navcollapse="">
+                        <div class="navbar-header togglemainheader">
+                            <div class="mainmenutogglediv">
+                                <button type="button" class="navbar-toggle  mainmenubtn closebox" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <img src="/images/icons/Menu.svg" class="img-responsive">
+                                    <span class="menu-toggle-title">Menu</span>
+                                </button>
+                            </div>
+
+                            <!--End  button mobile views-->
+                        </div>
+
+                        <!-- for mobile only-->
+
+                        <!-- Before Signin-->
+
+
+                        <!--  Main Menu  -->
+                        <div class="collapse navbar-collapse mainmenudiv" id="bs-example-navbar-collapse-1">
+
+                            <button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" class="navbar-toggle collapsed  right navbtnclose-mobile fa fa-times fa-lg"></button>
+                            <ul class="nav navbar-nav">
+                                <li class="active" ng-show="userConfig.displayUserName == null">
+                                    <a href="./" ng-click="routeReload('/')" data-uname="homePageHomeTab" class="menu_click">
+                                        Home
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-uname="homePageFindAVehicle">
+                                        Find Vehicles
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dd-white" menuclick="">
+                                        
+                                        <li>
+                                            <a href="./vehicleFinder" data-uname="vehicleFinderTab" class="menu_click">
+                                                Vehicle Finder
+                                            </a>
+                                        </li>
+                                        <li ng-show="!userConfig.hideSalesList">
+                                            <a href="./salesListResult" data-uname="salesListTab" class="menu_click">
+                                                Sales List
+                                            </a>
+                                        </li>
+                                        <li ng-show="userConfig.displayUserName == null">
+                                            <a href="./public/watchList" data-uname="watchlistPublicTab" class="menu_click">
+                                                Watchlist
+                                            </a>
+                                        </li>
+                                        
+                                        <li>
+                                            <a href="./savedsearch" data-uname="savedSearchesTab" class="menu_click">
+                                                Saved Searches
+                                            </a>
+                                        </li>
+                                        <li pref-code="footerLinks" access-value="veh_alrt">
+                                            <a href="./vehicleAlerts" data-uname="homepageVehiclealert" class="menu_click">
+                                                Vehicle Alerts
+                                            </a>
+                                        </li>
+                                        <li ng-show="userConfig.displayUserName != null" class="ng-hide">
+                                            <a href="./downloadSalesData" class="menu_click">
+                                                Download Sales Data
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                
+
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-uname="auctionsTab">
+                                        Auctions
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dd-white">
+                                        <li>
+                                            <a href="./todaysAuction" class="menu_click" ng-click="routeReload('/todaysAuction')" data-uname="todaysAuctionTab">
+                                                Today's Auctions
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./auctionCalendar" data-uname="auctionsCalendarTab" class="menu_click">
+                                                Auctions Calendar
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./auctionDashboard" ng-click="routeReload('/auctionDashboard')" class="menu_click" data-uname="auctionsDashboardTab">
+                                                Join Auctions
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                
+                                
+                                
+
+                                <li>
+                                    <a href="./locations" data-uname="locationsTab" class="menu_click">
+                                        Locations
+                                    </a>
+                                </li>
+                                <!--
+                                For  US sites like Drive there is no dropdown for sell vehicle.. instead it shows the sell Vehicle which is clickable.
+                                -->
+                                <!---->
+
+                                <!---->
+
+
+                                <!---->
+
+
+                                <!----><li ng-if="!locale.messages['tab.app.label.sellVehicle'] &amp;&amp; (userConfig.displayUserName == null)" ng-show="userConfig.siteCode !== 'CPRTUK' &amp;&amp; userConfig.siteCode !== 'CPRTIE'" class="dropdown sell-vehicle-dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-uname="sellVehicleTab">
+                                        Sell a Vehicle
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dd-white" menuclick="">
+                                        <li>
+                                            <a href="./sellForIndividuals" data-uname="forIndividualsTab" class="menu_click">
+                                                For Individuals
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./sellForBusiness" data-uname="forBusinessTab" class="menu_click">
+                                                For Businesses
+                                            </a>
+                                        </li>
+                                        <li pref-code="footerLinks" access-value="veh_dealer">
+                                            <a href="./sellForDealer" data-uname="forDealersTab" class="menu_click">
+                                                For Dealers
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li><!---->
+
+                                <li class="dropdown">
+                                    <a href="./brokersmarketmakers/1" class="dropdown-toggle addgd" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-uname="serviceSubTab">
+                                        Services
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dd-white">
+                                        
+
+
+                                        <li pref-code="footerLinks" access-value="broker_mkt">
+                                            <a tabindex="-1" href="./brokersmarketmakers/1" data-uname="brokersAndMarketMakersTertiaryTab" class="menu_click">
+                                                Brokers
+                                            </a>
+                                        </li>
+                                        <li pref-code="footerLinks" access-value="inspectors">
+                                            <a href="./inspectors?page=1&amp;yardNum=0" data-uname="homepageInspectorstertiarytab" class="menu_click">
+                                                Inspectors
+                                            </a>
+                                        </li>
+
+                                        <li ng-show="locale.messages['support.services.deliveries.title']" class="ng-hide">
+                                            <a href="en/Content/us/en/Support/Services/Vehicle-Deliveries" class="menu_click">
+                                                
+                                            </a>
+                                        </li>
+
+
+                                        <li ng-show="locale.messages['support.services.vehicleloading']" class="ng-hide">
+                                            <a href="en/Content/us/en/Support/Services/Vehicle-Loading-and-Viewing" class="menu_click">
+                                                
+                                            </a>
+                                        </li>
+
+                                        <li ng-show="locale.messages['support.services.vehicleviewing']" class="ng-hide">
+                                            <a href="en/Content/us/en/Services/Vehicle-Auction-Viewing" class="menu_click">
+                                                
+                                            </a>
+                                        </li>
+
+
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        <li pref-code="footerLinks" access-value="industry_links">
+                                            <a data-content-ng-href="/Content/us/en/Services/Industry-Links" data-uname="industryLinksTertiaryTab" class="menu_click" href="/Content/us/en/Services/Industry-Links">
+                                                Industry Links
+                                            </a>
+                                        </li>
+
+                                        <!---->
+                                        <!---->
+                                        <!---->
+
+                                    </ul>
+                                </li>
+
+
+                                <li class="dropdown support-dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" data-uname="supportTab">Support
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu dd-white">
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="./overview" data-uname="howToBuySubTab">
+                                            How to Buy
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-content-ng-href="/Support/FAQ-Topics/Buying" ng-click="doTagPageView('faq_buying')" data-uname="faqSubTab" class="menu_click" href="/Content/us/en/Support/FAQ-Topics/Buying">
+                                                Common Questions
+                                            </a>
+                                        </li>
+                                        <li ng-show="locale.messages['app.show.howauctionworks']" pref-code="headerLinks" access-value="hideauctionWorks" class="ng-hide">
+                                            <a href="./howVb3Works" data-uname="howVb3WorksTeritaryTab" class="menu_click">
+                                            
+                                            </a>
+                                        </li>
+                                        <li ng-show="locale.messages['app.label.memberProtectionPledge']" class="ng-hide">
+                                            <a href="en/Content/us/en/Member-Protection-Pledge" class="menu_click">
+                                                
+                                            </a>
+                                        </li>
+                                        <li ng-show="locale.messages['support.services.buyingCatBs']" class="ng-hide">
+                                            <a href="en/Content/us/en/Support/Services/Category-B-Vehicles" class="menu_click">
+                                                
+                                            </a>
+                                        </li>
+                                        <li ng-show="locale.messages['support.services.gettheKnowhow']" class="ng-hide">
+                                            <a href="en/Content/us/en/landing-page/know-how/educated-buyer-at-auction" class="menu_click">
+                                                
+                                            </a>
+                                        </li>
+                                        <!-- This is added for Drive -->
+                                        
+                                        <li pref-code="footerLinks" access-value="licensing">
+                                            <a ng-href="./helpWithLicensing" data-uname="helpWithLicensingSubTab" class="menu_click" href="./helpWithLicensing">
+                                                Help With Licensing
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a ng-href="./copartVideos" data-uname="videosTeritaryTab" class="menu_click" href="./copartVideos">
+                                                Videos
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a ng-href="./contactUs" data-uname="contactUsSubTabTertiary" class="menu_click" href="./contactUs">
+                                                Contact Us
+                                            </a>
+                                        </li>
+                                        <li class="mobile-needHelp">
+                                            <a href="./help" class="menu_click" site-catalyst="{'fname':'doTagNeedHelp'}" data-uname="needHelpSubTabTertiary">
+                                                Need Help?
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div class="logregdiv">
+                    <div class="register">
+                        <div class="text-center">
+                               <span class="list-in list-actions reg-signIn">
+                                   <span>
+                                       <a href="./doRegistration" class="textbtn" data-uname="homePageRegister">
+                                           Register
+                                           <img src="/images/icons/Arrow.svg" class="img-responsive p-rl10"></a>
+                                   </span>
+                                   <span class="hidden-x-small">
+                                       <span class="pipe">|</span>
+                                   </span>
+                                   <span class="hidden-x-small">
+                                       <a class="textbtn dropdown-toggle" data-toggle="dropdown" data-uname="homePageSignIn" signinmenu="">
+                                           Sign In
+                                            <img src="/images/icons/Arrow.svg" class="img-responsive p-rl10">
+                                       </a>
+                                       <div class="dropdown-menu signin">
+                                           <div class="boxlg" data-uname="homePageModalWindow">
+                                               <a class="btn btn-lblue" ng-href="./login" type="button" data-uname="homePageMemberSignIn" pref-code="signInOptions" access-value="member" href="./login">
+                                                   Member
+                                               </a>
+                                               <a class="btn btn-lblue" ng-click="goToSellerLogin()" type="button" data-uname="homePageSellerSignIn" pref-code="signInOptions" access-value="seller">
+                                                   Seller
+                                               </a>
+                                               <a class="btn btn-lblue" ng-href="./login?accountType=2" type="button" data-uname="homePageCountermanSignIn" pref-code="signInOptions" access-value="counterman" href="./login?accountType=2">
+                                                   Counterman
+                                               </a>
+                                           </div>
+                                       </div>
+                                   </span>
+                               </span>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div class="inner-wrap">
+    <!--  main content goes here -->
+    <notifications><!---->
+<!---->
+<!---->
+<!---->
+<!---->
+
+<div class="browser-compatibiltiy-text alert" role="alert" style="display:none;">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+   Add Auction Notifications here
+</div>
+<div class="browser-compatibiltiy-text alert" role="alert" style="display:none;">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+   US auctions will resume shortly.
+</div></notifications>
+    <!----><div ng-view="" autoscroll=""><div ng-hide="loadingSearchResults">
+    <div class="container-fluid  searchresultstable" xmlns="http://www.w3.org/1999/xhtml" fa-suspendable="">
+        <!---->
+
+    <div class="row" ng-show="noResults==false">
+        <!--start filters selection-->
+    <div>
+        <div class="col-xs-12 col-sm-12 relative">
+            <!----><div ng-if="!isMobileDevice &amp;&amp; !isMobileSize" class="search-filter-menu  toggle-btn" data-target="#filters-collapse-1" data-toggle="collapse">
+                <div class="brand ng-binding">Filter Options
+                    <span class="filter-icon"></span>
+                </div>
+            </div><!---->
+
+                <!--  for mobile view Only -->
+
+            <!---->
+
+
+            <div class="mobileShow mar10">
+                <div class="printemailshare right">
+                    <ul class="list-unstyled list-inline">
+                        <li id="email" data-uname="lotsearchEmailbutton" data-doctitle="Search Results"><a href="#" class="emailpage"><i class="fa fa-envelope"></i><span class="ng-binding">Email</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class=" col-xs-12 col-sm-12 search-results-filter">
+            <!----><div class="filter-container" ng-if="!isMobileDevice">
+                <div class="filters" id="filters-collapse-1">
+                    <!--add .collapsed class when menu is collapsed-->
+                    <div class="filter-inner">
+
+                            <h3 class="nmt">
+
+                            <span class="ftitle" style="display:block;">Filter Options</span>
+
+                                <a href="" class="closeall left" data-uname="watchlistFilteroption" opencloseall=""><i class="fa fa-minus-square"></i></a> <a class="cursor-pointer" ng-click="clearAllFilters()">
+                                <div class="clearall" data-uname="watchlistClearall">
+                                    Clear All
+                                </div>
+                            </a>
+                            </h3>
+                            <ul class="list-group">
+                                <!---->
+                                <!---->
+
+                            </ul>
+
+                    </div>
+                    <div pref-code="hideGoogleAds" access-value="true">
+                        <div parent-id="Content/US/EN/lotsearchresult.html" data-cms-content-fragment="" fragment-id="Google-Ads1"><!----><div ng-bind-html="fragmentedCms"><script>
+        var userstat = 'logged-out';
+        var lang = 'eng';
+        var breakpoint = 'desktop';
+        var test = 'Searchresult';
+        var REFRESH_KEY = 'refresh';
+        var REFRESH_VALUE = 'true';
+        var refresh_rate = 60;
+
+        googletag.cmd.push(function() {
+            var leftMapping = googletag.sizeMapping().
+                              addSize([768, 0], [160, 600]).
+                              addSize([0, 0], []).
+                              build();
+
+            googletag.defineSlot('/35265761/SearchResults_160x600', [160, 600], 'div-gpt-ad-1450241013744-0')
+                .defineSizeMapping(leftMapping)
+                .addService(googletag.pubads())
+                .setTargeting("pos", "bottom")
+                .setTargeting(REFRESH_KEY, REFRESH_VALUE);          
+
+            googletag.pubads().addEventListener('impressionViewable', function(event) {
+              var slot = event.slot;
+              if (slot.getTargeting(REFRESH_KEY).indexOf(REFRESH_VALUE) > -1) {
+                setTimeout(function() {
+                  googletag.pubads().refresh([slot]);
+                }, refresh_rate * 1000);
+              }
+            });
+            
+            googletag.pubads().setTargeting("userstat",userstat);
+            googletag.pubads().setTargeting("lang",lang);
+            googletag.pubads().setTargeting("breakpoint",breakpoint);
+            googletag.pubads().setTargeting("test",test);
+
+            googletag.pubads().collapseEmptyDivs();
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+<div class="col-sm-12 adgoogle-style adsImage">
+	<div id="div-gpt-ad-1450241013744-0" data-google-query-id="CIH9z5GY7t4CFVJTwQodz9ILSQ" style="display: none;"><script type="text/javascript">
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1450241013744-0'); });
+</script><div id="google_ads_iframe_/35265761/SearchResults_160x600_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/35265761/SearchResults_160x600_0" title="3rd party ad content" name="google_ads_iframe_/35265761/SearchResults_160x600_0" width="160" height="600" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" srcdoc="" style="border: 0px; vertical-align: bottom;"></iframe></div></div>
+</div>
+
+</div></div>
+                    </div>
+                </div>
+            </div><!---->
+            <!----><div class="filterbar hidden-xs" ng-if="!isMobileDevice">
+                <a href="" id="filter-anchor" class="menu-toggle" slidetoggle=""></a>
+            </div><!---->
+
+
+                <!--end filters selection-->
+
+
+                <div class="results-wrap search-results"><!--add .expanded class when menu is collapsed-->
+
+                    <!---->
+
+
+                    <h1 class="result-title nmt truncatemobile" data-uname="searchResultsHeader">
+                        <span ng-bind-html="header | to_trusted">Sale List for FL - Jacksonville East</span>
+                        <!---->&nbsp;
+                        <a href="#saveSearch" ng-click="searchName=''" ng-hide="isWatchList || saved" class="save-btn desktopViewInline" data-uname="lotsearchSavesearchlink" site-catalyst="{'fname':'doTagSaveSearch'}" data-toggle="modal" check-for-logged-in-user="" state-restore="true">Save Search
+                        </a>
+                        <!---->
+                        <div class="printemailshare right desktopViewInline">
+
+                            <ul class="list-unstyled list-inline">
+                                <li><!----></li>
+                                <li data-uname="lotsearchPrintbutton"><a href="#" class="ng-binding"><i class="fa fa-print"></i>Print</a></li>
+                                <li id="email" data-uname="lotsearchEmailbutton" data-doctitle="Search Results"><a href="#" class="emailpage"><i class="fa fa-envelope"></i><span class="ng-binding">Email</span></a></li>
+                            </ul>
+                        </div>
+                    </h1>
+
+                    <!---->
+
+                    <ul class="active-filters applied-filter-selection filters-applied">
+                        <li data-uname="watchlistFilters">Filters Applied:</li>
+                        <li id="filters">
+                                <span id="sellerBreadCrumb">
+                                <!---->
+                                </span>
+                        </li>
+                        <!----><li ng-if="appliedFilters.length<=0" data-uname="watchlistNofiltersapplied">
+                            <span>No Filters Applied</span>
+                        </li><!---->
+                    </ul>
+
+                    <!--end breadCrumbs selection-->
+                    <hr class="hr-sm clr">
+                    <div class="clearfix">
+
+
+                        <div class="options">
+                            <ul class="list-in list-accent lg-accent">
+                                <li>
+                                    <!----><a class="btn btn-black desktopView" ng-disabled="selectedLotNumbers.length==0" ng-if="!isWatchList &amp;&amp; !watchListOnly" check-for-logged-in-user="" state-restore="true" ng-click="addCheckedToWatchList()" data-uname="lotsearchAddtowatchlist" disabled="disabled">Add to Watchlist</a><!---->
+
+                                    <!---->
+                                </li>
+                                <li class="desktopView"><span ng-click="compareLots()"><a ng-disabled="!(selectedLotNumbers.length > 1 &amp;&amp; selectedLotNumbers.length < 6)" class="btn btn-black btn-compare" data-uname="lotsearchComparebutton" disabled="disabled">Compare</a></span>
+                                </li>
+
+                                <!---->
+
+                                <!---->
+                                <li class="desktopView"><a href="#customize" class="btn btn-black hide-customize" data-toggle="modal" check-for-logged-in-user="" state-restore="true" data-uname="lotsearchCustomize">Customize
+                                    View</a></li>
+                                <li>
+                                    <button type="button" class="btn btn-black ng-pristine ng-untouched ng-valid active ng-not-empty" ng-model="showImages" ng-init="showImages=true" ng-change="showHideImages(showImages)" uib-btn-checkbox="" data-uname="lotsearchHideimages"><!----><span ng-if="showImages">Hide Images</span><!----><!---->
+                                    </button>
+                                </li>
+
+                                <li ng-show="showAllEnabled &amp;&amp; viewType!='showAll'" pref-code="searchPreference.searchFields" access-value="showAll"><a class="btn btn-black showall-sales" ng-click="showAll()" data-uname="lotsearchShowallimages">Show all</a>
+                                </li>
+
+                                <li class="mobileViewInline"><a href="#saveSearch" ng-click="searchName=''" ng-hide="isWatchList || saved" class="save-btn btn btn-black" data-uname="lotsearchSavesearchlink" site-catalyst="{'fname':'doTagSaveSearch'}" data-toggle="modal" check-for-logged-in-user="" state-restore="true">Save Search</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <ul class="text-size hidden-sm hidden-xs">
+                            <li><span class="hidden-sm hidden-xs">Text size</span>
+                            </li>
+                            <li><a href="" class="" decreasefont=""><span class="size size-sm" data-uname="lotsearchDecresefontsize"><i class="fa fa-font"></i></span></a></li>
+                            <li><a href="" class="" increasefont=""><span class="size size-lg" data-uname="lotsearchIncreasefontsize"><i class="fa fa-font"></i></span></a></li>
+                        </ul>
+
+                        <div class="sortbydiv">
+                            <div class="sortbyselect mobileShow">
+                                <form name="zipcodeform" class="ng-pristine ng-valid">
+                                    <label for="zip-code">Sort By</label>
+                                    <select data-uname="lotsearchSortbydropdown" class="form-control control-inline w100 ng-pristine ng-untouched ng-valid ng-empty" ng-model="selectedHeader" ng-options="header as header.displayName for header in tableHeaders"><option value="" selected="selected">-Select-</option></select>
+                                    <button class="btn btn-primary btn-go btn-small" data-uname="lotsearchSortbydropdownsubmit" ng-click="sortBy(selectedHeader)">Go
+                                    </button>
+
+                                </form>
+                            </div>
+
+
+                            <div class="postal-search">
+    <div ng-class="zipcodeform.zipcode.$error.pattern ? 'validation-error-box' : ''" style="display:inline-block;">
+        <form name="zipcodeform" class="ng-pristine ng-invalid ng-invalid-required ng-valid-pattern ng-valid-maxlength">
+            <label for="zip-code">Sort by Zip</label>
+            <input type="text" id="zip-code" name="zipcode" maxlength="8" data-uname="lotsearchSortbyziptextbox" class="form-control control-inline ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-pattern ng-valid-maxlength" ng-model="zipcode" required="" ng-pattern="/^[a-zA-Z0-9\-\s]+$/">
+            <button class="btn btn-primary btn-go btn-small" data-uname="lotsearchSortbyziptextboxsubmit" ng-click="sortByZip(zipcode)">Go
+            </button>
+        </form>
+        <p class="error ng-hide" ng-show="zipcodeform.zipcode.$error.pattern">
+            Zip Code/Postal Code
+            is not valid
+        </p>
+    </div>
+</div>
+
+                            <!---->
+                        </div>
+                    </div>
+
+                    <div ng-show="successMessage" class="alert alert-success ng-hide">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <strong></strong>
+                    </div>
+                    <!--start datatable-->
+                    <div name="tableForm" novalidate="">
+                        <div class="search-resultstable">
+                            <div>
+</div><div id="serverSideDataTable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="top"><div class="dataTables_info" id="serverSideDataTable_info" role="status" aria-live="polite"></div><div id="serverSideDataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="Search by Lot#,VIN#" aria-controls="serverSideDataTable"></label></div><div class="dataTables_length" id="serverSideDataTable_length"><label>Show <select name="serverSideDataTable_length" aria-controls="serverSideDataTable" class="form-control input-sm"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select> entries</label></div><div class="dataTables_paginate paging_full_numbers" id="serverSideDataTable_paginate"></div><div class="clear"></div></div><div id="serverSideDataTable_processing" class="dataTables_processing panel panel-default" style="display: block;"><img src="/images/icons/loader.gif" style="z-index:100000;"></div><table id="serverSideDataTable" server-side-datatable="serverSideDataTable" data-uname="lotsearchLotresultstable" class="table table-hover table-responsive search-results-table enable-bids dataTable no-footer dtr-column" style="width:100%;" aria-describedby="serverSideDataTable_info" role="grid">
+                                <thead>
+                                <!-- lot Images permanent Column -->
+                                <!--  Select All Check Box - permanent column -->
+                                <tr role="row"><th id="selectAllHdr" class="selectall-check sorting_disabled" data-sort-id="auction_date_utc" data-secondary-sort-id="auction_date_utc" data-sort-type="default" data-fieldid="checkbox" rowspan="1" colspan="1">
+                                        <!--DO NOT UNCOMMENT PLEAS. CAUSES ANGULAR ERROR <input
+                                                type="checkbox"/> --></th><th id="image_path_small" data-uname="watchlistImagecolumn" data-sort-id="auction_date_utc" data-secondary-sort-id="auction_date_utc" data-solrfield="image_path_small" data-jsonproperty="ims" data-fieldid="imagePathSmall" class="no-sort sorting_disabled" data-sort-type="default" rowspan="1" colspan="1">
+    <span class="filter"></span>
+    <span class="title">Images</span>
+</th><th id="lot_Number" data-uname="watchlistLotcolumn" data-sort-id="lot_number" data-solrfield="lot_number" data-jsonproperty="ln" data-secondary-sort-id="auction_date_utc" class="sortable sorting" data-fieldid="lotNumber" data-header-name="Lot #" tabindex="0" aria-controls="serverSideDataTable" rowspan="1" colspan="1">
+    <span class="filter"></span>
+    <span class="title">Lot #</span>
+</th><th id="lot_year" data-uname="watchlistYearcolumn" data-secondary-sort-id="auction_date_utc" data-sort-id="lot_year" data-solrfield="lot_year" data-jsonproperty="lcy" class="sortable sorting" data-fieldid="lotYear" data-header-name="Year" tabindex="0" aria-controls="serverSideDataTable" rowspan="1" colspan="1">
+    <span class="filter"></span>
+    <span class="title">Year</span>
+</th><th id="lot_make" data-uname="watchlistMakecolumn" data-secondary-sort-id="lot_model_desc" data-sort-id="lot_make_desc" data-solrfield="lot_make_desc" data-jsonproperty="mkn" class="sortable sorting" data-fieldid="lotMake" data-header-name="Make" tabindex="0" aria-controls="serverSideDataTable" rowspan="1" colspan="1">
+    <span class="filter"></span>
+    <span class="title">Make</span>
+</th><th id="lot_model" data-uname="watchlistModelcolumn" data-secondary-sort-id="auction_date_utc" data-sort-id="lot_model_desc" data-solrfield="lot_model_desc" data-jsonproperty="lm" class="sortable sorting" data-fieldid="lotModel" data-header-name="Model" tabindex="0" aria-controls="serverSideDataTable" rowspan="1" colspan="1">
+    <span class="filter"></span>
+    <span class="title">Model</span>
+</th><th id="auction_assignment_number" data-uname="watchlistItemnumbercolumn" data-secondary-sort-id="auction_date_utc" data-sort-id="auction_assignment_number" data-solrfield="auction_assignment_number" class="sortable sorting" data-jsonproperty="aan" data-fieldid="auctionAssignmentNumber" data-header-name="Item#" tabindex="0" aria-controls="serverSideDataTable" rowspan="1" colspan="1">
+    <span class="filter"></span>
+    <span class="title">Item#</span>
+</th><th data-secondary-sort-id="grid_row" class="sortable sorting" id="yard_name" data-solrfield="yard_name" data-jsonproperty="yn" data-fieldid="yardName" data-sort-id="yard_name" data-header-name="Location / Lane / Row" tabindex="0" aria-controls="serverSideDataTable" rowspan="1" colspan="1">
+    <span class="filter"></span>
+
+    <span class="title">Location / Lane / Row</span>
+</th><th data-secondary-sort-id="auction_date_utc" class="sortable sorting" id="auction_date_utc" data-solrfield="auction_date_utc" data-jsonproperty="ad" data-fieldid="auctionDateUtc" data-sort-id="auction_date_utc" data-header-name="Sale Date" tabindex="0" aria-controls="serverSideDataTable" rowspan="1" colspan="1">
+    <span class="filter"></span>
+
+    <span class="title">Sale Date</span>
+</th><th data-secondary-sort-id="auction_date_utc" class="sortable sorting" id="odometer_reading_received" data-solrfield="odometer_reading_received" data-jsonproperty="orr" data-fieldid="odometerReadingReceived" data-sort-id="odometer_reading_received" data-header-name="Odometer" tabindex="0" aria-controls="serverSideDataTable" rowspan="1" colspan="1">
+    <span class="filter"></span>
+
+    <span class="title">Odometer</span>
+</th><th data-secondary-sort-id="auction_date_utc" class="sortable sorting" id="sale_title_type" data-solrfield="sale_title_type" data-jsonproperty="stt" data-fieldid="saleTitleType" data-sort-id="sale_title_type" data-header-name="Doc Type" tabindex="0" aria-controls="serverSideDataTable" rowspan="1" colspan="1">
+    <span class="filter"></span>
+
+    <span class="title">Doc Type</span>
+</th><th data-secondary-sort-id="auction_date_utc" class="sortable sorting" id="damage_desc" data-solrfield="damage_desc" data-jsonproperty="dd" data-fieldid="damageDesc" data-sort-id="damage_desc" data-header-name="Damage" tabindex="0" aria-controls="serverSideDataTable" rowspan="1" colspan="1">
+    <span class="filter"></span>
+
+    <span class="title">Damage</span>
+</th><th data-secondary-sort-id="auction_date_utc" class="sortable sorting" id="lot_member_acv" data-solrfield="lot_member_acv" data-jsonproperty="la" data-fieldid="lotAcv" data-sort-id="lot_member_acv" data-header-name="Est. Retail Value" tabindex="0" aria-controls="serverSideDataTable" rowspan="1" colspan="1">
+    <span class="filter"></span>
+
+    <span class="title">Est. Retail Value</span>
+</th><th id="high_bid" data-solrfield="current_high_bid" data-priority="0" data-secondary-sort-id="auction_date_utc" data-sort-id="current_high_bid" data-jsonproperty="hb" data-fieldid="highBid" class="sortable sorting" data-header-name="Current Bid" tabindex="0" aria-controls="serverSideDataTable" rowspan="1" colspan="1">
+                                        <span class="filter"></span>
+                                        <span class="title">Current Bid</span>
+                                    </th><th class="control sorting_disabled" rowspan="1" colspan="1" style="display: none;"></th></tr>
+                                </thead>
+                            <tbody></tbody></table><div class="bottom"><div class="dataTables_info"></div><div class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="Search by Lot#,VIN#" aria-controls="serverSideDataTable"></label></div><div class="dataTables_length"><label>Show <select name="serverSideDataTable_length" aria-controls="serverSideDataTable" class="form-control input-sm"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select> entries</label></div><div class="dataTables_paginate paging_full_numbers"></div><div class="clear"></div></div></div>
+
+                        </div>
+                    </div>
+                    <!--end datatable-->
+                    <div class="clear">
+
+                    </div>
+
+
+                    <!-- Gotopage Button Added -->
+                    <div class="goto">
+    <label class="golabel">Go To Page</label>
+    <input ng-model="pageToGo" ng-keyup="pageNumberInvalid=false;" type="text" class="form-control goinput ng-pristine ng-untouched ng-valid ng-empty" name="gotopage" id="gotopage" placeholder="">
+    <button ng-click="goToPage(pageToGo)" class="btn btn-lblue btn-go" type="button" name="" id="">
+        Go
+    </button>
+    <!---->
+</div>
+                    <div class="content-box top10 padding10 text-center" style="clear:both;">
+    <a class="jump-to" data-targetdiv="top" data-uname="watchlistBacktotop" scroll-to-div="" id="backToTopId" href=""><i class="fa fa-chevron-circle-up"></i>Back to Top</a>
+</div>
+                <div pref-code="hideGoogleAds" access-value="true">
+                    <div parent-id="Content/US/EN/lotsearchresult.html" data-cms-content-fragment="" fragment-id="Google-Ads2"><!----><div ng-bind-html="fragmentedCms"><script>
+        var userstat = 'logged-out';
+        var lang = 'eng';
+        var breakpoint = 'desktop';
+        var test = 'Searchresult';
+        var REFRESH_KEY = 'refresh';
+        var REFRESH_VALUE = 'true';
+        var refresh_rate = 60;
+
+        googletag.cmd.push(function() {
+            var bottomMapping1 = googletag.sizeMapping().
+            addSize([768, 0], [728, 90]).
+            addSize([0, 0], []).
+            build();
+
+            var bottomMapping2 = googletag.sizeMapping().
+            addSize([768, 0], []).
+            addSize([0, 0], [300, 250]).
+            build();
+
+            googletag.defineSlot('/35265761/SearchResults_728x90', [728, 90], 'div-gpt-ad-1450241085579-0')
+                .defineSizeMapping(bottomMapping1)
+                .addService(googletag.pubads())
+                .setTargeting("pos", "bottom")
+                .setTargeting(REFRESH_KEY, REFRESH_VALUE);
+
+            googletag.defineSlot('/35265761/SearchResults_300x250', [300, 250], 'div-gpt-ad-1515660163150-0')
+                .defineSizeMapping(bottomMapping2)
+                .setTargeting("pos", "mid")
+                .setTargeting(REFRESH_KEY, REFRESH_VALUE)
+                .addService(googletag.pubads());
+
+            googletag.pubads().addEventListener('impressionViewable', function(event) {
+              var slot = event.slot;
+              if (slot.getTargeting(REFRESH_KEY).indexOf(REFRESH_VALUE) > -1) {
+                setTimeout(function() {
+                  googletag.pubads().refresh([slot]);
+                }, refresh_rate * 1000);
+              }
+            });
+
+            googletag.pubads().setTargeting("userstat",userstat);
+            googletag.pubads().setTargeting("lang",lang);
+            googletag.pubads().setTargeting("breakpoint",breakpoint);
+            googletag.pubads().setTargeting("test",test);
+
+            googletag.pubads().collapseEmptyDivs();
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+<div class="col-sm-12" style="text-align: center;">
+	<div class="martop">
+		<div id="div-gpt-ad-1450241085579-0" data-google-query-id="CIDmz5GY7t4CFYFkwQodF-wEbQ" style="display: none;"><script type="text/javascript">
+                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1450241085579-0'); });
+            </script><div id="google_ads_iframe_/35265761/SearchResults_728x90_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/35265761/SearchResults_728x90_0" title="3rd party ad content" name="google_ads_iframe_/35265761/SearchResults_728x90_0" width="728" height="90" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" srcdoc="" style="border: 0px; vertical-align: bottom;"></iframe></div></div>
+
+		<div id="'div-gpt-ad-1515660163150-0"><script type="text/javascript">
+                googletag.cmd.push(function() { googletag.display(''div-gpt-ad-1515660163150-0'); });
+            </script></div>
+	</div>
+</div>
+
+</div></div>
+                </div>
+            </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div id="locationGenericModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog large-dialog">
+        <div class="modal-content overflowHidden">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+					×</button>
+                <h4 class="modal-title" data-uname="lotsearchLocationmodaltitle"></h4>
+            </div>
+            <form name="saveSearchForm" novalidate="" class="ng-pristine ng-valid">
+                <div class="modal-body">
+                    <!--<div class="col-sm-12" ng-if="tempScope.yardDetails.showInventory==true || yardDetails.showInventory == true">-->
+                        <!--<button type="button" class="btn btn-primary right" data-dismiss="modal" data-uName="lotsearchLocationModalClose">{{tempScope.yardDetails.yardName || yardDetails.yardName}}{{yardDetails.yardName}}</button>-->
+                    <!--</div>-->
+                    <!---->
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="col-sm-6  col-xs-6 pad0">
+                                <div class="image_fixed">
+                                    <span><i class="fa fa-phone gray_approx"></i></span>
+                                    <p></p><h6>Phone</h6>
+                                    <p></p>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6  col-xs-6  pad0">
+                                <div class="image_fixed">
+                                    <span><i class="fa fa-print gray_approx"></i></span>
+                                    <p></p><h6>Fax</h6>
+                                    <p></p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="col-sm-6  col-xs-6 pad0">
+                                <div class="image_fixed">
+                                    <span><i class="fa fa-clock-o gray_approx"></i></span>
+                                    <p>
+                                        </p><h6>Hours</h6>
+                                     To 
+                                    <p></p>
+                                    <p></p>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6  col-xs-6  pad0">
+                                <div class="image_fixed">
+                                    <span><i class="fa fa-wifi"></i></span>
+                                    <p></p><!----><h6 ng-if="!tempScope.yardDetails.wifi || !yardDetails.wifi">No WiFi</h6><!---->
+                                       <!---->
+                                    at this location<p></p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="col-sm-6  col-xs-6  pad0">
+                                <div class="image_fixed">
+                                    <span><i class="fa fa-envelope gray_approx"></i></span>
+                                    <p></p><h6>Address</h6>
+                                    <br>
+                                    <!---->
+                                    ,  <br>
+                                    <!----><p></p>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6   col-xs-6  pad0">
+                                <div class="image_fixed">
+                                    <span><i class="fa fa-envelope gray_approx"></i></span>
+                                    <p></p><h6>Mailing Address</h6>
+                                     <br>
+                                    ,  <br>
+                                    <!----><p></p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="col-sm-6  col-xs-6  pad0">
+                                <div class="image_fixed">
+                                    <span><i class="fa fa-map-marker gray_approx"></i></span>
+                                    <h6><a id="lnkDirections" class="read-more no_working direction" target="_blank" ng-href="http://maps.google.com/maps?saddr=&amp;daddr=" href="http://maps.google.com/maps?saddr=&amp;daddr="><span ng-bind-html="locale.messages['app.label.getDirections']">Get Directions <br> from your location</span></a></h6>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6  col-xs-6  pad0">
+                                <div class="image_fixed">
+                                    <span><i class="fa fa-user gray_approx"></i></span>
+                                    <div>
+                                    	<h6>GENERAL MANAGER</h6>
+                                    	<a ng-href="mailto:;" href="mailto:;"></a>
+                                    </div>
+                                    
+									<!----><div ng-if="tempScope.locale.messages['locationDetail.label.rm'] != undefined">
+                                    	<h6>REGIONAL MANAGER</h6>
+                                    	
+                                    </div><!---->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                       
+                    </div>
+                 </div>
+            </form>
+        </div>
+    </div>
+</div>
+            <!--customize view modal-->
+            <div id="customize" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content overflowHidden">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <h4 class="modal-title">Customize Search Results</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+
+
+                                <!---->
+
+                                <!-- template-url="alert.html" -->
+
+                                <div class="col-sm-6 customize-column-view">
+                                    <!-- Customization window content left column -->
+                                    <h4>Available Columns</h4>
+                                    <p>    &nbsp;</p>
+                                    <select id="multiselect" name="from[]" multiple="" size="12">
+                                        <option value="damage_type_code">Damage Type Code</option>
+                                        <option value="full_vin">VIN</option>
+                                        <option value="auction_time">Auction Time</option>
+                                        <option value="engine">Engine</option>
+                                        <option value="cylinders">Cylinders</option>
+                                        <option value="sale_status">Sale Status</option>
+                                        <option value="transmission_type">Transmission</option>
+                                        <option value="auction_host_name">Sale Name</option>
+                                    </select>
+                                    <!--  A hidden select  field that always contains the default fields . This is to enable reset -->
+                                    <select ng-show="false" id="multiselect_defAvail" name="to[]" multiple="" size="12" class="ng-hide">
+                                        <option value="damage_type_code">Damage Type Code</option>
+                                        <option value="full_vin">VIN</option>
+                                        <option value="auction_time">Auction Time</option>
+                                        <option value="engine">Engine</option>
+                                        <option value="cylinders">Cylinders</option>
+                                        <option value="sale_status">Sale Status</option>
+                                        <option value="transmission_type">Transmission</option>
+                                        <option value="auction_host_name">Sale Name</option>
+                                    </select>
+                                    <!-- Field Selection action buttons -->
+                                    <a href="#noPage" class="action-btn add-lbl" id="multiselect_rightSelected"><span>Add</span><i class="fa fa-angle-right"></i></a>
+                                    <a href="#noPage" class="action-btn remove-lbl" id="multiselect_leftSelected"><i class="fa fa-angle-left"></i><span>Remove</span></a>
+                                    <a ng-click="resetToDefault()" class="action-btn reset-lbl" id="reset"><span>Reset</span></a>
+
+                                </div>
+                                <!-- Customization window right column -->
+                                <div class="col-sm-6 customize-column-view">
+                                    <h4>Show Columns In This Order</h4>
+                                    <p> Maximum of 6 columns allowed</p>
+                                    <select id="multiselect_to" name="to[]" multiple="" size="12">
+                                        <option value="yard_name">Location / Lane / Row</option>
+                                        <option value="auction_date_utc">Sale Date</option>
+                                        <option value="odometer_reading_received">Odometer</option>
+                                        <option value="sale_title_type">Doc Type</option>
+                                        <option value="damage_desc">Damage</option>
+                                        <option value="lot_member_acv">Est. Retail Value</option>
+                                    </select>
+                                    <!--  A hidden select  field that always contains the default fields . This is to enable reset -->
+                                    <select ng-show="false" id="multiselect_def" name="to[]" multiple="" size="12" class="ng-hide">
+                                        <option value="yard_name">Location / Lane / Row</option>
+                                        <option value="auction_date_utc">Sale Date</option>
+                                        <option value="odometer_reading_received">Odometer</option>
+                                        <option value="sale_title_type">Doc Type</option>
+                                        <option value="damage_desc">Damage</option>
+                                        <option value="lot_member_acv">Est. Retail Value</option>
+                                    </select>
+                                    <!-- Order movement action buttons  -->
+                                    <input type="button" class="action-btn up-lbl" id="moveUpBttn" value="Up" ng-click="moveOptionUp();">
+                                    <input type="button" class="action-btn down-lbl" id="moveDownBttn" value="Down" ng-click="moveOptionDown();">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="customViewCancelBttn" type="button" class="btn btn-dgray" data-dismiss="modal">Cancel
+                            </button>
+                            <button id="custViewCnfBttn" ng-click="confirmCustomization()" type="button" class="btn btn-lblue btn-onlight">Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <div>
+    <div id="saleYardName" style="display:none;" ng-non-bindable=""><span>[[ syn ]]</span></div>
+    <div id="lotMake" style="display:none;" ng-non-bindable=""><span data-uname="lotsearchLotmake">[[ mkn ]]</span></div>
+    <div id="saleStatus" style="display:none;" ng-non-bindable=""><span data-uname="lotsearchSaleStatus">[[ ess ]]</span>
+    </div>
+    <div id="lotModel" style="display:none;" ng-non-bindable=""><span data-uname="lotsearchLotmodel">[[ lm ]]</span></div>
+    <div id="auctionAssignmentNumber" style="display:none;" ng-non-bindable=""><span data-uname="lotsearchItemnumber">[[ aan ]]</span></div>
+    <div>
+	<div>
+		
+		
+		
+		<div><div>
+	<div id="yardName" style="display:none;" ng-non-bindable="">
+	<a class="cursor-pointer" location-modal="" yard-number="[[phynumb]]" yard-details="yardDetails" show-inventory="true">
+		<span data-uname="lotsearchLotyardname">[[ yn ]] </span>
+	</a><br>
+	<span pref-code="searchPreference.searchFields" access-value="laneRow">[[al]] <span>/ [[ gr ]]</span></span><br>
+	</div>
+</div></div>
+	</div>
+</div>
+    <div>
+	<div>
+		
+		
+		
+		<div><div>
+<div id="highBid" style="display:none;" ng-non-bindable="">
+    <ul class="list-unstyled ng-cloak" data-uname="lotsearchLothighbid">
+    <li ng-if="lots.lot_[[ln]].las != 'LIVE_BIDDING'&amp;&amp;!isLiveAuction">
+        {[ if (!sbf) { ]}
+        <ul class="list-unstyled">
+            <li>
+                <span ng-bind="::locale.messages['app.label.currentBid']"></span> :
+                <span ng-bind="lots.lot_[[ln]].currentBid || [[ hb ]] | globalize_currency_using_code:'[[cuc]]'"></span>
+            </li>
+            <li ng-if="!(lots.lot_[[ln]].bds =='HIGH_BIDDER' || lots.lot_[[ln]].bds =='OUT_BID' || lots.lot_[[ln]].bds =='OUT_BID_LOTDETAIL')"><a class="btn btn-primary btn-bidnw small" state-restore="true" add-class="disabled" ng-click="setRestoreSearchFlag()" sso-sign-on="" brand="[[ brand ]]" data-url="./lot/[[ ln ]]?resultIndex=[[ resultIndex ]]&amp;totalRecords=[[ totalRecords ]]&amp;backTo=[[ backTo ]]&amp;displayStr={{::header}}&amp;viewedLot=[[ ln ]]&amp;fromSearch=true">{{::locale.messages['app.label.bidNow']}}</a>
+            </li>
+            <li ng-if="!(lots.lot_[[ln]].bds =='HIGH_BIDDER' || lots.lot_[[ln]].bds =='OUT_BID' || lots.lot_[[ln]].bds =='OUT_BID_LOTDETAIL')"><a class="btn btn-primary  small bidbtn-mob" state-restore="true" add-class="disabled" ng-click="setRestoreSearchFlag()" sso-sign-on="" brand="[[ brand ]]" data-url="./lot/[[ ln ]]?resultIndex=[[ resultIndex ]]&amp;totalRecords=[[ totalRecords ]]&amp;backTo=[[ backTo ]]&amp;displayStr={{::header}}&amp;viewedLot=[[ ln ]]&amp;fromSearch=true">{{::locale.messages['app.label.bid']}}</a>
+            </li>
+
+            <li ng-if="lots.lot_[[ln]].bds =='HIGH_BIDDER' || lots.lot_[[ln]].bds =='OUT_BID' || lots.lot_[[ln]].bds =='OUT_BID_LOTDETAIL'"><a class="btn btn-primary btn-bidnw small" state-restore="true" sso-sign-on="" brand="[[ brand ]]" add-class="disabled" ng-click="setRestoreSearchFlag()" data-url="./lot/[[ ln ]]?resultIndex=[[ resultIndex ]]&amp;totalRecords=[[ totalRecords ]]&amp;backTo=[[ backTo ]]&amp;displayStr={{::header}}&amp;viewedLot=[[ ln ]]&amp;fromSearch=true">{{::locale.messages['app.label.increaseBid']}}</a>
+            </li>
+            <li ng-if="lots.lot_[[ln]].bds =='HIGH_BIDDER' || lots.lot_[[ln]].bds =='OUT_BID' || lots.lot_[[ln]].bds =='OUT_BID_LOTDETAIL'"><a class="btn btn-primary  small bidbtn-mob" state-restore="true" add-class="disabled" ng-click="setRestoreSearchFlag()" sso-sign-on="" brand="[[ brand ]]" data-url="./lot/[[ ln ]]?resultIndex=[[ resultIndex ]]&amp;totalRecords=[[ totalRecords ]]&amp;backTo=[[ backTo ]]&amp;displayStr={{::header}}&amp;viewedLot=[[ ln ]]&amp;fromSearch=true">{{::locale.messages['app.label.increaseBid']}}</a>
+            </li>
+            {[ if (bndc != '') { ]}
+            <li>
+                {{::locale.messages['lotsearch.header.label.buyItNowPrice']}} : {{::[[bnp]] |
+                globalize_currency_using_code:"[[cuc]]"}}
+            </li>
+            {[ } ]}
+            <li ng-if="lots.lot_[[ln]].bds =='HIGH_BIDDER'"><span class="btn btn-success">{{::locale.messages['app.label.winning']}}</span>
+            </li>
+            <li ng-if="lots.lot_[[ln]].bds =='HIGH_BIDDER'">
+                {{::locale.messages['app.label.myMaxBid']}} :
+                {{lots.lot_[[ln]].maxBid || [[ hb ]] | globalize_currency_using_code:"[[cuc]]"}}
+            </li>
+            <li ng-if="lots.lot_[[ln]].bds =='OUT_BID' || lots.lot_[[ln]].bds =='OUT_BID_LOTDETAIL'"><span class="btn btn-danger">{{::locale.messages['lotdetail.bidStatus.outBid']}}</span>
+            </li>
+        </ul>
+        {[ } ]}
+        {[ if (sbf) { ]}
+        <ul class="list-unstyled">
+            <li>
+                <button class="btn-sealedbid">{{::locale.messages['app.label.data.sealed.bid']}}</button>
+            </li>
+            <li><a class="btn btn-primary btn-bidnw small" state-restore="true" check-access-by-role="!COUNTERMAN" add-class="disabled" ng-click="setRestoreSearchFlag()" sso-sign-on="" brand="[[ brand ]]" data-url="./lot/[[ ln ]]?resultIndex=[[ resultIndex ]]&amp;totalRecords=[[ totalRecords ]]&amp;backTo=[[ backTo ]]&amp;displayStr={{::header}}&amp;viewedLot=[[ ln ]]&amp;fromSearch=true">{{::locale.messages['app.label.bidNow']}}</a>
+            </li>
+            <li><a class="btn btn-primary  small bidbtn-mob" state-restore="true" add-class="disabled" ng-click="setRestoreSearchFlag()" sso-sign-on="" brand="[[ brand ]]" data-url="./lot/[[ ln ]]?resultIndex=[[ resultIndex ]]&amp;totalRecords=[[ totalRecords ]]&amp;backTo=[[ backTo ]]&amp;displayStr={{::header}}&amp;fromSearch=true">{{::locale.messages['app.label.bid']}}</a>
+            </li>
+        </ul>
+        {[ } ]}
+    </li>
+    <li ng-if="lots.lot_[[ln]].las == 'LIVE_BIDDING'||isLiveAuction">
+        <ul class="list-unstyled">
+            <!--<li><button class="btn btn-gray small">Sealed Bid</button></li> -->
+            <li>
+                {{::locale.messages['app.label.startingBid']}} : {{lots.lot_[[ln]].currentBid || [[ hb ]] |
+                globalize_currency_using_code:"[[cuc]]"}}
+            </li>
+            <li>
+                <a class="btn btn-green joinsearch small" sso-sign-on="" brand="[[ brand ]]" data-url="/auctionDashboard?auctionDetails=[[ynumb]]-[[al]]-[[ln]]">{{::locale.messages['app.label.bidNow']}}</a>
+              	<!-- <a class="btn btn-green joinsearch small" sso-sign-on brand="brand"
+                    data-url="{{::getAuctionURIWithLotNumber(ynumb,al,ln)}}">{{::locale.messages['app.label.joinAuction']}}</a> -->
+            </li>
+            <li>
+                <a class="btn btn-green bidbtn-mob small" sso-sign-on="" brand="[[ brand ]]" data-url="/auctionDashboard?auctionDetails=[[ynumb]]-[[al]]-[[ln]]">{{::locale.messages['app.label.join']}}</a>
+            </li>
+            <li ng-if="lots.lot_[[ln]].bds =='HIGH_BIDDER'"><span class="btn btn-success">{{::locale.messages['app.label.winning']}}</span>
+            </li>
+            <li ng-if="lots.lot_[[ln]].bds =='HIGH_BIDDER'">
+                {{::locale.messages['app.label.myMaxBid']}} :
+                {{lots.lot_[[ln]].maxBid || [[ hb ]] | globalize_currency_using_code:"[[cuc]]"}}
+            </li>
+            <li ng-if="lots.lot_[[ln]].bds =='OUT_BID' || lots.lot_[[ln]].bds =='OUT_BID_LOTDETAIL'"><span class="btn btn-danger">{{::locale.messages['lotdetail.bidStatus.outBid']}}</span>
+            </li>
+        </ul>
+    </li>
+    </ul>
+</div>
+</div></div>
+	</div>
+</div>
+    <div id="saleTitleType" style="display:none;" ng-non-bindable=""><span data-uname="lotsearchSaletitletype" title="[[td]]">[[ stt ]] - [[ts]]</span>
+    </div>
+    
+
+    <div id="titleGroupCode" style="display:none;" ng-non-bindable=""><span>{{'[[tgc]]' | titleGroupFilter }} </span>
+    </div>
+
+    <div id="fullVin" style="display:none;" ng-non-bindable=""><span>{{ '[[ fv ]]' | redactFilter:"limitVIN" : '*'}}</span>
+    </div>
+
+    <div id="yardNumber" style="display:none;" ng-non-bindable=""><span>[[ phynumb ]]</span>
+    </div>
+   	<div id="engineType" style="display:none;" ng-non-bindable=""><span>[[ egn_typ ]]</span>
+    </div>
+    <div id="damageTypeCode" style="display:none;" ng-non-bindable=""><span>[[ dtc ]]</span>
+    </div>
+
+    <div id="damageDesc" style="display:none;" ng-non-bindable=""><span data-uname="lotsearchLotdamagedescription">[[ dd ]]</span></div>
+
+    <!-- <div id="gridRow" style="display:none;" ng-non-bindable><span>al<br>aan<br>gr</span></div> -->
+
+
+    <div id="preBid" style="display:none;" ng-non-bindable="">
+        <multi-lot-bidding index="[[resultIndex]]" lot-num="[[ln]]" lot-desc="[[ld]]" lots="lots" app-config="appConfig" yard-name="[[yn]]" auc-date="[[ad]]" auc-time="[[at]]" current-bid="[[hb]]" yard-min-bid="[[ymin]]" currency-code="[[cuc]]"></multi-lot-bidding>
+    </div>
+</div>
+            <!--  Save Search Modal -->
+
+            <div id="saveSearch" class="modal fade" tabindex="-1" role="dialog" ng-blur="savedSearchCompleted=false">
+                <div class="modal-dialog">
+                    <div class="modal-content overflowHidden">
+                        <div class="modal-header">
+                            <button type="button" class="close" ng-click="savedSearchCompleted=false" data-dismiss="modal">
+                                ×</button>
+                            <h4 class="modal-title" data-uname="saveSearchPopTitle">
+                                Save Search</h4>
+                        </div>
+                        <form name="saveSearchForm" ng-submit="saveSearch(saveSearchForm.$valid)" novalidate="" class="ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength">
+                            <div class="modal-body" ng-show="!savedSearchCompleted">
+
+                                <p data-uname="saveSeachAs">Save search result as</p>
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" id="" ng-required="true" ng-minlength="1" maxlength="30" data-uname="lotsearchSavesearchtextbox" ng-model="searchName" name="searchName" placeholder="Save Search" required="required">
+                                <p ng-show="userForm.username.$error.minlength" class="help-block ng-hide">
+                                    Search name cannot be blank.</p>
+                                <p ng-show="userForm.username.$error.required" class="help-block ng-hide">
+                                    Search name cannot be blank.</p>
+                                <p ng-show="savedSearchError" class="help-block ng-hide">
+                                    Error saving search. Please retry.</p>
+                                <p ng-show="savedSearchErrorLimit" class="help-block ng-hide">
+                                    You can save up to 20 searches.  Please delete some Saved Searches and try again.</p>
+
+                            </div>
+                            <div class="modal-body ng-hide" ng-show="savedSearchCompleted">
+                                <h6 class="modal-title" data-uname="saveSearchMessage">
+                                    Your search was successfully saved with Name </h6>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dgray" data-dismiss="modal" ng-show="!savedSearchCompleted" data-uname="lotsearchSavesearchcancelbutton">
+                                    Cancel
+                                </button>
+                                <button type="submit" class="btn btn-lblue btn-onlight" ng-disabled="saveSearchForm.$invalid" ng-show="!savedSearchCompleted" data-uname="lotsearchSavesearchsubmitbutton" disabled="disabled">
+                                    Save Search
+                                </button>
+                                <button type="button" class="btn btn-dgray btn-onlight ng-hide" ng-show="savedSearchCompleted" ng-click="savedSearchCompleted=false" data-dismiss="modal" data-uname="returnToSearch">
+                                    Return to Search
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="searchImageModal">
+<div class="modal image-viewer-modal" ng-class="{'lotImageModal-10':images.thumbnailLength>=10, 'lotImageModal':images.thumbnailLength<10}" id="lotImage" tabindex="-1" role="dialog" aria-labelledby="lotImage">
+
+    <div class="modal-dialog lotImageViewerModal" tabindex="-1" role="dialog" aria-labelledby="lotImage">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="car-title">
+                    <!---->
+                    <!----><a ng-if="!images.checkYardExist" ng-click="images.storeNavigationInfo()" ng-href="./lot/" href="./lot/"></a><!---->
+                    <!---->
+                    <button type="button" data-uname="imageViewerCloseButton" class="close" data-dismiss="modal" aria-label="Close"><span>×</span></button>
+                </h4>
+                <span class="lot-information bold">LOT #</span>
+
+                <!---->
+                <!----><span ng-if="!images.hideWatchBtn">
+                    <button type="submit" class="black-line watch-btn margin-left" ng-hide="isAlreadyAdded(images.lotId)" check-for-logged-in-user="" ng-click="addToWatchList(images.lotId)" data-uname="lotsearchWatchlot">
+                        Watch
+                    </button>
+                    <button type="submit" class="black-line watch-btn watched margin-left ng-hide" ng-hide="!isAlreadyAdded(images.lotId)" ng-click="removeFromWatchList(images.lotId)" data-uname="lotsearchRemovelot">
+                        Remove
+                    </button>
+                </span><!---->
+				<!---->
+            </div>
+            <div class="modal-body no-padding" data-uname="imageViewerDiv">
+
+
+                <div id="carousel4" class="image-carousel4">
+                    <div class="image-carousel">
+                        <div class="image-carousel-strip-images">
+                            <!---->
+
+                        </div>
+                        <div class="image-carousel-thumb-images">
+
+                            <!---->
+
+                        </div>
+
+
+                        <div class="image-carousel-strip-images-left fa fa-angle-left" catalyst-modal="images" data-uname="imageViewerLeftButton" onclick="carousel4.stripLeft()"></div>
+                        <div class="image-carousel-strip-images-right fa fa-angle-right " catalyst-modal="images" data-uname="imageViewerRightButton" onclick="carousel4.stripRight()"></div>
+                    </div>
+                    <script>
+                        var carousel4;
+
+                    </script>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+            <div class="modal fade multibidModals" id="multilotsubmitModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" ng-click="closeMultiBidModal()" data-dismiss="modal">
+                                ×</button>
+                            <h4 class="modal-title">Confirm Bids</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="content-box">
+                                <div class="table-responsive">
+                                    <table class="table multilot-table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>Lot #</th>
+                                            <th>Description</th>
+                                            <th>Sale Information</th>
+                                            <th>Current Bids</th>
+                                            <th>Your Bid</th>
+                                            <th>Max Bid</th>
+                                            <th>Bid Result</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <!---->
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p class="text-muted multilot-notes">
+                                    </p>
+
+                            </div>
+                            <!----><div class="modal-footer" ng-if="!multiBidConfirmed">
+                                <button id="customViewCancelBttn" type="button" class="btn btn-dgray margin-right cursor-pointer" data-dismiss="modal">Cancel
+                                </button>
+                                <a class="btn btn-lblue margin-right confirmbidModal" ng-click="confirmMultiBid()" role="button">
+                                    Confirm Your Bid</a>
+                            </div><!---->
+                            <!---->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--  filter modal -->
+
+
+            <!-- Large modal -->
+            <!--  modal mobile View -->
+
+<!---->
+        </div>
+
+
+        <div class="modal fade" id="exportResultsWarning" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            ×</button>
+                        <h4 class="modal-title">Export Results Warning
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Only the first 1000 results will export. Narrow your search selection to export all results.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="multilot-selection">
+                            <a class="btn btn-dgray" id="closeExportModal" data-dismiss="modal">Cancel</a>
+                            <export-csv csv-class="btn btn-lblue confirmbidModal" csv-url="/client/exportLotSearchResults" export-file-name="LotSearchresults_2018 November 24.csv"><a check-for-logged-in-user="" class="btn btn-lblue confirmbidModal" data-uname="lotsearchExport" id="exportButton"><i class="fa fa-cloud-download"></i>Export</a></export-csv>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+
+<!--  LOADING SPINNER  -->
+<!---->
+<div pref-code="hideGoogleAds" access-value="true">
+    <div parent-id="Content/US/EN/GoogleAdxScript" data-cms-content-fragment="" fragment-id="Core-script"><!----><div ng-bind-html="fragmentedCms"><script type="text/javascript">
+(function ($) {
+  $(document).ready(function() {
+    setTimeout(function(){
+      $(".displayAdx").each(function() {
+        var urlPath= $(location).attr('pathname');
+        var urlPathArray = urlPath.split("/");
+        var validLoc = urlPathArray[1];
+        var path= $(location).attr('pathname');
+        var patharray = path.split("/")
+        var id = $(this).attr("id");
+        if (validLoc == 'locationDetail') {
+          var yard = urlPathArray[2];
+          var adPageName = $(this).attr("ad-page-name");
+          var adPageName = adPageName + yard;
+        }
+        else {
+          var adPageName = '';
+          var adPageName = $(this).attr("ad-page-name");
+        }
+        var adWidth = $(this).attr("ad-width");
+        var adHeight = $(this).attr("ad-height");
+        var slotId = "'/35265761/"+ adPageName + "_" + adWidth + "x" + adHeight +"'";
+        var styleParams = "["+adWidth + "," + adHeight +"]";
+        var customDivSlotId = "'"+id+"'";
+        var customSlotStr = slotId + "," + styleParams + "," + customDivSlotId;
+        var s = document.createElement("script");
+        var showAds = appInit.isTopBuyer;
+        s.type = "text/javascript";
+        var innerHtml = "try {var googletag = googletag || {};googletag.cmd = googletag.cmd || [];";
+    innerHtml = innerHtml + "googletag.cmd.push(function() {var adSlotRefresh= googletag.defineSlot(" + customSlotStr + ").addService(googletag.pubads());googletag.pubads().enableSingleRequest();";
+    innerHtml = innerHtml + "googletag.enableServices();googletag.display(" + customDivSlotId + ");";
+    innerHtml = innerHtml + "setInterval(function(){googletag.pubads().refresh([adSlotRefresh]);}, 60000);});}catch(e){console.error(e);};";
+        s.innerHTML = innerHtml;
+        if((showAds != true) && (adWidth == 320)){
+        $(this).append(s);
+        }else if(adWidth != 320){
+        $(this).append(s);
+        }
+      });
+    }, 1000);
+  });
+})(jQuery);
+</script>
+</div></div>
+</div>
+<script>
+    jQuery(".error-container").delay(1000).addClass("in").fadeOut(3500);
+</script>
+</div>
+</div>
+
+
+<!-- End main content goes here -->
+<!--end index-->
+<!--<div th:replace="cms:sitefooter"></div>-->
+
+
+<fragment id="Footer links"><style type="text/css">.footericon {
+    background-image: url(/content/images/social-new.svg);
+
+}
+.sprite-social-wordpress {
+    background-position: -8px -140px;
+}
+.bandlogomobile {
+  margin-top: 27px; 
+}
+</style>
+<div class="footer-container">
+	<footer class="footer">
+		<div class="container-fluid relative">
+			<div class="visible-sm visible-xs mobilejumb">
+				<div back-to-top="" class="jump-to-div"><a class="jump-to-img text-center" data-targetdiv="top" scroll-to-div=""><span class="fa fa-angle-up">&nbsp;</span></a></div>
+			</div>
+
+			<div class="footer-mid">
+				<div class="fluid-container"><!-- 8 Column -->
+					<div class="8-column"><!-- Container -->
+						<div class="container-fluid"><!-- Parent row -->
+							<div class="row"><!-- 1st parent column -->
+								<div class="col-xs-10 col-sm-3 col-md-3 footer-links col-xs-12" ng-class="locale.messages['app.label.gStackFooterClass'] ? 'col-xs-12 col-sm-3 col-md-2 footer-links':'col-xs-12 col-sm-3 col-md-3 footer-links'"><!-- Child row -->
+									<div class="row"><!-- 1st Child Column -->
+										<div class="col-xs-12 col-sm-6 col-md-6 footerblock" ng-class="locale.messages['app.label.gStackFooterClass'] ? 'footerblock':'col-xs-12 col-sm-6 col-md-6 footerblock'">
+											<div class="brand ng-binding">
+												<div class="footer-title"><a class="toggle-btn sm-w-inline" data-target="#toggle-content10" data-toggle="collapse">Get to Know Us</a></div>
+											</div>
+
+											<div class="footer-menu collapse" id="toggle-content10">
+												<div class="footer-title">Get to Know Us</div>
+
+												<ul class="list-unstyled">
+													<li><!----><a data-uname="homepageAboutcopartfooter" href="./aboutus" ng-if="locale.messages['app.label.aboutCopart']">About Copart</a><!----></li>
+													<li><a data-content-ng-href="/About-Copart/Our-History" data-uname="homepageOurhistoryfooter" href="/Content/us/en/About-Copart/Our-History">Our History</a></li>
+													<li><!----><a data-uname="homepageCopartGlobalfooter" href="https://global.copart.com/" ng-if="locale.messages['app.label.copartGlobal']" target="_blank">Copart Global</a><!----></li>
+													<li><!----><a data-uname="howvb3works" href="https://www.copart.com/howVb3Works" ng-if="locale.messages['app.label.copartGlobal']" target="_blank">How VB3 Works</a><!----></li>
+													<!--  <li th:if="${userConfig.siteCode == 'CRTSUS'}"><a href="#/aboutus" data-uName="homepageAboutcopartfooter"></a>{{locale.messages['app.header.label.aboutCrashedtoys']}}</li>-->
+													<li><!----><a data-uname="howvb3works" href="https://www.copart.com/content/us/en/landing-page/copart-in-the-community" ng-if="locale.messages['app.label.copartGlobal']" target="_blank">Community</a><!----></li>
+													<li><a access-value="member_news" data-uname="homepageCopartnewsfooter" href="en/Content/us/en/Member-News/Index" pref-code="footerLinks">Member News</a></li>
+													<li><a access-value="copart_reviews" data-uname="homepageCopartreviewsfooter" href="./copartreview" pref-code="footerLinks">Copart Reviews</a></li>
+													<li><a access-value="careers" data-uname="homepageCareersfooter" href="/career" pref-code="footerLinks" target="_blank">Careers</a></li>
+													<li><a access-value="press_releases" data-uname="homepagePressreleasefooter" href="en/Content/us/en/Press-Releases/Index?page=0" pref-code="footerLinks">Press Releases</a></li>
+													<li><a access-value="investor_relations" data-uname="homepageInvestorrelationsfooter" href="./investorrelation" pref-code="footerLinks">Investor Relations</a></li>
+												</ul>
+											</div>
+										</div>
+										<!-- /1st Child Column --><!-- 2nd Child Column -->
+
+										<div access-value="find_veh_footer" class="col-xs-12 col-sm-6  col-md-6 footerblock" pref-code="footerLinks">
+											<div class="brand ng-binding">
+												<div class="footer-title"><a class="toggle-btn" data-target="#toggle-content12" data-toggle="collapse">Find a Vehicle </a></div>
+											</div>
+
+											<div class="footer-menu collapse" id="toggle-content12">
+												<div class="footer-title">Find a Vehicle</div>
+
+												<ul class="list-unstyled">
+													<li><a data-uname="homepageVehiclefinderfooter" href="./vehicleFinder">Vehicle Finder</a></li>
+													<li><a data-uname="homepageUpcomingauctionsfooter" href="./salesListResult">Sales List</a></li>
+													<li><a data-uname="homepageWatchlistfooter" href="./public/watchList" ng-show="userConfig.displayUserName == null">Watchlist</a></li>
+													<li></li>
+													<li><a data-uname="homepageSavedsearchesfooter" href="./savedsearch">Saved Searches</a></li>
+													<li><a access-value="veh_alrt" data-uname="homepageVehiclealertsfooter" href="./vehicleAlerts" pref-code="footerLinks">Vehicle Alerts</a></li>
+												</ul>
+											</div>
+										</div>
+										<!-- /2nd Child Column --></div>
+									<!-- Child row --></div>
+								<!-- /1st parent column --><!-- 2nd parent column -->
+
+								<div class="col-xs-12 col-sm-3 col-md-3 footer-links" ng-class="locale.messages['app.label.gStackFooterClass'] ? 'col-xs-12 col-sm-3 col-md-2 footer-links':'col-xs-12 col-sm-3 col-md-3 footer-links'"><!-- Child row -->
+									<div class="row"><!-- 1st Child Column --><!-- /1st Child Column -->
+										<div access-value="auctions_footer" class="col-xs-12 col-sm-6  col-md-6 footerblock" pref-code="footerLinks">
+											<div class="brand ng-binding">
+												<div class="footer-title"><a class="toggle-btn" data-target="#toggle-content11" data-toggle="collapse">Auctions </a></div>
+											</div>
+
+											<div class="footer-menu collapse" id="toggle-content11">
+												<div class="footer-title">Auctions</div>
+
+												<ul class="list-unstyled">
+													<li><a data-uname="homepageTodaysauctionsfooter" href="./todaysAuction" ng-click="routeReload('/todaysAuction')">Today's Auctions</a></li>
+													<li><a access-value="calendar" data-uname="homepageAuctionscalendarfooter" href="./auctionCalendar" pref-code="footerLinks">Auctions Calendar</a></li>
+													<li><a data-uname="homepageAuctionsdashboardfooter" href="./auctionDashboard" ng-click="routeReload('/auctionDashboard')">Join Auction</a></li>
+													<!----><li ng-if="locale.messages['footer.app.label.nightSale']"><a access-value="night_cap_sale" data-content-ng-href="/landing-page/night-cap-auctions?cid=vn_night_cap_sale_footer" data-uname="homepageNightcapsalesfooter" href="/Content/us/en/landing-page/night-cap-auctions?cid=vn_night_cap_sale_footer" pref-code="footerLinks">Night Cap Sales</a></li><!---->
+												</ul>
+											</div>
+										</div>
+										<!-- 2nd Child Column -->
+
+										<div class="col-xs-12 col-sm-6 col-md-6 footerblock" ng-class="locale.messages['app.label.gStackFooterClass'] ? 'footerblock':'col-xs-12 col-sm-6 col-md-6 footerblock'">
+											<div class="brand ng-binding">
+												<div class="footer-title"><a class="toggle-btn" data-target="#toggle-content13" data-toggle="collapse">Our Locations </a></div>
+											</div>
+
+											<div class="footer-menu collapse" id="toggle-content13">
+												<div class="footer-title">Our Locations</div>
+
+												<!----><ul class="list-unstyled" ng-if="!userConfig.customLocationsList">
+													<li><a data-uname="homepageEuropelocationfooter" href="./locations/?region=EUROPE">Europe</a></li>
+													<li><a data-uname="homepageMiddleeastlocationfooter" href="./locations/?region=MIDDLE_EAST">Middle East</a></li>
+													<li><a data-uname="homepageNorthamericalocationfooter" href="./locations/?region=NORTH_AMERICA">North America</a></li>
+													<li><a data-uname="homepageSouthamericalocationfooter" href="./locations/?region=SOUTH_AMERICA">South America</a></li>
+												</ul><!---->
+												<!-- These are custom locations which are set through preferences and used for Drive and Crashed toys--></div>
+										</div>
+										<!-- /2nd Child Column --></div>
+									<!-- Child row --></div>
+								<!-- /2nd parent column --><!-- 3rd parent column -->
+
+								<div class="col-xs-12 col-sm-3 col-md-3 footer-links" ng-class="locale.messages['app.label.gStackFooterClass'] ? 'col-xs-12 col-sm-3 col-md-5 footer-links':'col-xs-12 col-sm-3 col-md-3 footer-links'"><!-- Child row -->
+									<div class="row"><!-- 1st Child Column -->
+										<div class="col-xs-12 col-sm-6  col-md-6 footerblock">
+											<div class="brand ng-binding">
+												<div class="footer-title"><a class="toggle-btn" data-target="#toggle-content14" data-toggle="collapse">Services </a></div>
+											</div>
+
+											<div class="footer-menu collapse" id="toggle-content14">
+												<div class="footer-title">Services</div>
+
+												<ul class="list-unstyled">
+													<li><a access-value="brokers" data-uname="homepageBrokersfooter" href="./brokersmarketmakers/1" pref-code="footerLinks">Brokers</a></li>
+													<li><a access-value="inspectors" data-uname="homepageInspectorsfooter" href="./inspectors" pref-code="footerLinks">Inspectors</a></li>
+													<li><a access-value="industry_links" data-content-ng-href="/Content/us/en/Services/Industry-Links" data-uname="homepageIndustrylinksfooter" href="/Content/us/en/Services/Industry-Links" pref-code="footerLinks">Industry Links</a></li>
+													<!----><li ng-if="locale.messages['footer.app.label.intlShip']"><a access-value="intl_shipping" data-uname="homepageInternationalshippingfooter" href="/international-shipping" pref-code="footerLinks">Shipping</a></li><!---->
+													<li><a access-value="tow_prvd" class="crtoys-noshow" data-uname="homepageTowprovidersfooter" href="./towproviders" pref-code="footerLinks">Tow Providers</a></li>
+													<li access-value="international_buyers" pref-code="footerLinks"><a data-uname="homepageInternationalBuyersfooter" href="/content/us/en/landing-page/international-buyers" ng-href="/content/us/en/landing-page/international-buyers">International Buyers</a></li>
+												</ul>
+											</div>
+										</div>
+										<!-- /1st Child Column --><!-- 2nd Child Column -->
+
+										<!----><div class="col-xs-12 col-sm-6  col-md-6 footerblock" ng-if="locale.messages['app.header.label.support']">
+											<div class="brand ng-binding">
+												<div class="footer-title"><a class="toggle-btn" data-target="#toggle-content15" data-toggle="collapse">Support </a></div>
+											</div>
+
+											<!----><div class="footer-menu collapse" id="toggle-content15" ng-if="locale.messages['app.header.label.support']">
+												<div class="footer-title">Support</div>
+
+												<ul class="list-unstyled">
+													<li access-value="howToBuy" pref-code="footerLinks"><a data-uname="homepageHowtobuyfooter" href="./overview">How to Buy</a></li>
+													<li><a access-value="faq" data-content-ng-href="/Support/FAQ-Topics/Buying" data-uname="homepageFaqfooter" href="/Content/us/en/Support/FAQ-Topics/Buying" ng-click="doTagPageView('faq_buying')" pref-code="footerLinks">Common Questions</a></li>
+													<li><a access-value="glossary" data-content-ng-href="/Support/FAQ-Topics/Common-Terms" data-uname="homepageGlossaryoftermsfooter" href="/Content/us/en/Support/FAQ-Topics/Common-Terms" pref-code="footerLinks">Glossary of Terms</a></li>
+													<li><a access-value="help_with_licensing" data-uname="homepageHelpwithlicensingfooter" href="./helpWithLicensing" ng-href="./helpWithLicensing" pref-code="footerLinks">Help With Licensing</a></li>
+													<!----><li ng-if="locale.messages['footer.app.label.videos']"><a access-value="videos" data-uname="homepageVideosfooter" href="./copartVideos" ng-href="./copartVideos" pref-code="footerLinks">Videos</a></li><!---->
+													<!--placed gbl condition for immediate fix, can change it drive through preference for checkLogin--><!--TODO:PostCobalt2.2 should create a preference for this-->
+													<li><a access-value="member_fees" check-for-logged-in-user="" data-uname="homepageMemberfeesfooter" href="./memberFees" pref-code="footerLinks">Member Fees</a></li>
+													<!----><li ng-if="locale.messages['footer.app.label.mobile']"><a access-value="mobile" data-content-ng-href="/landing-page/copart-mobile" data-uname="homepageMobilefooter" href="/Content/us/en/landing-page/copart-mobile" pref-code="footerLinks">Member Mobile</a></li><!---->
+													<!----><li ng-if="userConfig.siteCode!='CRTSUS' &amp;&amp; locale.messages['footer.app.label.sellermobile']"><a access-value="seller_mobile" data-uname="homepageSellermobilefooter" href="en/Content/us/en/landing-page/seller-mobile" pref-code="footerLinks">Seller Mobile</a></li><!---->
+												</ul>
+											</div><!---->
+										</div><!---->
+										<!-- /2nd Child Column --><!-- 3rd Child Column for Contact - It is only allowd in DRIVE --><!-- /3rd Child Column --></div>
+									<!-- Child row --></div>
+								<!-- /3rd parent column --><!-- 4th parent column -->
+
+								<div class="col-xs-12 col-sm-3  col-md-3 footer-links "><!-- Child row -->
+									<div class="row"><!-- 1st Child Column -->
+										<div class="col-xs-12 col-sm-6  col-md-6 footerblock">
+											<div class="brand ng-binding">
+												<div class="footer-title"><a class="toggle-btn" data-target="#toggle-content16" data-toggle="collapse">Connect with Us </a></div>
+											</div>
+
+											<div class="footer-menu collapse" id="toggle-content16">
+												<div access-value="social_links" pref-code="footerLinks">
+													<div class="footer-title">Connect with Us</div>
+
+													<ul class="list-unstyled ">
+														<li><a access-value="facebook" data-uname="homepageFacebooksharefooter" href="https://www.facebook.com/Copart" ng-href="https://www.facebook.com/Copart" pref-code="footerLinks" target="_blank"><span class="footericon sprite-social-facebook" style="vertical-align:middle;">&nbsp;</span>Facebook</a></li>
+														<li><a access-value="twitter" data-uname="homepageTwittersharefooter" href="https://twitter.com/copart" ng-href="https://twitter.com/copart" pref-code="footerLinks" target="_blank"><span class="footericon sprite-social-twitter" style="vertical-align:middle;">&nbsp;</span>Twitter</a></li>
+														<li><a access-value="instagram" data-uname="homepageInstagramsharefooter" href="https://www.instagram.com/copart1982/" ng-href="https://www.instagram.com/copart1982/" pref-code="footerLinks" target="_blank"><span class="footericon sprite-instagram" style="vertical-align:middle;">&nbsp;</span>Instagram</a></li>
+														<li><a access-value="linkedin" href="https://www.linkedin.com/company/copart" ng-href="https://www.linkedin.com/company/copart" pref-code="footerLinks" target="_blank"><span class="footericon sprite-linkedin" style="vertical-align:middle;">&nbsp;</span>LinkedIn</a></li>
+														<li><a access-value="youtube" data-uname="homepageYoutubesharefooter" href="https://www.youtube.com/copart" ng-href="https://www.youtube.com/copart" pref-code="footerLinks" target="_blank"><span class="footericon sprite-social-youtube" style="vertical-align:middle;">&nbsp;</span>Youtube</a></li>
+														<li><a access-value="google_plus" data-uname="homepageGoogleplussharefooter" href="https://plus.google.com/+CopartTV" ng-href="https://plus.google.com/+CopartTV" pref-code="footerLinks" target="_blank"><span class="footericon sprite-social-google" style="vertical-align:middle;">&nbsp;</span>Google+</a></li>
+														<li><a access-value="wordpress" data-uname="homepageWordpressfooter" href="https://copartcommunity.com/" ng-href="https://copartcommunity.com/" pref-code="footerLinks" target="_blank"><span class="footericon sprite-social-wordpress" style="vertical-align:middle;">&nbsp;</span>Blog</a></li>
+													</ul>
+												</div>
+											</div>
+
+											<div class="brand ng-binding">
+												<div class="footer-title"><a class="toggle-btn" data-target="#toggle-contentdownload" data-toggle="collapse">Download the App</a></div>
+											</div>
+
+											<div class="footer-menu collapse" id="toggle-contentdownload">
+												<div class="footer-title">Download the App</div>
+
+												<ul class="list-unstyled" id="toggle-contentdownload">
+													<li><a data-uname="homepageCopartandroidapplinkfooter" href="https://play.google.com/store/apps/details?id=com.copart.membermobile&amp;hl=en" ng-href="https://play.google.com/store/apps/details?id=com.copart.membermobile&amp;hl=en" target="_blank"><span class="footericon sprite-app-android" style="vertical-align:middle;">&nbsp;</span>Android</a></li>
+													<li><a data-uname="homepageCopartappleapplinkfooter" href="https://itunes.apple.com/us/app/copart-mobile/id414275302" ng-href="https://itunes.apple.com/us/app/copart-mobile/id414275302" target="_blank"><span class="footericon sprite-app-apple" style="vertical-align:middle;">&nbsp;</span>Apple</a></li>
+												</ul>
+											</div>
+										</div>
+										<!-- /1st Child Column --><!-- 2nd Child Column -->
+
+										<div class="col-xs-12 col-sm-6  col-md-6 footerblock"><a class="toggle-btn" data-target="#toggle-content17" data-toggle="collapse"> </a>
+
+											<div class="brand ng-binding">
+												<div class="footer-title"><a class="toggle-btn" data-target="#toggle-content17" data-toggle="collapse">Our Brands</a></div>
+											</div>
+											<a class="toggle-btn" data-target="#toggle-content17" data-toggle="collapse"> </a>
+
+											<div class="footer-menu collapse" id="toggle-content17">
+												<div access-value="ourBrand" pref-code="footerLinks">
+													<div class="footer-title">Our Brands</div>
+
+													<div class="footer-menu bandlogomobile">
+														<hr class="visible-xs hr-style">
+														<ul class="list-unstyled taxons-list bannerlist">
+															<li access-value="crashedtoys" pref-code="footerLinks"><a class="brandlogo sprite-brand-ct" data-uname="homepageCrashedtoyswebsitelinkfooter" href="https://www.crashedtoys.com/" target="_blank">‌</a></li>
+															<li access-value="drive" pref-code="footerLinks"><a class="brandlogo sprite-brand-drive" data-uname="homepageDrivewebsitelinkfooter" href="https://www.driveautoauctions.com/" target="_blank">‌</a></li>
+															<li access-value="copartDirect" pref-code="footerLinks"><a class="brandlogo sprite-brand-cd" data-uname="homepageCopartdirectlinkfooter" href="https://www.copartdirect.com/" target="_blank">‌</a></li>
+															<li access-value="NPA" pref-code="footerLinks"><a class="brandlogo sprite-brand-NPA" data-uname="homepageCopartNPAfooter" href="https://www.npauctions.com/" target="_blank">‌</a></li>
+														</ul>
+													</div>
+												</div>
+												<!-- /2nd Child Column --></div>
+											<!-- Child row --></div>
+										<!-- /4th parent column --></div>
+									<!-- /Parent row --></div>
+								<!-- /Container --></div>
+							<!-- /8 Column --></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+
+</fragment>
+<fragment id="Footer flags"><!-- Outbound Link GA Tracking --><script>
+    var trackOutboundLink = function(url) {
+        ga('send', 'event', 'outbound', 'click', url, {
+            'transport': 'beacon',
+            'hitCallback': function(){document.location = url;}
+        });
+    }
+</script>
+<style type="text/css">.footer-bottom {
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  background-color: #2F3942;
+  padding: 40px 40px 20px 40px;
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+.flag-wrapper {
+  vertical-align: top;
+  border-radius: 8px;
+  background-color: #38424B;
+  color: #FFFFFF;
+  text-align: left;
+  padding: 10px;
+  width: 70em;
+  text-align: center;
+  margin: 10px auto;
+  flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.flag-wrapper a {
+}
+
+.flag-wrapper img{
+  width: 42px;
+  height: 30px;
+  border: 0;
+
+}
+
+.flag-wrapper a:last-child{
+  margin-right:0px;
+}
+
+.intl-location-wrapper:hover {
+  background-color: #404B55;
+}
+
+@media only screen and (max-width: 1266px) {
+
+
+  .flag-wrapper a:last-child{
+    margin-right:0px;
+  }
+
+
+}
+
+
+
+
+
+
+@media only screen and (max-width: 1024px) {
+
+  .flag-wrapper {
+    width:88%
+  }
+  .flag-wrapper a {
+    margin: 10px 10px 10px 0px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .flag-wrapper {
+    justify-content: center;
+  }
+}
+
+
+/* 600 BREAK POINT */
+
+@media only screen and (max-width: 600px) {
+
+  .flag-wrapper a {
+    margin: 10px 10px 10px 0px;
+  }
+
+  .footer-col1, .footer-col2, .footer-col3 {
+    display: block;
+    width: 100%;
+  }
+
+  .footer-col2, .footer-col3 {
+    margin-top: 20px;
+  }
+
+
+  .flag-wrapper {
+    justify-content: center;
+  }
+}
+/* 500 BREAK POINT */
+
+@media only screen and (max-width: 500px) {
+
+  .header-info {
+    display: none;
+  }
+
+  .footer-links, .footer-links a {
+    font-size: 11px !important;
+    margin-bottom: 5px;
+  }
+  .footer-copyright p {
+    font-size: 10px;
+  }
+
+}
+
+/* 450 BREAK POINT */
+
+@media only screen and (max-width: 450px) {
+
+  ul.link-list {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  ul.link-list:last-of-type {
+    margin-top: 20px;
+  }
+
+
+}
+
+@media only screen and (max-width: 430px) {
+
+  .flag-wrapper {
+    justify-content: center;
+  }
+}
+</style>
+<div class="footer-bottom footer-btm"><a id="CopartLocations" name="CopartLocations"></a>
+	<div class="locations-wrapper">
+		<div class="flag-wrapper"><a href="https://www.copart.com/" onclick="trackOutboundLink('https://www.copart.com?intcmp=footer_flag_us'); return false;"><img alt="United States" class="img-responsive" src="https://www.copart.com/content/us.svg"></a> <a href="https://www.copart.co.uk/" onclick="trackOutboundLink('https://www.copart.co.uk?cid=footer_flag_us'); return false;" target="_blank"><img alt="United Kingdom" class="img-responsive" src="https://www.copart.com/content/uk.svg"></a> <a href="https://www.copart.ca/" onclick="trackOutboundLink('https://www.copart.ca?cid=footer_flag_us'); return false;" target="_blank"><img alt="Canada" class="img-responsive" src="https://www.copart.com/content/ca.svg"></a> <a href="https://www.copart.de/" onclick="trackOutboundLink('https://www.copart.de?cid=footer_flag_us'); return false;" target="_blank"><img alt="Germany" class="img-responsive" src="https://www.copart.com/content/de.svg"></a> <a href="https://www.copart.es/" onclick="trackOutboundLink('https://www.copart.es?cid=footer_flag_us'); return false;" target="_blank"><img alt="Spain" class="img-responsive" src="https://www.copart.com/content/es.svg"></a> <a href="https://www.copart.ie/" onclick="trackOutboundLink('https://www.copart.ie?cid=footer_flag_us'); return false;" target="_blank"><img alt="Ireland" class="img-responsive" src="https://www.copart.com/content/ie.svg"></a> <a href="https://www.copartmea.com?ref=loc470&amp;cid=footer_flag_us_uae" onclick="trackOutboundLink('https://www.copartmea.com?ref=loc470&amp;cid=footer_flag_us_uae'); return false;" target="_blank"><img alt="UAE" class="img-responsive" src="https://www.copart.com/content/ae.svg"></a> <a href="https://www.copartmea.com?ref=loc480&amp;cid=footer_flag_us_bh" onclick="trackOutboundLink('https://www.copartmea.com?ref=loc480&amp;cid=footer_flag_us_bh'); return false;" target="_blank"><img alt="Bahrain" class="img-responsive" src="https://www.copart.com/content/bh.svg"></a> <a href="https://www.copartmea.com?ref=loc475&amp;cid=footer_flag_us_om" onclick="trackOutboundLink('https://www.copartmea.com?ref=loc475&amp;cid=footer_flag_us_om'); return false;" target="_blank"><img alt="Oman" class="img-responsive" src="https://www.copart.com/content/om.svg"></a> <a href="http://www.copart.com.br/" onclick="trackOutboundLink('http://www.copart.com.br?cid=footer_flag_us'); return false;" target="_blank"><img alt="Brazil" class="img-responsive" src="https://www.copart.com/content/br.svg"></a> <a href="https://global.copart.com/" onclick="trackOutboundLink('https://global.copart.com?cid=footer_flag_us'); return false;" target="_blank"><img alt="Copart Global" class="img-responsive" src="https://www.copart.com/content/cprt.svg"></a></div>
+	</div>
+	<!-- End International Locations -->
+
+	<div class="row">
+		<div class="col-sm-12 col-xs-12  text-center sitemaplink">
+			<ul class="list-in">
+				<li><a data-uname="homepageSitemapslimfooter" href="/sitemapslimfooter">Site Map</a></li>
+				<li><a data-uname="homepageContactusslimfooter" href="/content/us/en/contact-us/member-services" ng-href="/content/us/en/contact-us/member-services">Contact Us</a></li>
+				<li><a data-uname="homepageSellavehicleslimfooter" href="/sellForIndividuals">Sell a Vehicle</a></li>
+				<li><a data-uname="homepageTermsofserviceslimfooter" href="/content/us/en/terms-of-use" ng-href="/content/us/en/terms-of-use">Terms of Service</a></li>
+				<li><a data-uname="homepagePrivacypolicyslimfooter" href="./content/us/en/privacy-policy">Privacy Policy</a></li>
+				<li><a data-uname="homepageCopyrightslimfooter" href="./content/us/en/copyright">Copyright</a></li>
+				<li><a data-uname="homepageTermsandconditionsfooter" href="./content/us/en/member-terms-and-conditions">Terms &amp; Conditions</a></li>
+				<li><a data-uname="homepageCookiepolicyfooter" href="./content/us/en/cookie-policy">Cookie Policy</a></li>
+			</ul>
+		</div>
+
+		<div class="col-xs-12 col-sm-12  text-center pad0">
+			<p class="copy">Copyright © 2018 Copart Inc. All Rights Reserved</p>
+		</div>
+	</div>
+</div>
+
+</fragment>
+
+
+
+<!--  end footer container  -->
+
+<div class="modal fade" id="feedback" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    ×
+                </button>
+                <div class="modal-title bold">Feedback</div>
+            </div>
+            <form ng-submit="submitFeedBack(feedback)" class="ng-pristine ng-invalid ng-invalid-required">
+                <div class="modal-body">
+                    <div class="form-group ">
+                        <label class="col-md-3 col-sm-3 control-label" for="FirstName">
+                            Name</label>
+
+                        <div class="col-md-9 col-sm-9">
+                            <input class="input-md form-control margin-bottom" id="firstName" ng-readonly="true" name="name" type="text" value="" required="" readonly="readonly">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label" for="feedbackContent">
+                            Feedback</label>
+
+                        <div class="col-md-9 col-sm-9">
+                            <textarea class="form-control margin-bottom ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" for="feedbackContent" ng-model="feedback.content" id="feedbackContent" name="feedbackContent" required=""></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-12 text-right">
+
+                        <button class="btn btn-lblue " type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container" ng-controller="loginController">
+
+    <div class="modal modal-wide fade" id="loginRegister" role="dialog">
+
+
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+
+
+            <div class="modal-content savesearch_register_modal overflowHidden">
+                <div class="modal-header modalbgcolor">
+
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                        <span class="sr-only">Close</span>
+
+                    </button>
+
+                    <h4 class="modal-title header_title loginmarginbottom" id="myModalLabel" data-uname="loginPublicloginmodalheader">
+                        Please Sign In or Register
+                        <br>
+                    </h4>
+
+                   <!-- <p th:if="${userConfig.siteCode == 'CRTSUS'}" class="loginuser_txt">{{locale.messages['login.forgot.modal.text']}}</p>
+                    <p th:if="${userConfig.siteCode == 'CPRTUS'}"class="loginuser_txt">{{locale.messages['login.forgot.modal.cprt.text']}}</p>
+                    <p th:if="${userConfig.siteCode == 'DRIVUS'}"class="loginuser_txt">{{locale.messages['login.forgot.modal.text']}}</p>-->
+                    <!-- Code refrectoring for pull request #2544 -->
+                    <!----><p ng-if="locale.messages['login.forgot.modal.text']">
+                        You must be a CrashedToys or Copart Member to perform this action. If you're already a Member sign in with your User ID and Password.
+                    </p><!---->
+
+                </div>
+                <div class="formbox">
+
+
+                    <div class="modal-body">
+                        <!---->
+
+
+                        <div class="logincenter">
+                            <div class=" row no-margin accounttype_modal panel-heading nmt bg-lblue white">
+                                <div class="accounttype_div">
+                                    <label class="col-md-6 col-sm-6 col-xs-6 no-padding"><div class="account_type bg-lblue no-padding ">
+                                        Account Type
+                                          </div></label>
+                                          <div class="col-md-6 col-sm-6 col-xs-6">
+                                              <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" id="opt" data-uname="loginAccounttypedropdownbox" ng-model="form.accountType">
+
+                                                  <option label="Member" value="0" selected="" pref-code="signInOptions" access-value="member">Member
+                                                  </option>
+                                                  <option label="Seller" value="1" pref-code="signInOptions" access-value="seller">Seller
+                                                  </option>
+                                                  <option label="Counterman" value="2" pref-code="signInOptions" access-value="counterman">
+                                                      Counterman
+                                                  </option>
+
+                                              </select>
+                                    </div>
+                                </div>
+                               
+                            </div>
+
+                            <form ng-submit="submitForm('/processLogin',form)" class="ng-valid ng-valid-maxlength ng-dirty ng-valid-parse">
+
+                                <!----><div id="show" class=" counterborder" ng-if="form.accountType.value !='1'">
+
+                                    <div class=" col-md-12 col-sm-12 col-xs-12 form-group accounttype_modal">
+                                        <div class="clear"></div>
+                                        <div class="countermargin">
+                                            <h5 style="color:red;display:none"><span>Error Message</span>
+                                            </h5>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+
+
+                                            <label>Email/User ID</label>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <input class="input-md form-control ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-maxlength" type="text" value="" autofocus="autofocus" ng-model="form.username" data-uname="loginPublicloginmodalusername" maxlength="40">
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="  col-md-12 col-sm-12 col-xs-12 form-group accounttype_modal">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <label>Password</label>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <input class="input-md form-control ng-valid ng-valid-maxlength ng-not-empty ng-dirty ng-valid-parse ng-touched" type="password" value="" ng-model="form.password" data-uname="loginPublicloginmodalpassword" maxlength="10">
+                                        </div>
+                                    </div>
+                                    <div class="form-group padding10 accounttype_modal">
+                                        <div class="col-md-12 col-sm-12 col-xs-12 remember_div">
+                                            <div class="col-md-5 col-sm-5 no-padding">
+                                                <span class="pull-left rmb_txt">Remember?</span>
+                                                <input class="remember pull-left remembercheck ng-pristine ng-untouched ng-valid ng-not-empty" type="checkbox" ng-model="form.rememberme">
+                                            </div>
+                                            <div class="col-md-7 col-sm-7 no-padding"><span class="forgetid_txt" data-dismiss="modal"><a class="loginfloatright forgotuserclass" data-toggle="modal" href="#forgotuserid">Forgot User ID/Password</a></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="text-center margin10">
+                                        <button class="btn btn-lblue margin10" data-uname="loginSigninmemberbutton" type="submit">Sign Into Your Account
+                                        </button>
+                                    </div>
+                                    <div class="signinstyle">
+                                        <h5 class="newtext">
+                                            New to Copart?</h5>
+                                        
+                                    </div>
+                                    <div class="text-center margin10">
+                                        <a class="btn btn-lblue" href="/doRegistration" onclick="$('#loginRegister').modal('hide')">Register</a>
+                                    </div>
+                                </div><!---->
+                            </form>
+
+
+                            <!-- Seller Access -->
+                            <div class="counterborder">
+                                <!---->
+
+                            </div>
+
+                            <!-- Seller Access Ends -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <!-- Success Modal -->
+    <div id="Successforgotuserid" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title greentxt">Success</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Your Password has been emailed to you</p>
+
+                </div>
+                <div class="modal-footer">
+                  
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="forgotuserid" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content overflowHidden">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" data-uname="HeadingForgotIDorPasswordModal">
+                    Forgot ID or Password</h4>
+            </div>
+            <div class="modal-body" data-uname="TextForgotIDorPasswordModal">
+                <p>To retrieve your login credentials please enter your Member ID or the email address associated with your account.</p>
+                <form name="forgotIDorPwdForm" class="form-horizontal ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" role="form" novalidate="">
+                    <div class="form-group-all formbox">
+                        <div class="form-group">
+                            <label class="col-md-5 col-sm-5  col-xs-12 control-label " data-uname="AddressFieldLabelForgotIDorPasswordModal" for="userIDOrEmail">Member ID or Email Address</label>
+                            <div class="col-md-7 col-sm-7 col-xs-12">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-maxlength" data-uname="AddressFieldForgotIDorPasswordModal" id="userIDOrEmail" name="emailAddress" ng-model="resetPwdForm.userIDOrEmail" required="" ng-maxlength="40">
+                                <!---->
+                                <!---->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-dgray" data-dismiss="modal" data-uname="cancelForgotUser" ng-click="resetPwdForm.showEmailRequiredError = false">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-lblue btn-onlight" data-uname="RetrieveButtonForgotIDorPasswordModal" ng-click="resetPassword(resetPwdForm.userIDOrEmail)" site-catalyst="{'fname':'doTagPasswordSuccess'}">
+                            Retrieve
+                        </button>
+                        <!-- <a class="save-btn" data-toggle="modal" href="#Successforgotuserid">Success Modal</a> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    <div>
+<div id="askSecurityQuestions" class="modal fade" tabindex="-1" role="dialog">
+    <form name="askSecurityQuesForm" ng-submit="verifyQuestions(askSecurityQuesForm.$valid)" novalidate="" class="ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content overflowHidden">
+                <div class="modal-header error">
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body wordWrap">
+                    <div class="col-sm-12 ng-hide" ng-show="showSavingError">
+                        
+                    </div>
+                    <div class="col-sm-12 text-right reqField" data-uname="registrationRequiredfieldslabel">
+                        
+                    </div>
+                    <!--question 1-->
+                    <div class="form-group-all clr" ng-class="((isFormSubmitted &amp;&amp; askSecurityQuesForm.question1.$error.required)
+                                || (errorQuestionIds.indexOf(userQuestion[0].questionId.toString()) > -1 ))
+                                ? 'validation-error-box'
+                                : ''">
+                        <label class="text-left" for="Type"><sup class="reqField">*</sup></label>
+                        <div class="clearfix">
+                            <label class="text-left" for="Type"><sup class="reqField">*</sup></label>
+                        </div>
+                        <input class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-maxlength" type="text" name="question1" ng-model="userQuestion[0].answer" required="required" maxlength="50">
+                        <!---->
+                        <span ng-show="errorQuestionIds.indexOf(userQuestion[0].questionId.toString()) > -1" class="error ng-hide"></span>
+                    </div>
+
+                    <!--question 2-->
+                    <div class="form-group-all clr" ng-class="((isFormSubmitted &amp;&amp; askSecurityQuesForm.question2.$error.required)
+                                    || (errorQuestionIds.indexOf(userQuestion[1].questionId.toString()) > -1) )
+                                ? 'validation-error-box'
+                                : ''">
+                        <label class="text-left" for="Type"><sup class="reqField">*</sup></label>
+                        <div class="clearfix">
+                            <label class="text-left" for="Type"><sup class="reqField">*</sup></label>
+                        </div>
+                        <input class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-maxlength" type="text" name="question2" ng-model="userQuestion[1].answer" required="required" maxlength="50">
+                        <!---->
+                        <span ng-show="errorQuestionIds.indexOf(userQuestion[1].questionId.toString()) > -1" class="error ng-hide"></span>
+                    </div>
+
+                    <!--question 3-->
+                    <div class="form-group-all clr" ng-class="((isFormSubmitted &amp;&amp; askSecurityQuesForm.question3.$error.required)
+                                    || (errorQuestionIds.indexOf(userQuestion[2].questionId.toString()) > -1) )
+                                ? 'validation-error-box'
+                                : ''">
+                        <label class="text-left" for="Type"><sup class="reqField">*</sup></label>
+                        <div class="clearfix">
+                            <label class="text-left" for="Type"><sup class="reqField">*</sup></label>
+                        </div>
+                        <input class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-maxlength" type="text" name="question3" ng-model="userQuestion[2].answer" required="required" maxlength="50">
+                        <!---->
+                        <span ng-show="errorQuestionIds.indexOf(userQuestion[2].questionId.toString()) > -1" class="error ng-hide"></span>
+                    </div>
+
+                    <input type="submit" class="btn btn-lblue btn-block" value="Submit">
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Security Questions end -->
+
+<!-- No Security Questions start -->
+
+<div id="NoSecurityQuestions" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title redtxt"></h4>
+            </div>
+            <div class="modal-body">
+                <p></p>
+
+            </div>
+            <div class="modal-footer">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- No security Questions end -->
+<!--  Security Questions blocked start -->
+<div id="SecurityQuestionsAccountLocked" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title redtxt"></h4>
+            </div>
+            <div class="modal-body">
+                <p></p>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</div>
+<div id="passwordExpired" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title lightred">Password Expired !!</h4>
+            </div>
+            <div class="modal-body ">
+                <p class="">Your Password is expired. Please contact <a href="mailto:member.services@copart.com">member.services@copart.com.</a></p>
+
+            </div>
+            <div class="modal-footer">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal bid-modal-details" id="UnAuthorizedAccessModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content overflowHidden">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        ×</button>
+                    <h4 class="modal-title">Session Expired
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    Your session has expired. Please click OK to continue.
+                 </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lblue" ng-click="closeUnauthorizedModalAndReload()">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="modal fade" id="driveRedirectInfo" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content overflowHidden">
+            <div class="modal-header" style="background-color:#231f20">
+                <img src="/images/drive/DRIVE_logo_light.svg" alt="Drive" class="img-responsive drive-img">
+                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+            </div>
+            <div class="modal-body">
+                <p><strong class="modal-title">You are being redirected to DRIVE Auto Auctions to view this vehicle.</strong></p>
+                <p>DRIVE Auto Auctions is the premier wholesale car auction destination for business buyers.</p>
+                <p>DRIVE includes third-party condition reports, an industry-standard run light system, an arbitration policy and more!</p>
+                <p class="checkbox col-xs-12">
+                    <label for="checkboxes-0" class="normaltxt">
+                        <input type="checkbox" id="driveRedirectChk">Do not show this message again.
+                    </label>
+                    <a target="_blank" id="driveRedirectHref" class="btn btn-lblue btn-block" role="button" style="border: none;color: #FFC20E;background-color: #5D5D5C;">
+                        Redirect
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="international-shipping" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content overflowHidden">
+            <div class="modal-header">
+                <h1>Success</h1>
+            </div>
+            <div class="modal-body">
+                <div>Your form has been successfully submitted. Our export team is in process of calculating your shipping quote. Please allow up to 36 hours.</div>
+            	<div class="text-center margin10">
+            		<a class="btn btn-lblue" data-dismiss="modal">Ok</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div th:replace="home/confirmOnExitModal :: settingsNotSavedModal"></div>-->
+<!--<link rel="shortcut icon" href="images/crashedtoys/favicon.ico">-->
+
+
+    <!-- Google Code for Remarketing Tag -->
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 993001281;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+        <div style="display:inline;">
+            <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/993001281/?guid=ON&amp;script=0"/>
+        </div>
+    </noscript>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-90930613-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <meta name="yandex-verification" content="110e9e21b4756bfd">
+
+
+    <!-- Bing Tracking Code -->
+    <script>
+        (function (w, d, t, r, u) {
+            var f, n, i;
+            w[u] = w[u] || [], f = function () {
+                var o = {ti: "4033406"};
+                o.q = w[u], w[u] = new UET(o), w[u].push("pageLoad")
+            }, n = d.createElement(t), n.src = r, n.async = 1, n.onload = n.onreadystatechange = function () {
+                var s = this.readyState;
+                s && s !== "loaded" && s !== "complete" || (f(), n.onload = n.onreadystatechange = null)
+            }, i = d.getElementsByTagName(t)[0], i.parentNode.insertBefore(n, i)
+        })
+        (window, document, "script", "//bat.bing.com/bat.js", "uetq");
+    </script>
+    <noscript>
+        <img src="//bat.bing.com/action/0?ti=4033406&Ver=2" height="0" width="0"
+             style="display:none; visibility: hidden;"/>
+    </noscript>
+
+
+
+
+<div style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon0.7075916957809529"><img style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon0.3467672100108612" width="0" height="0" alt="" src="https://bat.bing.com/action/0?ti=4033406&amp;Ver=2&amp;mid=b0f32b89-220f-e1ad-6aed-21e933018b2b&amp;pi=1200101525&amp;lg=es-US&amp;sw=1440&amp;sh=900&amp;sc=24&amp;tl=Salvage%20Car%20Auction%20-%20Copart%20Sale%20List%20for&amp;p=https%3A%2F%2Fwww.copart.com%2FsaleListResult%2F131%2F2018-11-26%3Flocation%3DFL%2520-%2520Jacksonville%2520East%26amp%3BsaleDate%3D1543244400000%26amp%3BliveAuction%3Dfalse%26amp%3Bfrom%3D%26amp%3ByardNum%3D131&amp;r=&amp;lt=1204&amp;evt=pageLoad&amp;msclkid=N&amp;rn=134180"></div></body>
