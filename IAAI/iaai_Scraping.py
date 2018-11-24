@@ -8,17 +8,18 @@ def get_cars(url):
     file = open("get_car.txt", "w+")
     newclient = uReq(url, context= context)
     new_html = newclient.read()
+    print(new_html)
     newclient.close()
 
     new_soup = soup(new_html, "html.parser")
     car_year_soup = new_soup.findAll("td", {"class" : "info year"})
     print("There are " + str(len(car_year_soup)) + " cars in this auction")
-    file.write(str(car_year_soup))
+    print(car_year_soup[1])
 
 
 def get_auction(url):
     newclient = uReq(url, context=context)
-    new_html = newclient.read()
+    new_html = str(newclient.read())
     newclient.close()
 
     new_soup = soup(new_html, "html.parser")
@@ -74,6 +75,6 @@ def initiate():
         get_auction(location_url)
 
 
-#initiate()
-#get_auction("https://www.iaai.com/locations/140/albuquerque")
+# initiate()
+# get_auction("https://www.iaai.com/locations/140/albuquerque")
 get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=631&amp;aucDate=11202018")

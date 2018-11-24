@@ -3185,7 +3185,7 @@ $("#copart-r-view").html(OX_9a3b872a);
 
 
                     <!----><tr class="date-content" ng-repeat="auctionsByTime in auctionsGroupByWeek">
-                        <!----><td ng-if="auctionsByTime.auctionTime != '0'">09:00 AM</td><!---->
+                        <!---->q'0'">09:00 AM</td><!---->
                         <!----><!----><td ng-if="auctionsByTime.auctionTime != '0'" ng-repeat="auctionsByDay in auctionsByTime.auctions" ng-class-odd="'even'" ng-class-even="'odd'" class="even">
 
 

@@ -1,5 +1,5 @@
 import kivy
-import main
+
 kivy.require('1.10.1')
 
 from kivy.app import App
@@ -19,7 +19,7 @@ class MainScreen(Screen, FloatLayout):
     @classmethod
     def start_process(cls):
         if cls.auction_name != " ":
-            main.run()
+            print("Start the process")
 
     @classmethod
     def select(cls, auction_name):
