@@ -1,6 +1,9 @@
 #: import NoTransition kivy.uix.screenmanager.NoTransition
 #: import ProgressBar kivy.uix.progressbar
 #: import Widget kivy.uix.widget
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+#: import ListItemButton kivy.uix.listview.ListItemButton
+#: import main GUI
 
 ScreenManagement:
     transition: NoTransition()
@@ -23,47 +26,83 @@ ScreenManagement:
             background_color: .25, .75, .04, 1
             font_size: 50
 
+        # COPART BUTTON
         Button:
             size_hint: 0.335, 0.3
             pos: root.x + (0.3 * self.width), root.top - self.height - 80
-            on_press: root.select("COPART")
+            on_press: root.change_label("Copart")
             Image:
                 source: 'Data/copart.png'
                 pos: root.x + (0.3 * self.parent.width), root.top - self.parent.height - 80
-                size: 150, 150
+                size: 300, 300
+                allow_stretch: True
+
+        # IAAI BUTTON
+        Button:
+            size_hint: 0.335, 0.3
+            pos: root.x + (1.7 * self.width), root.top - self.height - 80
+            on_press: root.change_label("IAAI")
+            Image:
+                source: 'Data/iaai.png'
+                pos: root.x + (1.7 * self.parent.width), root.top - self.parent.height - 80
+                size: 300, 300
                 allow_stretch: True
 
         Label:
-            text: app.choice + " is selected"
+            text: root.selected_auction
 
 <LoadingScreen>
     name: "Loading Screen"
     FloatLayout:
 
         Button:
-            text: "Go Back to Main Screen"
-            on_release: app.root.current = "Main"
-            size_hint: 0.4, 0.05
-            pos: root.x, root.top - self.height
+            text: "Cancel"
+            size_hint:0.30, 0.1
+            pos: root.center_x - (self.width/2), 100
+            background_color: 300, 0.5, 0, .4
+            on_press: root.cancel()
 
         Button:
             text: "Process is completed"
             on_release: app.root.current = "Results"
-            size_hint: 0.40, 0.05
+            size_hint: 0.40, 0.1
             pos: (2 * root.center_x) - self.width, root.top - self.height
 
         Image:
             source: "Data/progress.png"
             size_hint: 0.5, 0.5
-            pos: root.center_x - 225, root.center_y - 200
+            pos: root.center_x - (self.width/2), root.center_y - (self.height/2)
             allow_stretch: True
 
 <ResultScreen>
     name: "Results"
+    orientation: "vertical"
+    # car_list: car_list_view
+    padding: 10
+    spacing: 10
+
     FloatLayout:
 
         Button:
             text: "Go Back to Main Screen"
+            size_hint: 0.3, 0.1
+            pos: root.x, root.top - root.height
             on_release: app.root.current = "Main"
-            size_hint: 0.4, 0.05
-            pos: root.x, root.top - self.height
+            on_press: print("DONE")
+
+        # Blue labels to specify each column
+        Label:
+            text: "This are your results"
+            size_hint: 0.3, 0.1
+            pos: root.center_x - (self.width/2), root.top - 200
+            font_size: 70
+
+        Label:
+            id: "image_label"
+            text: "Image"
+            size_hint: 0.3, 0.1
+            background_color: 255, 0, 0, 1
+            pos: root.x, root.top - 200
+
+
+
