@@ -2,12 +2,14 @@ import pyautogui as p
 import time
 import pyperclip
 from bs4 import BeautifulSoup as soup
+import re
+import GUI
 
 cars = []
 p.FAILSAFE = True
 
 html = open("Copart/auction_location.txt", "r")
-new_html = "";
+new_html = ""
 
 
 def fetch_data_location():  # Gathers the html code from Copart
@@ -24,10 +26,12 @@ def fetch_data_location():  # Gathers the html code from Copart
     p.hotkey('command', 'l')
     p.typewrite('https://www.copart.com/auctionCalendar/')
     p.hotkey('enter')
-    time.sleep(5)
+    time.sleep(15)
     p.hotkey('shift', 'command', 'c')
+    print("opened")
     time.sleep(5)
     p.hotkey('command', 'c')
+    print("copied")
     s = pyperclip.paste()
 
 
@@ -41,6 +45,7 @@ def fetch_data_location():  # Gathers the html code from Copart
     page_soup = soup(new_html, "html.parser")
     page_soup.prettify()
     location_soup = page_soup.findAll("li", {"class":"auction-yard-loctaion"})
+    print(str(location_soup))
     for i in range(0, len(location_soup)):
         url = "https://www.copart.com"
         html = str(location_soup[i])
@@ -49,8 +54,10 @@ def fetch_data_location():  # Gathers the html code from Copart
             url += html[x]
             x += 1
 
-        print(url)
-        fetch_cars_from_auction(url)
+        if url != "https://www.copart.com=":
+            url = cleanup(url)
+            print(url)
+            fetch_cars_from_auction(url)
 
 
 def file_len(fname):
@@ -70,7 +77,10 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
     p.typewrite(link)
     p.hotkey("enter")
     time.sleep(15)
-    p.locate("Data/showAll.png")
+    try:
+        p.locate("Data/showAll.png")
+    except:
+        pass
     p.hotkey("shift", "command", "c")
     p.hotkey("command", "c")
     print("copied")
@@ -90,9 +100,19 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
     print(str(car_soup))
 
 
+def cleanup(url):  # Makes the scraped url accessible
+
+    url = url.replace("&amp;", "&")
+    url = url.replace(" ", "%20")
+
+    return url
 
 
-# def process_data(): # Gather all the necessary information for each car in an auction
-# fetch_data_location()
-fetch_cars_from_auction("https://www.copart.com/saleListResult/131/2018-11-26?location=FL - Jacksonville East&amp;saleDate=1543244400000&amp;liveAuction=false&amp;from=&amp;yardNum=131")
+def run():
+    print("Started")
+    #fetch_data_location()
+    for i in range(0, 200000):
+        print("Hello: " + str(i))
 
+
+#  def process_data(): # Gather all the necessary information for each car in an auction
