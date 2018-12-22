@@ -2,21 +2,18 @@ import pyautogui as p
 import time
 import pyperclip
 from bs4 import BeautifulSoup as soup
-import re
-import GUI
+from CarClass import Car
 
-cars = []
 p.FAILSAFE = True
 
 html = open("Copart/auction_location.txt", "r")
 new_html = ""
+car_list = []
 
 
 def fetch_data_location():  # Gathers the html code from Copart
-    """"""
-    # Open file html.txt for later use
 
-    # Open the web browser to obtain the auctions location html code using pyautoguic
+    # Open the web browser to obtain the auctions location html code using pyautogui
     p.hotkey('command', 'space')
     p.typewrite("google chrome")
     p.hotkey('enter')
@@ -28,13 +25,9 @@ def fetch_data_location():  # Gathers the html code from Copart
     p.hotkey('enter')
     time.sleep(15)
     p.hotkey('shift', 'command', 'c')
-    print("opened")
     time.sleep(5)
     p.hotkey('command', 'c')
-    print("copied")
     s = pyperclip.paste()
-
-
 
     # Paste the html code from copart into html.txt file
     with open('auction_location.txt', 'w') as g:
@@ -57,47 +50,132 @@ def fetch_data_location():  # Gathers the html code from Copart
         if url != "https://www.copart.com=":
             url = cleanup(url)
             print(url)
+            p.hotkey("command", "w")
+            p.hotkey("command", "t")
             fetch_cars_from_auction(url)
 
 
-def file_len(fname):
-    with open(fname) as f:
-        for i, l in enumerate(f):
-            pass
-    return i + 1
-
-
-car_html = open("Copart/car_info.txt", "r")
-
-
 def fetch_cars_from_auction(link):  # fetches the car data from a specific auction
-    time.sleep(1)
+    time.sleep(2)
+    p.moveTo(1428, 12)
     p.hotkey("command", "l")
     time.sleep(1)
     p.typewrite(link)
     p.hotkey("enter")
     time.sleep(15)
-    try:
-        p.locate("Data/showAll.png")
-    except:
-        pass
     p.hotkey("shift", "command", "c")
+    time.sleep(2)
+    # Clicks show all
+    p.moveTo(609, 432)
+    time.sleep(2)
+    p.click()
+    p.click()
+    time.sleep(8)
+
+    # Copies the code of the table of cars
+    p.hotkey("shift", "command", "c")
+    time.sleep(2)
+    p.moveTo(724, 471)
+    time.sleep(2)
+    p.click()
     p.hotkey("command", "c")
-    print("copied")
-
+    p.moveTo(1428, 12)
     s = pyperclip.paste()
-
-    # Paste the html code from copart into html.txt file
-    with open('car_info', 'w') as g:
-        g.write(s)
 
     another_new_html = s
 
-    page_soup = soup(another_new_html, "html.parser")
-    page_soup.prettify()
-    car_soup = page_soup.findAll("tr", {"class": "row"})
-    print(len(car_soup))
-    print(str(car_soup))
+    new_soup = soup(another_new_html, "html.parser")
+    new_soup.prettify()
+
+    # Scrape the year
+    car_year_soup = new_soup.findAll("span", {"data-uname": "lotsearchLotcenturyyear"})
+    indexes = []
+    previous_list = len(car_list)
+    for i in range(0, len(car_year_soup)):
+        year = ""
+        strng = str(car_year_soup[i])
+        for x in range(43, 47):
+            year += strng[x]
+
+        if int(year) >= 2016:
+            indexes.append(i)
+            car_list.append(Car(year))
+            print(strng + " || " + year)
+
+    print("There are " + str(len(indexes)) + " vehicles that are greater than 2016")
+
+    # Scrape the make
+    car_make_soup = new_soup.findAll("span", {"data-uname": "lotsearchLotmake"})
+    print(car_make_soup)
+    c = 0
+    while c < len(indexes):
+        make = ""
+        strng = str(car_make_soup[indexes[c]])
+        x = 36
+        while strng[x] != "<":
+            make += strng[x]
+            x += 1
+        car_list[c + previous_list].make = make
+        print(strng + " || " + make)
+        c += 1
+
+    # Scrape the model
+    car_model_soup = new_soup.findAll("span", {"data-uname": "lotsearchLotmodel"})
+    print(car_model_soup)
+    c = 0
+    while c < len(indexes):
+        model = ""
+        strng = str(car_model_soup[indexes[c]])
+        print(strng)
+        x = 37
+        while strng[x] != "<":
+            model += strng[x]
+            x += 1
+        car_list[c + previous_list].model = model
+        print(strng + " || " + model)
+        c += 1
+
+    # Scrape the damage and bid
+    car_damage_soup = new_soup.findAll("tr", {"class": "odd table-row"})
+    # Done for every qualifying car
+    for i in range(0, len(indexes)):
+        strng = str(car_damage_soup[indexes[i]])
+        counter = 0
+        damage_raw = ""
+        damage = ""
+        bid_raw = ""
+        bid = ""
+        # Gets the line where the damage and bid are written
+        for y in range(0, len(strng)):
+            if strng[y] == "\n":
+                counter += 1
+            # Damage
+            if counter == 60:
+                damage_raw += strng[y]
+
+            # Bid
+            if counter == 72:
+                bid_raw += strng[y]
+
+        # Takes the damage from the line of code
+        try:
+            x = 7
+            while damage_raw[x] != "<":
+                damage += damage_raw[x]
+                x += 1
+            print(damage_raw + " || " + damage)
+            car_list[i + previous_list].damage = damage
+            # Takes the current bid from the line of code
+            x = 39
+            while bid_raw[x] != " ":
+                bid += bid_raw[x]
+                x += 1
+            print(bid_raw + " || " + bid)
+            car_list[i + previous_list].bid = bid.replace(",", "")
+        except IndexError:
+            car_list[i + previous_list].damage = "None"
+            car_list[i + previous_list].bid = "None"
+
 
 
 def cleanup(url):  # Makes the scraped url accessible
@@ -110,9 +188,13 @@ def cleanup(url):  # Makes the scraped url accessible
 
 def run():
     print("Started")
-    #fetch_data_location()
-    for i in range(0, 200000):
-        print("Hello: " + str(i))
+    fetch_data_location()
 
 
-#  def process_data(): # Gather all the necessary information for each car in an auction
+run()
+"""fetch_cars_from_auction("https://www.copart.com/saleListResult/110/2018-12-23?location=HI%20-%20"
+                        "Honolulu&saleDate=1545602400000&liveAuction=false&from=&yardNum=110")
+for i in range(0, len(car_list)):
+    print("RESULTS: ")
+    print(str(car_list[i].year) + " " + car_list[i].make + " || Model: " + car_list[i].model + " || Damage: " + car_list[i].damage +
+          " || bid: " + str(car_list[i].bid))"""

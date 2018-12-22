@@ -32,10 +32,6 @@ class MainScreen(Screen, FloatLayout):  # Main Screen Class that holds every met
     y_value = 500
 
     def start_process(self):  # Used to start the web scraping
-        print(MainScreen.selected_auction)
-        iaai_Scraping.initiate()
-        print("Changed the screen")
-
         if self.selected_auction == 'Selected: Copart':
             copart_Scraping.run()
         elif self.selected_auction == 'Selected: IAAI':
@@ -132,7 +128,3 @@ if __name__ == "__main__":
     Window.clearcolor = (.46875, .46875, .4765, 1)
     Window.size = (850, 1000)
     MainApp().run()
-
-
-
-

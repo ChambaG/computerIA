@@ -2,18 +2,10 @@ import random
 import input
 
 # Comes from training_data.txt
-training_data = input.car_list
+#training_data = input.car_list
 
 # Comes from interview
-car_output = []
-
-
-class Car:
-
-    def __init__(self):
-        self.year = 0000
-        self.brand = ""
-        self.make = ""
+#car_output = []
 
 
 class Neuron:
