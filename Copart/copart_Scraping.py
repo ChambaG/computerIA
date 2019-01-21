@@ -1,13 +1,10 @@
 import pyautogui as p
 import time
 import pyperclip
-from bs4 import BeautifulSoup as soup
+from bs4 import BeautifulSoup as Soup
 from CarClass import Car
 
 p.FAILSAFE = True
-
-html = open("Copart/auction_location.txt", "r")
-new_html = ""
 car_list = []
 
 
@@ -29,15 +26,11 @@ def fetch_data_location():  # Gathers the html code from Copart
     p.hotkey('command', 'c')
     s = pyperclip.paste()
 
-    # Paste the html code from copart into html.txt file
-    with open('auction_location.txt', 'w') as g:
-        g.write(s)
-
     new_html = s
 
-    page_soup = soup(new_html, "html.parser")
+    page_soup = Soup(new_html, "html.parser")
     page_soup.prettify()
-    location_soup = page_soup.findAll("li", {"class":"auction-yard-loctaion"})
+    location_soup = page_soup.findAll("li", {"class": "auction-yard-loctaion"})
     print(str(location_soup))
     for i in range(0, len(location_soup)):
         url = "https://www.copart.com"
@@ -78,13 +71,16 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
     p.moveTo(724, 471)
     time.sleep(2)
     p.click()
+    p.click()
+    p.click()
     p.hotkey("command", "c")
     p.moveTo(1428, 12)
     s = pyperclip.paste()
+    print(s)
 
     another_new_html = s
 
-    new_soup = soup(another_new_html, "html.parser")
+    new_soup = Soup(another_new_html, "html.parser")
     new_soup.prettify()
 
     # Scrape the year
@@ -177,7 +173,6 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
             car_list[i + previous_list].bid = "None"
 
 
-
 def cleanup(url):  # Makes the scraped url accessible
 
     url = url.replace("&amp;", "&")
@@ -189,12 +184,3 @@ def cleanup(url):  # Makes the scraped url accessible
 def run():
     print("Started")
     fetch_data_location()
-
-
-run()
-"""fetch_cars_from_auction("https://www.copart.com/saleListResult/110/2018-12-23?location=HI%20-%20"
-                        "Honolulu&saleDate=1545602400000&liveAuction=false&from=&yardNum=110")
-for i in range(0, len(car_list)):
-    print("RESULTS: ")
-    print(str(car_list[i].year) + " " + car_list[i].make + " || Model: " + car_list[i].model + " || Damage: " + car_list[i].damage +
-          " || bid: " + str(car_list[i].bid))"""
