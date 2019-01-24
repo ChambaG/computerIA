@@ -3,6 +3,7 @@ import time
 import pyperclip
 from bs4 import BeautifulSoup as Soup
 from CarClass import Car
+import datetime
 
 p.FAILSAFE = True
 car_list = []
@@ -31,7 +32,6 @@ def fetch_data_location():  # Gathers the html code from Copart
     page_soup = Soup(new_html, "html.parser")
     page_soup.prettify()
     location_soup = page_soup.findAll("li", {"class": "auction-yard-loctaion"})
-    print(str(location_soup))
     for i in range(0, len(location_soup)):
         url = "https://www.copart.com"
         html = str(location_soup[i])
@@ -41,6 +41,7 @@ def fetch_data_location():  # Gathers the html code from Copart
             x += 1
 
         if url != "https://www.copart.com=":
+
             url = cleanup(url)
             print(url)
             p.hotkey("command", "w")
@@ -179,6 +180,44 @@ def cleanup(url):  # Makes the scraped url accessible
     url = url.replace(" ", "%20")
 
     return url
+
+
+def check_date(date):
+
+    on_bound = True
+    now = datetime.datetime.now()
+    month = date[5] + date[6]
+    day = date[8] + date[9]
+    year = date[0] + date[1] + date[2] + date[3]
+
+    week = now.date().isocalendar()[1] + 1
+
+    d = str(now.year) + "-W" + str(week)
+    # Limit date
+    r = datetime.datetime.strptime(d + '-0', "%Y-W%W-%w")
+    print(r)
+
+    if r.year == int(year):
+        on_bound = True
+        if r.month == int(month) and on_bound:
+            on_bound = True
+            if 1 <= int(day) <= r.day and on_bound:
+                on_bound = True
+                print("Date on bound")
+            else:
+                print("Date not in bound")
+                on_bound = False
+        else:
+            if r.month > int(month):
+                on_bound = True
+                print("Date on Bound")
+            else:
+                print("Date not in bound")
+                on_bound = False
+    else:
+        print("Date not in bound")
+        on_bound = False
+    return on_bound
 
 
 def run():

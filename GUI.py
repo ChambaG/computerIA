@@ -33,7 +33,7 @@ class MainScreen(Screen, FloatLayout):  # Main Screen Class that holds every met
 
     def start_process(self):  # Used to start the web scraping
         if self.selected_auction == 'Selected: Copart':
-            copart_Scraping.run()
+            main.run()
         elif self.selected_auction == 'Selected: IAAI':
             self.manager.current = "Loading Screen"
             iaai_Scraping.initiate()
@@ -57,7 +57,7 @@ class MainScreen(Screen, FloatLayout):  # Main Screen Class that holds every met
 class LoadingScreen(Screen):
 
     def pleasework(self):
-        copart_Scraping.run()
+        main.run()
 
     def cancel(self):
         box = BoxLayout(orientation='vertical')

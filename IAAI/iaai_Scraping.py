@@ -152,7 +152,7 @@ def get_cars(url):
             bid += bid_soup_str[c]
             c += 1
         bid = bid.replace(',', '')
-        car_list[i].bid = int(bid)
+        car_list[i].bid = bid
 
         # Scraping the damage
         damage_soup = souping.findAll("div", {"class": "col-7 col-value flex-self-end"})
@@ -167,6 +167,10 @@ def get_cars(url):
                 c += 1
         damage = damage.replace("&amp;", "&")
         car_list[i].damage = damage
+    print()
+    for i in range(0, len(indexes)):
+        car_list[i].show()
+
 
 
 def check_date(date):
@@ -216,5 +220,3 @@ def cleanup(url):
 
 
 # initiate()
-# get_auction("https://www.iaai.com/locations/140/albuquerque")
-get_cars("https://iaai.com/Auctions/BranchListingView.aspx?branchCode=438&amp;aucDate=01242019")

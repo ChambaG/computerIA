@@ -1,1 +1,0 @@
-<a class="details-auc-date" href="/Auctions/BranchListingView.aspx?branchCode=631&amp;aucDate=12242018">\r\n                                                    <span class="auc-date-day">Mon</span>\r\n                                                    <span class="auc-date-number">24</span>\r\n                                                </a>

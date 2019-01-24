@@ -1,5 +1,0 @@
-<a class="detailsLink" href="/locations/438/abilene">Abilene (TX)</a>
-<a class="detailsLink" href="/locations/901/adesabirmingham">ADESA Birmingham (AL)</a>
-<a class="detailsLink" href="/locations/660/akroncanton">Akron-Canton (OH)</a>
-<a class="detailsLink" href="/locations/631/albany">Albany (NY)</a>
-<a class="detailsLink" href="/locations/140/albuquerque">Albuquerque (NM)</a>

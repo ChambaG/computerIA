@@ -5,9 +5,9 @@ class Car:
         self.make = "Default"
         self.model = ""
         self.damage = ""
-        self.bid = 0
+        self.bid = ""
         self.image = ""
         self.url = ""
 
     def show(self):
-        print(str(self.year) + " " + self.make + " " + self.damage + " " + str(self.bid) + " " + self.damage + "\n" + self.url)
+        print(str(self.year) + " " + self.make + " " + self.model + " " + self.bid + " " + self.damage + "\n" + self.url)
