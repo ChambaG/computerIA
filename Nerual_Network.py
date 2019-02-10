@@ -1,11 +1,35 @@
 import random
 import input
 
-# Comes from training_data.txt
-#training_data = input.car_list
+# Set the cars from the list 'training cars' into a new variablefvc
+raw_data = input.training_cars
+print(len(raw_data))
 
-# Comes from interview
-#car_output = []
+training_data = [[0 for j in range(3)] for i in range(700)]  # Create a 2D list of dimensions 300x4
+for i in range(0, len(input.training_cars)):
+    training_data[i][0] = float(raw_data[i].qualify_make()) * 1000
+    training_data[i][1] = float(raw_data[i].qualify_model()) * 1000
+    training_data[i][2] = float(raw_data[i].qualify_damage()) * 1000
+
+for i in range(0, len(training_data)):
+    print(training_data[i])
+
+#training_data  = [[2005, '0', '0', '0'], [0, '1', '0.625', '1']]
+
+
+# Comes from interview [Yes, No]
+output_correction = [[1.0 for i in range(2)] for x in range(700)]
+
+'''
+for i in range(0, 400):
+    output_correction[i][0] = float(0)
+    output_correction[i][1] = float(1)
+
+for i in range(400, 700):
+    output_correction[i][1] = float(0)
+
+print(output_correction)
+'''
 
 
 class Neuron:
@@ -18,7 +42,7 @@ class Neuron:
         self.output = 0
 
         # Assign random number to weight_list and 0 to value_list
-        for x in range(0, self.num_inputs - 1):
+        for x in range(0, self.num_input - 1):
             self.weight_list.append(random.uniform(-0.1, 0.1))
             self.value_list.append(0)
 
@@ -29,7 +53,7 @@ class Neuron:
     def calculate(self):
         self.sum = 0
         for i in range(0, self.num_input):
-            self.sum = self.weight_list[i] * self.value_list[i]
+            self.sum = float(self.weight_list[i]) * float(self.value_list[i])
 
         self.output = sigmoid(self.sum)
 
@@ -45,115 +69,92 @@ def sigmoid_prime(x):
     return sigmoid(x) * (1 - sigmoid(x))
 
 
-# Initialize the layers
-input_layer = [Neuron(1) for i in range(0, 35)]
-hidden_layer1 = [Neuron(36) for x in range(0, 64)]
-hidden_layer2 = [Neuron(67) for y in range(0, 128)]
-hidden_layer3 = [Neuron(129) for w in range(0, 128)]
-output_layer = [Neuron(129) for z in range(0, 2)]
 
-# Initialize the error matrices
+# initialize the layers.
+input_layer = [Neuron(1) for i in range(0, 4)]
+hidden_layer1 = [Neuron(5) for x in range(0, 64)]
+hidden_layer2 = [Neuron(65) for y in range(0, 32)]
+output_layer = [Neuron(33) for z in range(0, 2)]
+
+# initialize the error matrices
 input_error = []
 hidden1_error = []
 hidden2_error = []
-hidden3_error = []
 output_error = []
 
+for x in range(0, len(input_layer)):
+    input_error.append(0)
+for x in range(0, len(hidden_layer1)):
+    hidden1_error.append(0)
+for x in range(0, len(hidden_layer2)):
+    hidden2_error.append(0)
+for x in range(0, len(output_layer)):
+    output_error.append(0)
 
-def forward_propagation(test_case):
+error_matrix = [input_error, hidden1_error, hidden2_error, output_error]
+network = [input_layer, hidden_layer1, hidden_layer2, output_layer]
 
-    # Set the inputs to the hidden layer 1 using the new calculated values from the input layer.
-    for x in range(0, len(hidden_layer1)):
-        for y in range(0, len(input_layer)):
-            hidden_layer1[x].value_list[y] = training_data[test_case][y]  # used with out input layer
 
-    # calculate with the new inputs
-    for x in range(0, len(hidden_layer1)):
-        hidden_layer1[x].calculate()
+def back_propagation(learning_rate, case):
 
-    for x in range(0, len(hidden_layer2)):
-        for y in range(0, len(hidden_layer1)):
-            hidden_layer2[x].value_list[y] = hidden_layer1[y].output
-
-    for x in range(0, len(hidden_layer2)):
-        hidden_layer2[x].calculate()
-
-    for x in range(0, len(hidden_layer3)):
-        for y in range(0, len(hidden_layer2)):
-            hidden_layer3[x].value_list[y] = hidden_layer1[y].output
-
-    for x in range(0, len(hidden_layer3)):
-        hidden_layer3[x].calculate()
-
-    # Set the inputs to the output layer using the new calculated values from the hidden layer.
     for x in range(0, len(output_layer)):
-        for y in range(0, len(hidden_layer2)):
-            output_layer[x].value_list[y] = hidden_layer2[y].output
+        output_error[x] = float(sigmoid_prime(output_layer[x].sum)) * float((output_correction[case][x]) - float(output_layer[x].output))
 
-    # calculate with the new input
-    for x in range(0, len(output_layer)):
-        output_layer[x].calculate()
-
-
-def train_one(test_case):
-
-    iterations = 0
-    learning_rate = 0.1
-
-    while iterations < 500:
-        forward_propagation(test_case)
-        back_propagation(test_case, learning_rate)
-        iterations += 1
-
-
-def back_propagation(test_case, learning_rate):
-    # Calculate error for output layer
-    for x in range(0, len(output_layer)):
-        output_error[x] = sigmoid_prime(output_layer[x].sum) * (training_data[test_case][x] - output_layer[x].output)
-
-    # Calculate error for hidden layer 3
-    for x in range(0, len(hidden_layer3)):
-        temp = 0
-        for y in range(0, len(hidden_layer2)):
-            temp += output_layer[y].weight_list[x] * output_error[y]
-
-    # Calculate error for hidden layer 2
     for x in range(0, len(hidden_layer2)):
         temp = 0
         for y in range(0, len(output_layer)):
-            temp += hidden_layer3[y].weight_list[x] * output_error[y]
+            temp += output_layer[y].weight_list[x] * output_error[y]
         hidden2_error[x] = sigmoid_prime(hidden_layer2[x].sum) * temp
 
-    # Calculate error for hidden layer 1
     for x in range(0, len(hidden_layer1)):
         temp = 0
         for y in range(0, len(hidden_layer2)):
             temp += hidden_layer2[y].weight_list[x] * hidden2_error[y]
         hidden1_error[x] = sigmoid_prime(hidden_layer1[x].sum) * temp
 
-    # Assign new weights to output layer.
     for x in range(0, len(output_layer)):
-        for y in range(0, len(hidden_layer3) + 1):
-            output_layer[x].weight_list[y] = output_layer[x].weight_list[y] + (
-                        learning_rate * output_layer[x].value_list[y] * output_error[x])
-
-    # Assign new weights to hidden layer 3
-    for x in range(0, len(hidden_layer3)):
-        for y in range(0, len(hidden_layer2)):
+        for y in range(0, len(hidden_layer2) + 1):
             output_layer[x].weight_list[y] = output_layer[x].weight_list[y] + (
                 learning_rate * output_layer[x].value_list[y] * output_error[x])
 
-    # Assign new weights to hidden layer 2
     for x in range(0, len(hidden_layer2)):
         for y in range(0, len(hidden_layer1) + 1):
             hidden_layer2[x].weight_list[y] = hidden_layer2[x].weight_list[y] + (
-                        learning_rate * hidden_layer2[x].value_list[y] * hidden2_error[x])
+                learning_rate * hidden_layer2[x].value_list[y] * hidden2_error[x])
 
-    # Assign new weights to hidden layer 1
     for x in range(0, len(hidden_layer1)):
         for y in range(0, len(input_layer) + 1):
-            hidden_layer1[x].weight_list[y] = hidden_layer1[x].weight_list[y] + (
-                        learning_rate * hidden_layer1[x].value_list[y] * hidden1_error[x])
+            hidden_layer1[x].weight_list[y] = float(hidden_layer1[x].weight_list[y]) + (
+                learning_rate * float(hidden_layer1[x].value_list[y]) * float(hidden1_error[x]))
+
+
+def forward_propagation(case):
+
+    for x in range(0, len(hidden_layer1)):
+        for y in range(0, len(input_layer)):
+            hidden_layer1[x].value_list[y] = training_data[case][y]
+
+    for x in range(0, len(hidden_layer1)):
+        hidden_layer1[x].calculate()
+
+    for x in range(0, len(hidden_layer2)):
+        for y in range(0 , len(hidden_layer1)):
+            hidden_layer2[x].value_list[y] = hidden_layer1[y].output
+
+    for x in range(0, len(hidden_layer2)):
+        hidden_layer2[x].calculate()
+
+    for x in range(0, len(output_layer)):
+        for y in range(0, len(hidden_layer2)):
+            output_layer[x].value_list[y] = hidden_layer2[y].output
+
+    for x in range(0, len(output_layer)):
+        output_layer[x].calculate()
+
+    if float(output_layer[0].output) < float(output_layer[1].output):
+        print("It doesn't qualify")
+    else:
+        print("Yes it does qualify")
 
 
 def print_layer(layer):
@@ -161,33 +162,66 @@ def print_layer(layer):
         print("Node " + str(x) + "'s output was: " + str(layer[x].output))
 
 
+def write_weights_to_file():  # run after a successful train() is called
+    fw = open("file_weights.txt", "w+")
+
+    for x in range(0, len(network)):
+        for y in range(0, len(network[x])):
+            for z in range (0, len(network[x][y].weight_list)):
+                fw.write(str(network[x][y].weight_list[z]) + "\n")
+    fw.close()
+
+
+def read_weights_from_file():					# run before run() is called
+    count = 0
+    fr = open("file_weights.txt", "r")
+    temp = fr.read().splitlines()
+
+    for x in range(0, len(network)):
+        for y in range(0, len(network[x])):
+            for z in range(0, len(network[x][y].weight_list)):
+                network[x][y].weight_list[z] = float(temp[count])
+                print(temp[count])
+                count += 1
+
+    # print(temp)
+
+    fr.close()
+
+
 def train():
+
     iterations = 0
-    learning_rate = 0.1
+    learning_rate = 0.05
+    while iterations < 500:
+        case = 0
+        while case < 700:
+            forward_propagation(case)
+            back_propagation(learning_rate, case)
 
-    print()
-    while iterations < 500:  # loop repeated 500 times
-        test_case = 0
+            print("Node for yes: " + str(output_layer[0].output) + " " + str(case) + " | " + str(iterations))
+            print("Node for no: " + str(output_layer[1].output) + " " + str(case) + " | " + str(iterations))
+            print()
 
-        # TODO Finish construction of training_data[]
-        while True:  # loop for each
-            forward_propagation(test_case)
-            back_propagation(test_case, learning_rate)
-            print(str(output_layer[test_case].output) + " " + str(test_case))
-            test_case += 1
+            # write_weights_to_file()
 
+            case += 1
         iterations += 1
 
 
 def run():
-    train()
-    car_input = []
-    testing = 0
 
-    # TODO Import the batch of cars that has to be tested for prediction
-    while testing < len(car_input):
-        forward_propagation(car_input[testing])
-        testing += 1
+    #ead_weights_from_file()
+    train()
+
+    input = [2015, 125, 687.5, 8000]
+
+    for x in range(0, 30):
+        training_data[x] = input
+
+    forward_propagation(0)
+    print_layer(output_layer)
+    print()
 
 
 run()

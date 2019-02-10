@@ -1,19 +1,9 @@
+from CarClass import Car
 
+training_cars = [Car() for i in range(0, 30)]  # Create a list of type Car with 700 elements
+file = open('training_data.txt', 'r')  # Read the file 'training_data.txt'
 
-class Car:
-
-    def __init__(self):
-        self.year = 0
-        self.make = ""
-        self.model = ""
-        self.damage = ""
-
-
-training_cars = [Car() for i in range(0, 300)]
-
-file = open('training_data.txt', 'r')
-
-for i in range(0, 300):
+for i in range(0, 29):  # Repeat for each entry in the list
     line = file.readline()
 
     # Takes the year out of the text
@@ -21,7 +11,9 @@ for i in range(0, 300):
     for x in range(0, 4):
         year += line[x]
 
-    training_cars[i].year = int(year)
+    print(year)
+
+    training_cars[i].year = int(year)  # Add the year to the object
 
     # Takes the make out of the text
     make = ""
@@ -35,7 +27,7 @@ for i in range(0, 300):
         else:
             make += letter
         x += 1
-    training_cars[i].make = make
+    training_cars[i].make = make  # Add the make to the object
     y = 4 + len(training_cars[i].make) + 2
 
     w = 2
@@ -48,17 +40,11 @@ for i in range(0, 300):
         else:
             model += letter
         y += 1
-    training_cars[i].model = model
+    training_cars[i].model = model  # Add the model to the object
 
     while w < len(line):
         letter = line[w]
         damage += letter
         w += 1
 
-    training_cars[i].damage = damage
-
-    print("iteration: " + str(i + 1))
-    print(training_cars[i].year)
-    print(training_cars[i].make)
-    print(training_cars[i].model)
-    print(training_cars[i].damage)
+    training_cars[i].damage = damage.replace('\n', '')  # Add the damage to the object

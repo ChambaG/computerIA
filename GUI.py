@@ -1,8 +1,7 @@
 # Imports
 import kivy
-from kivy.app import App
+from kivy.app import App    # Imports functions to build the app
 from kivy.core.window import Window
-from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition
 from kivy.uix.button import Button
 from kivy.uix.floatlayout import FloatLayout
@@ -14,6 +13,9 @@ from kivy.uix.label import Label
 from kivy.uix.image import Image
 from Copart import copart_Scraping
 from IAAI import iaai_Scraping
+from kivy.uix.widget import Widget
+from kivy.clock import Clock
+from functools import partial
 import time
 
 
@@ -27,37 +29,72 @@ def change(self, screen):
 class MainScreen(Screen, FloatLayout):  # Main Screen Class that holds every method in the Start Screen
 
     auction_name = " "
+    default = "Select an auction"
     selected_auction = StringProperty('Select an auction')
     x_value = 450
     y_value = 500
 
-    def start_process(self):  # Used to start the web scraping
+    def start_process(self, change):  # Used to start the web scraping
+        print("Pressed start")
+        self.manager.current = "Loading Screen"
         if self.selected_auction == 'Selected: Copart':
-            main.run()
+            self.manager.current = "Loading Screen"
+            self.run(1)
+            print("Running")
+            self.selected_auction = "Select an auction"
         elif self.selected_auction == 'Selected: IAAI':
             self.manager.current = "Loading Screen"
             iaai_Scraping.initiate()
+            self.selected_auction = "Select an auction"
         elif self.selected_auction == 'Selected: Copart and IAAI':
             LoadingScreen.pleasework(self)
-        """else:
-            self.manager.current = "Loading Screen"""""
+        else:
+            self.change_label("None")
 
     def change_label(self, change):  # Changes the text that shows what auction is selected
-        if self.selected_auction == 'Selected: Copart' or self.selected_auction == 'Selected: IAAI':
-            self.selected_auction = 'Selected: Copart and IAAI'
-        else:
-            self.selected_auction = 'Selected: {}'.format(change)
-        print(self.selected_auction)
 
+        strtst = "Selected: " + change
+        print(change)
 
-    def change_Screen(self):
+        if self.selected_auction == self.default and (change == "Copart" or change == "IAAI"):
+            self.selected_auction = "Selected: " + change
+            print(self.selected_auction + str(1))
+            self.selected_auction = "Selected: " + change
+        elif self.selected_auction == strtst or self.selected_auction == "Main":
+            self.selected_auction = self.default
+            print(self.selected_auction + str(2))
+        elif change != self.selected_auction:
+            if self.selected_auction == "Selected: Copart and IAAI":
+                print("entered")
+                print(change)
+                self.selected_auction = "Selected: " + change
+            else:
+                if change == "None":
+                    print("yes")
+                    self.selected_auction == "TO START, PLEASE SELECT AN AUCTION"
+                    print("executed")
+                else:
+                    self.selected_auction = "Selected: Copart and IAAI"
+
+            print(self.selected_auction + " end")
+
+    def change_screen(self):
         self.manager.current = "Loading Screen"
+
+    def run(self, code):
+        if code == 1:
+            copart_Scraping.run()
+        elif code == 2:
+            iaai_Scraping.initiate()
+        else:
+            copart_Scraping.run()
+            iaai_Scraping.initiate()
 
 
 class LoadingScreen(Screen):
 
     def pleasework(self):
-        main.run()
+        copart_Scraping.run()
 
     def cancel(self):
         box = BoxLayout(orientation='vertical')
@@ -79,6 +116,7 @@ class LoadingScreen(Screen):
 
     def back(self):
         self.manager.current = "Main Screen"
+        MainScreen.selected_auction = MainScreen.default
 
     def test_continue(self):
         self.manager.current = "Results Screen"
@@ -90,13 +128,33 @@ class CarListButton(ListItemButton):
 
 class ResultScreen(Screen, BoxLayout):
 
-    car_list = ObjectProperty()
-    image_to_display = "Data/test.png"
+    car_list = ObjectProperty(None)
+    source_image_list = ['Data/file01.png', 'Data/file02.png', 'Data/file03.png']
+    information_list = []
+    i = 0
+    source_image = source_image_list[i]
+
+    def increase(self):
+        self.i += 1
+        if self.i < len(self.source_image_list):
+            self.ids['result_image'].source = self.source_image_list[self.i]
+            print(self.ids['result_image'].source)
+        else:
+            self.i -= 1
+
+    def decrease(self):
+        self.i -= 1
+        if self.i >= 0:
+            self.ids['result_image'].source = self.source_image_list[self.i]
+            print(self.ids['result_image'].source)
+        else:
+            self.i += 1
 
     def continue_(self):
         self.manager.current = "Retrain Screen"
         RetrainingScreen.loading(self)
-
+        self.ids['result_image'].source = self.source_image_list[0]
+        # TODO Remove all the elemnts from the source_image_list porque si maje ahuevo
 
     def add_car(self):
         pass
@@ -118,6 +176,7 @@ class Manager(ScreenManager):
 class MainApp(App):
 
     choice = ""
+    source = StringProperty(None)
 
     def build(self):
         m = Manager(transition=NoTransition())

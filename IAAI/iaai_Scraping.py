@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup as soup
 import ssl
 from CarClass import Car
 import datetime
+
 context = ssl._create_unverified_context()
 
 
@@ -66,24 +67,26 @@ def get_auction(url):
             get_cars(location_url)
 
 
-def get_cars(url):
-    newclient = uReq(url, context= context)
-    new_html = newclient.read()
-    newclient.close()
-    new_soup = soup(new_html, "html.parser")
+def get_cars(url):  # parameter 'url' is the link to a specific auction
+    newclient = uReq(url, context= context)  # Opens the url into the variable newClient
+    new_html = newclient.read()  # Assigns the HTML code from 'newclient' to variable 'new_html'
+    newclient.close()  # Closes the connection to the website to save connectivity
+    new_soup = soup(new_html, "html.parser")  # Parses the HTML code from 'new_html' into 'new_soup'
 
+    # Saves all the '<td' containers that hold a class named 'info year' into the list 'car_year_soup'
     car_year_soup = new_soup.findAll("td", {"class": "info year"})
+    # A list called 'indexes' that will hold the index of cars that have a year over 2016 in the list 'car_year_soup'
     indexes = []
-    for i in range(0, len(car_year_soup)):
+    for i in range(0, len(car_year_soup)):  # Will pass through each element of 'car_year_soup'
         year = ""
-        strng = str(car_year_soup[i])
-        for x in range(24, 29):
-            year += str(strng[x])
-        if int(year) >= 2016:
-            indexes.append(i)
+        strng = str(car_year_soup[i])  # 'strng' is equal to the string value of element i in 'car_year_soup'
+        for x in range(24, 29):  # Will pass through the characters 24 to 29 to collect the year
+            year += str(strng[x])  # 'year' is going to be equal to the year
+        if int(year) >= 2016:  # Checks if the year of that car is greater than 2016
+            indexes.append(i)  # If true, then the value of i will be added to indexes.
 
     print("There are " + str(len(indexes)) + " qualifying vehicles in this auction")
-    car_list = [Car() for x in range(len(indexes))]
+    car_list = [Car() for x in range(len(indexes))]  # Creates a list of type Car
 
     # Scrape the year
     i = 0
@@ -123,18 +126,21 @@ def get_cars(url):
         car_list[c].model = model
         c += 1
 
-    # Get the link of the vehicle to scrape additional information
+    # Get the link of the vehicle to later scrape additional information
+    # Saves all the '<td' containers that hold a class named 'info secondCol stockNbr' into the list 'car_link'
     car_link = new_soup.findAll("td", {"class": "info secondCol stockNbr"})
-    for i in range(0, len(indexes)):
+    for i in range(0, len(indexes)):  # Passes through every qualifying car of the list 'car_link'
         car_url = "https://www.iaai.com"
+        # 'code' is equal to the string value of the element of the integer of indexes[i] in 'car_link'
         code = str(car_link[indexes[i]])
-        for x in range(92, 133):
-            car_url += code[x]
-        if car_url.find("/Vehicle?") == -1:
+        for x in range(92, 133):  # Passes through the characters 92 to 133 to collect the url
+            car_url += code[x]  # 'car_url' is added the characters from 92 to 133 to have the full url of a car
+        if car_url.find("/Vehicle?") == -1:  # Corrects a problem with the some cars having shorter url's
             car_url = "https://www.iaai.com"
             for y in range(179, 220):
                 car_url += code[y]
-        car_list[i].url = cleanup(car_url)
+        print(cleanup(car_url))
+        car_list[i].url = cleanup(car_url)  # Adds the complete url to the car in car_list[i]
 
     # Scrape the Bid and Damage
     for i in range(0, len(indexes)):
@@ -167,48 +173,64 @@ def get_cars(url):
                 c += 1
         damage = damage.replace("&amp;", "&")
         car_list[i].damage = damage
+
+        # Scraping the image
+        import urllib
+        resource = uReq("http://www.digimouth.com/news/media/2011/09/google-logo.jpg")
+        output = open("file01.jpg", "wb")
+        output.write(resource.read())
+        output.close()
     print()
     for i in range(0, len(indexes)):
         car_list[i].show()
 
 
-
-def check_date(date):
+# Checks if the date of auction is within 2 weeks. Returns true or false. Its parameter is the date of the auction
+def check_date(date_of_auction):
 
     on_bound = True
-    now = datetime.datetime.now()
-    month = date[0] + date[1]
-    day = date[2] + date[3]
-    year = date[4] + date[5] + date[6] + date[7]
+    now = datetime.datetime.now()  # Uses datetime.now to retreive the current date in the form of MM-DD-YYYY
 
-    week = now.date().isocalendar()[1] + 1
+    # Retrieve the month, day and year from the date of the auction
+    month = date_of_auction[0] + date_of_auction[1]
+    day = date_of_auction[2] + date_of_auction[3]
+    year = date_of_auction[4] + date_of_auction[5] + date_of_auction[6] + date_of_auction[7]
+    print("Date of the auction: " + str(year) + "-" + str(month) + "-" + str(day))
 
-    d = str(now.year) + "-W" + str(week)
-    # Limit date
-    r = datetime.datetime.strptime(d + '-0', "%Y-W%W-%w")
-    print(r)
+    # Retrieves the number of the week that we will be in 2 weeks from today (works every day of the year)
+    # If this week is number 15 of the year then 'week' will be equal to 17
+    week_number = now.date().isocalendar()[1] + 1
 
-    if r.year == int(year):
+    # d is a String that holds the year and week number to be used as a parameter in 'datetime.strptime()'
+    d = str(now.year) + "-W" + str(week_number)
+    # d = 2019-W6  => where W6 is the number of the week retrieven by line 199 in the year 2019
+    # 'limit_date' will hold the date of last day of the week that was specified in line 202
+    limit_date = datetime.datetime.strptime(d + '-0', "%Y-W%W-%w")
+    # ex: YYYY-MM-DD HH:MM:SS. However, I don't use the time so I don't use that part.
+    print("Limit date: " + str(limit_date))
+
+    if limit_date.year == int(year):  # First compare the year for limit_day to the year of the auction
         on_bound = True
-        if r.month == int(month) and on_bound:
+        if limit_date.month == int(month) and on_bound:  # If the auction happens in the same month from limit_date...
             on_bound = True
-            if 1 <= int(day) <= r.day and on_bound:
+            # Check if the auction happens before the last day of the limit_date
+            if 1 <= int(day) <= limit_date.day and on_bound:
                 on_bound = True
                 print("Date on bound")
             else:
                 print("Date not in bound")
                 on_bound = False
         else:
-            if r.month > int(month):
-                on_bound = True
+            if limit_date.month > int(month):  # Check if the month is before the month of limit_date
+                on_bound = True  # There is no need to check for the day as the month is before the limit
                 print("Date on Bound")
-            else:
+            else:  # If the month is after the month of limit_date dismiss this auction
                 print("Date not in bound")
                 on_bound = False
-    else:
+    else:  # If the year is different dismiss this auction and skip the nested if's
         print("Date not in bound")
         on_bound = False
-    return on_bound
+    return on_bound  # Return either true or false
 
 
 def cleanup(url):
@@ -220,3 +242,4 @@ def cleanup(url):
 
 
 # initiate()
+# get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=438&aucDate=02072019")
