@@ -11,7 +11,6 @@
 
     main_screen: mainS
     loading_screen: loadingS
-    results_screen: resultsS
 
     MainScreen:
         id: mainS
@@ -21,16 +20,6 @@
     LoadingScreen:
         id: loadingS
         name: "Loading Screen"
-        manager: screen_manager
-
-    ResultScreen:
-        id: resultsS
-        name: "Results Screen"
-        manager: screen_manager
-
-    RetrainingScreen:
-        id: retrain
-        name: "Retrain Screen"
         manager: screen_manager
 
 
@@ -96,86 +85,3 @@
             source: "Data/loading4.gif"
             pos: root.center_x - (self.width/2), root.center_y - (self.height/2)
             anim_delay: 0.04
-
-
-<ResultScreen>
-    orientation: "vertical"
-    padding: 10
-    spacing: 10
-    source_image: root.source_image
-
-    FloatLayout:
-
-        Button:
-            text: "Continue"
-            on_press: root.continue_()
-            size_hint: 0.2, 0.05
-            pos: root.x + 1300, root.top - root.height + 1250
-            background_normal: ''
-            background_down:
-            background_color: .25, .75, .04, 1
-
-        Button:
-            text: "Next"
-            on_press: root.increase()
-            size_hint: 0.3, 0.09
-            pos: root.x + 1000, root.top - root.height + 120
-
-        Button:
-            text: "Previous"
-            on_press: root.decrease()
-            size_hint: 0.3, 0.09
-            pos: root.x + 200, root.top - root.height + 120
-
-        Button:
-            size_hint: 0.088, 0.1
-            pos: root.center_x + 415, root.top - root.height + 360
-            on_press: root.change_like_button()
-
-        Button:
-            text: "     Go to \nthe auction"
-            size_hint: 0.09, 0.1
-            pos: root.center_x - 570, root.top - root.height + 360
-            on_release: root.hyperlink()
-
-        Image:
-            id: like_button_image
-            source: root.source_like
-            pos: root.center_x + 410, root.top - root.height + 365
-            size_hint: 0.095, 0.095
-
-        Image:
-            id: result_image
-            size_hint: 0.5, 0.5
-            source: root.source_image
-            pos: root.center_x - (self.width/2), root.center_y - (self.height/4)
-
-        Label:
-            text: "[b]" + root.source_makemod + "[/b]"
-            pos: root.center_x - (self.width/2), root.top - root.height - 125
-            font_size: 48
-            markup: True
-
-        Label:
-            text: root.source_extra
-            pos: root.center_x - (self.width/2), root.top - root.height - 225
-            font_size: 40
-
-        Label:
-            text: "[b]THIS ARE YOUR RESULTS:[/b]"
-            pos: root.center_x - (self.width/2), root.top - root.height + 600
-            font_size: 60
-            markup: True
-
-
-<RetrainingScreen>
-    FloatLayout:
-
-        Image:
-            source: "Data/progress.png"
-            size_hint: 0.5, 0.5
-            pos: root.center_x - (self.width/2), root.center_y - (self.height/2)
-            allow_stretch: True
-
-
-

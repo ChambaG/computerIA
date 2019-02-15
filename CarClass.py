@@ -5,9 +5,16 @@ class Car:
         self.make = "Default"
         self.model = ""
         self.damage = ""
-        self.bid = ""
+        self.bid = "0"
         self.image = ""
         self.url = ""
+        self.specific_url = ""
+        self.filename = ""
+        self.liked = False
+
+    def specific(self, id, branch):
+        self.specific_url = "https://vis.iaai.com/resizer?imageKeys=" + id + \
+                            "~SID~B" + branch + "~S0~I1~RW2592~H1944~TH0&width=640&height=480"
 
     def qualify_make(self):
         return {
@@ -50,4 +57,5 @@ class Car:
         }.get(self.damage, lambda: 0)()
 
     def show(self):
-        print(str(self.year) + " " + self.make + " " + self.model + " " + self.bid + " " + self.damage + "\n" + self.url)
+        print(str(self.year) + " " + self.make + " " + self.model + " " + self.bid + " " + self.damage +
+              "\n" + self.url + "\n" + self.specific_url)

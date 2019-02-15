@@ -214,7 +214,7 @@ def run():
     #ead_weights_from_file()
     train()
 
-    input = [2015, 125, 687.5, 8000]
+    input = [125, 687.5, 8000]
 
     for x in range(0, 30):
         training_data[x] = input

@@ -2,34 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6262d6ad-3218-4d4a-9394-cd4c158b7419" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Copart/testing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Copart/thekivy.kv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/file02.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/make_nn.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/asdf.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IAAI/spec.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/salvag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/salvag.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CarClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarClass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Copart/copart_Scraping.py" beforeDir="false" afterPath="$PROJECT_DIR$/Copart/copart_Scraping.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/main.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/main2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/main3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/sample.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Copart/position.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/second2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/second3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/second4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/showAll.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/testing.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/third1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/third2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/third3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Copart/position.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Copart/testing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Copart/thekivy.kv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/copart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/file02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/iaai.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IAAI/iaai_Scraping.py" beforeDir="false" afterPath="$PROJECT_DIR$/IAAI/iaai_Scraping.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Nerual_Network.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nerual_Network.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input.py" beforeDir="false" afterPath="$PROJECT_DIR$/input.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.kv" beforeDir="false" afterPath="$PROJECT_DIR$/main.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/training_data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/make_nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/make_nn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,85 +29,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GUI.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GUI.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="583">
-              <caret line="118" column="56" lean-forward="true" selection-start-line="118" selection-start-column="56" selection-end-line="118" selection-end-column="56" />
-              <folding>
-                <element signature="e#10#21#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.kv" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.kv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="655">
-              <caret line="142" column="23" selection-start-line="142" selection-start-column="23" selection-end-line="142" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="testing.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Copart/testing.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="639">
-              <caret line="57" selection-start-line="57" selection-end-line="57" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="label.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/kivy/uix/label.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="371" selection-start-line="371" selection-end-line="371" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/kivy/lang/parser.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="604" selection-start-line="604" selection-end-line="604" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="file_weights.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/file_weights.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="make_nn.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/make_nn.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="639">
-              <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CarClass.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CarClass.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="51" column="15" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -128,16 +40,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>class=&quot;</find>
-      <find>&lt;!--start datatable</find>
-      <find>start data</find>
-      <find>BURN</find>
-      <find>SANTA FE</find>
-      <find>FRONT</find>
-      <find>name=&quot;</find>
-      <find>there are</find>
-      <find>mylcnrd</find>
-      <find>file_len</find>
       <find>indexes[c]]</find>
       <find>indexes[i]]</find>
       <find>soup</find>
@@ -158,6 +60,16 @@
       <find>,</find>
       <find>],</find>
       <find>[</find>
+      <find>source_like</find>
+      <find>2018</find>
+      <find>globalv</find>
+      <find>info</find>
+      <find>self.info</find>
+      <find>print</find>
+      <find>locations file</find>
+      <find>main</find>
+      <find>location</find>
+      <find>iaai_locations</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -186,34 +98,41 @@
         <option value="$PROJECT_DIR$/Copart/car_info.txt" />
         <option value="$PROJECT_DIR$/results.txt" />
         <option value="$PROJECT_DIR$/car_info.txt" />
-        <option value="$PROJECT_DIR$/Copart/test.py" />
-        <option value="$PROJECT_DIR$/iaai_locations.txt" />
-        <option value="$PROJECT_DIR$/CarClass.py" />
         <option value="$PROJECT_DIR$/IAAI/iaai_location.txt" />
-        <option value="$PROJECT_DIR$/IAAI/iaai_Scraping.py" />
         <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/Copart/position.py" />
-        <option value="$PROJECT_DIR$/Copart/copart_Scraping.py" />
         <option value="$PROJECT_DIR$/Copart/myapp.kv" />
         <option value="$PROJECT_DIR$/Copart/testingKivy.py" />
         <option value="$PROJECT_DIR$/Copart/thekivy.kv" />
         <option value="$PROJECT_DIR$/input.py" />
         <option value="$PROJECT_DIR$/training_data.txt" />
-        <option value="$PROJECT_DIR$/Nerual_Network.py" />
         <option value="$PROJECT_DIR$/file_weights.txt" />
         <option value="$PROJECT_DIR$/neural_net.py" />
+        <option value="$PROJECT_DIR$/Copart/position.py" />
+        <option value="$PROJECT_DIR$/Copart/hello.txt" />
+        <option value="$PROJECT_DIR$/CarClass.py" />
+        <option value="$PROJECT_DIR$/Nerual_Network.py" />
         <option value="$PROJECT_DIR$/make_nn.py" />
         <option value="$PROJECT_DIR$/Copart/testing.py" />
-        <option value="$PROJECT_DIR$/GUI.py" />
+        <option value="$PROJECT_DIR$/IAAI/spec.kv" />
+        <option value="$PROJECT_DIR$/IAAI/test.py" />
+        <option value="$PROJECT_DIR$/Copart/space.py" />
+        <option value="$PROJECT_DIR$/main_test.kv.py" />
+        <option value="$PROJECT_DIR$/iaai_locations.txt" />
+        <option value="$PROJECT_DIR$/Copart/copart_Scraping.py" />
+        <option value="$PROJECT_DIR$/main_test.kv" />
+        <option value="$PROJECT_DIR$/gui_test.py" />
+        <option value="$PROJECT_DIR$/iaai_location.txt" />
         <option value="$PROJECT_DIR$/main.kv" />
+        <option value="$PROJECT_DIR$/IAAI/iaai_Scraping.py" />
+        <option value="$PROJECT_DIR$/GUI.py" />
+        <option value="$PROJECT_DIR$/Copart/test.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="1440" />
-    <option name="y" value="-180" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="x" value="812" />
+    <option name="width" value="628" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -236,6 +155,11 @@
               <item name="computerIA" type="b2602c69:ProjectViewProjectNode" />
               <item name="computerIA" type="462c0819:PsiDirectoryNode" />
               <item name="Data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="computerIA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="computerIA" type="462c0819:PsiDirectoryNode" />
+              <item name="IAAI" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -271,7 +195,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.GUI">
+  <component name="RunManager" selected="Python.test (1)">
     <configuration name="GUI" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="computerIA" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -285,24 +209,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GUI.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="Nerual_Network" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="computerIA" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Nerual_Network.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -326,7 +232,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="testing" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="gui_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="computerIA" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -334,17 +240,17 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Copart" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Copart/testing.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gui_test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="testingKivy" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="computerIA" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -356,7 +262,25 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Copart/testingKivy.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Copart/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="computerIA" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/IAAI" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/IAAI/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -364,18 +288,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.GUI" />
+      <item itemvalue="Python.test" />
       <item itemvalue="Python.copart_Scraping" />
-      <item itemvalue="Python.testingKivy" />
-      <item itemvalue="Python.testing" />
-      <item itemvalue="Python.Nerual_Network" />
+      <item itemvalue="Python.gui_test" />
+      <item itemvalue="Python.test (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test (1)" />
         <item itemvalue="Python.GUI" />
-        <item itemvalue="Python.testing" />
-        <item itemvalue="Python.Nerual_Network" />
-        <item itemvalue="Python.testingKivy" />
+        <item itemvalue="Python.gui_test" />
         <item itemvalue="Python.copart_Scraping" />
+        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -453,7 +377,14 @@
       <option name="project" value="LOCAL" />
       <updated>1548300743718</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="09/FEB/2019">
+      <created>1549770288620</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1549770288620</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -466,19 +397,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="-180" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49919224" visible="true" weight="0.10795155" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49706227" visible="true" weight="0.14094433" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32969698" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5003524" side_tool="true" weight="0.33333334" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32935324" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49964765" weight="0.39030302" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32848486" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32969698" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49964765" visible="true" weight="0.21293533" />
-      <window_info id="Structure" order="1" sideWeight="0.50080776" side_tool="true" weight="0.12684989" />
+      <window_info id="Structure" order="1" sideWeight="0.50293773" side_tool="true" weight="0.12216956" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32969698" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -508,7 +438,8 @@
     <MESSAGE value="21/Jan/2019" />
     <MESSAGE value="22/Jan/2019" />
     <MESSAGE value="23/Jan/2019" />
-    <option name="LAST_COMMIT_MESSAGE" value="23/Jan/2019" />
+    <MESSAGE value="09/FEB/2019" />
+    <option name="LAST_COMMIT_MESSAGE" value="09/FEB/2019" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -516,203 +447,237 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/IAAI/iaai_locations.txt" />
-    <entry file="file://$PROJECT_DIR$/car_info.txt" />
-    <entry file="file://$PROJECT_DIR$/results.txt" />
-    <entry file="file://$PROJECT_DIR$/get_car.txt" />
-    <entry file="file://$PROJECT_DIR$/car_info" />
-    <entry file="file://$PROJECT_DIR$/auction_location.txt" />
-    <entry file="file://$PROJECT_DIR$/Copart/main.py" />
-    <entry file="file://$PROJECT_DIR$/Copart/imrec.py" />
-    <entry file="file://$PROJECT_DIR$/testing.py" />
-    <entry file="file://$PROJECT_DIR$/Data/main.png" />
-    <entry file="file://$PROJECT_DIR$/Data/prank.png" />
-    <entry file="file://$PROJECT_DIR$/Data/sample.txt" />
-    <entry file="file://$PROJECT_DIR$/Data/second2.png" />
-    <entry file="file://$PROJECT_DIR$/Data/showAll.png" />
-    <entry file="file://$PROJECT_DIR$/Data/testing.png" />
-    <entry file="file://$PROJECT_DIR$/Data/test.png">
+    <entry file="file://$PROJECT_DIR$/Copart/position.py" />
+    <entry file="file://$PROJECT_DIR$/Data/file02.png" />
+    <entry file="file://$PROJECT_DIR$/Data/file03.png" />
+    <entry file="file://$PROJECT_DIR$/Data/like_inactive.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Data/warning.png">
+    <entry file="file://$PROJECT_DIR$/Images/file7.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Data/x.png" />
-    <entry file="file://$PROJECT_DIR$/Data/progress.png">
+    <entry file="file://$PROJECT_DIR$/Images/file6.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Images/file5.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Images/file4.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Images/file3.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Images/file1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Copart/hello.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="47" lean-forward="true" selection-start-column="47" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Images/file0.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/copart.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="863" selection-start-line="863" selection-end-line="863" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Images/file42.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Images/file32.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/IYgQ.gif" />
+    <entry file="file://$PROJECT_DIR$/Data/file01.png" />
+    <entry file="file://$PROJECT_DIR$/Data/BA5o.gif" />
+    <entry file="file://$PROJECT_DIR$/Images/file28.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Images/file26.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/loading1.gif">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/loading.gif">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Data/iaai.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Data/background_down.png">
+    <entry file="file://$PROJECT_DIR$/Data/last.gif">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Copart/file01.jpg" />
-    <entry file="file://$PROJECT_DIR$/IAAI/iaai_location.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Data/IMG_5615.PNG" />
-    <entry file="file://$PROJECT_DIR$/Data/copart.png">
+    <entry file="file://$PROJECT_DIR$/Data/jhig.gif">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/IAAI/iaai_Scraping.py">
+    <entry file="file://$PROJECT_DIR$/IAAI/spec.kv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2655">
-          <caret line="181" column="22" selection-start-line="181" selection-start-column="22" selection-end-line="181" selection-end-column="22" />
+        <state relative-caret-position="1290">
+          <caret line="86" column="28" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/kivy/uix/screenmanager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+        <state relative-caret-position="15765">
+          <caret line="1064" selection-start-line="1064" selection-end-line="1064" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Copart/testingKivy.py" />
-    <entry file="file://$PROJECT_DIR$/Copart/myapp.kv" />
-    <entry file="file://$PROJECT_DIR$/Copart/position.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Copart/copart_Scraping.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="36" column="56" lean-forward="true" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Data/file02.jpg" />
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/kivy/lang/builder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8925">
-          <caret line="614" selection-start-line="614" selection-end-line="614" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Copart/thekivy.kv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/iaai_locations.txt">
+    <entry file="file://$PROJECT_DIR$/Copart/space.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/iaai_location.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/training_data.txt">
+    <entry file="file://$PROJECT_DIR$/Copart/testing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="42" column="23" lean-forward="true" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/neural_net.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="3892">
+          <caret line="296" selection-start-line="296" selection-end-line="296" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#0#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/file_weights.txt">
+    <entry file="file://$PROJECT_DIR$/Copart/iaai_location.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/CarClass.py">
+    <entry file="file://$PROJECT_DIR$/main_test.kv.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="51" column="15" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
+        <state relative-caret-position="135">
+          <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/kivy/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="825" selection-start-line="825" selection-end-line="825" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iaai_locations.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46925">
+          <caret line="3406" column="65" selection-start-line="3406" selection-start-column="65" selection-end-line="3406" selection-end-column="65" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/make_nn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="639">
-          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Data/file02.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Data/file03.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Data/file01.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/kivy/lang/parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="604" selection-start-line="604" selection-end-line="604" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/kivy/uix/label.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="371" selection-start-line="371" selection-end-line="371" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Copart/testing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="639">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="2064">
+          <caret line="291" column="33" lean-forward="true" selection-start-line="291" selection-start-column="33" selection-end-line="291" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Nerual_Network.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="134" selection-start-line="134" selection-end-line="134" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_test.kv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="568">
+          <caret line="181" selection-end-line="181" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iaai_location.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gui_test.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IAAI/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret lean-forward="true" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GUI.py">
+    <entry file="file://$PROJECT_DIR$/Copart/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="118" column="56" lean-forward="true" selection-start-line="118" selection-start-column="56" selection-end-line="118" selection-end-column="56" />
+        <state relative-caret-position="60">
+          <caret line="4" column="6" lean-forward="true" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IAAI/iaai_location.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IAAI/file0.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarClass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="94" selection-start-line="16" selection-start-column="94" selection-end-line="16" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IAAI/iaai_Scraping.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3219">
+          <caret line="286" column="30" selection-start-line="286" selection-start-column="30" selection-end-line="286" selection-end-column="30" />
           <folding>
-            <element signature="e#10#21#0" expanded="true" />
+            <element signature="e#0#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.kv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="655">
-          <caret line="142" column="23" selection-start-line="142" selection-start-column="23" selection-end-line="142" selection-end-column="23" />
+        <state relative-caret-position="710">
+          <caret line="181" selection-start-line="181" selection-end-line="181" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="e#10#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Copart/copart_Scraping.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3343">
+          <caret line="247" column="1" selection-start-line="247" selection-start-column="1" selection-end-line="247" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/file_weights.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/asdf.gif">
+      <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
 </project>

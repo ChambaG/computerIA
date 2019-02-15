@@ -56,7 +56,7 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
     time.sleep(1)
     p.typewrite(link)
     p.hotkey("enter")
-    time.sleep(15)
+    time.sleep(10)
     # Clicks show all
     p.moveTo(827, 351)
     time.sleep(2)
@@ -64,22 +64,27 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
     p.click()
     time.sleep(8)
     p.hotkey("shift", "command", "c")  # Opens the inspector of the webpage
-    time.sleep(2)
+    p.click()
+    time.sleep(5)
+    print("waiting")
 
     # Copies the code of the table of cars
-    p.hotkey("shift", "command", "c")
+    p.hotkey("command", "shift", "c")
+    p.hotkey("command", "shift", "c")
     time.sleep(2)
-    p.moveTo(724, 471)
+    p.moveTo(724, 500)
     time.sleep(2)
-    p.click()
-    p.click()
     p.click()
     p.hotkey("command", "c")
-    p.moveTo(1428, 12)
+    p.hotkey("command", "c")
+    p.hotkey("command", "c")
+    # p.moveTo(1428, 12)
     another_new_html = pyperclip.paste()  # Copy the data from the clipboard into the variable s
+    print(another_new_html)
 
     new_soup = Soup(another_new_html, "html.parser")
     new_soup.prettify()  # Organizes the containers
+    print(new_soup)
 
     # Scrape the year
     car_year_soup = new_soup.findAll("span", {"data-uname": "lotsearchLotcenturyyear"})
@@ -238,4 +243,6 @@ def run2():
         print()
         i += 1
 
-# fetch_cars_from_auction("https://www.copart.com/saleListResult/137/2019-02-08?location=FL%20-%20Punta%20Gorda&saleDate=1549638000000&liveAuction=false&from=&yardNum=137")
+
+
+#fetch_cars_from_auction("https://www.copart.com/saleListResult/137/2019-02-15?location=FL%20-%20Punta%20Gorda&saleDate=1550242800000&liveAuction=false&from=&yardNum=137")

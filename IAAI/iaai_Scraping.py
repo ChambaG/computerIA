@@ -3,29 +3,28 @@ from bs4 import BeautifulSoup as soup
 import ssl
 from CarClass import Car
 import datetime
+import time
+# import GUI
 
 context = ssl._create_unverified_context()
 
+qualifying_cars_list = []
+globavar = 0
 
-def initiate():
+
+def initiate2():
     aucLocation_url = 'https://www.iaai.com/locations'
     # Open a connection between the program and IAAI website
     uClient = uReq(aucLocation_url, context=context)
-    print("Loading...")
     # Copies the html code into the variable page_html
     page_html = uClient.read()
-    print("Loading...")
     uClient.close()
 
     page_soup = soup(page_html, "html.parser")
-    print("Loading...")
     locations = page_soup.findAll("a", {"class": "detailsLink"})
-    print("Loading...")
-    locations_file = open('iaai_locations.txt', 'w+')
 
     # Scrapes the link
-    for i in range(0, len(locations)):
-        locations_file.write(str(locations[i]) + "\n")
+    for i in range(0, 3):
         print("Working on Location #" + str(i) + " out of " + str(len(locations)))
         html = str(locations[i])
         location_url = 'https://iaai.com'
@@ -47,10 +46,8 @@ def get_auction(url):
     auction_this_day = new_soup.findAll("a", {"class":"details-auc-date"})
     print("There are " + str(len(auction_this_day)) + " auctions in this location")
     html = str(auction_this_day)
-    locations_file = open('iaai_location.txt', 'w+')
     for i in range(0, len(auction_this_day)):
         date = ""
-        locations_file.write(str(auction_this_day[i]) + "\n")
         html = str(auction_this_day[i])
         location_url = 'https://iaai.com'
         x = 34
@@ -62,16 +59,27 @@ def get_auction(url):
             date += location_url[y]
         print(location_url)
         if check_date(date):
-            print(date)
             print("Get Cars from auction #" + str(i + 1) + " out of " + str(len(auction_this_day)))
             get_cars(location_url)
 
 
 def get_cars(url):  # parameter 'url' is the link to a specific auction
+    global globavar, qualifying_cars_list
     newclient = uReq(url, context= context)  # Opens the url into the variable newClient
     new_html = newclient.read()  # Assigns the HTML code from 'newclient' to variable 'new_html'
     newclient.close()  # Closes the connection to the website to save connectivity
     new_soup = soup(new_html, "html.parser")  # Parses the HTML code from 'new_html' into 'new_soup'
+    bFound = True
+    s = url.find("branchCode=") + 11
+    branch = ''
+    while bFound:
+        strng = url[s]
+        if strng == '&':
+            bFound = False
+        else:
+            branch += url[s]
+
+        s += 1
 
     # Saves all the '<td' containers that hold a class named 'info year' into the list 'car_year_soup'
     car_year_soup = new_soup.findAll("td", {"class": "info year"})
@@ -139,7 +147,6 @@ def get_cars(url):  # parameter 'url' is the link to a specific auction
             car_url = "https://www.iaai.com"
             for y in range(179, 220):
                 car_url += code[y]
-        print(cleanup(car_url))
         car_list[i].url = cleanup(car_url)  # Adds the complete url to the car in car_list[i]
 
     # Scrape the Bid and Damage
@@ -157,8 +164,22 @@ def get_cars(url):  # parameter 'url' is the link to a specific auction
         while c < len(bid_soup_str) and bid_soup_str[c] != "<":
             bid += bid_soup_str[c]
             c += 1
-        bid = bid.replace(',', '')
-        car_list[i].bid = bid
+
+        print(bid)
+        print(car_list[i].url)
+        if bid == "":
+            print("TRUE")
+            car_list[i].bid = '0'
+
+        elif bid[0] == 'd':
+            print("TRUE")
+            car_list[i].bid = '0'
+
+        else:
+            car_list[i].bid = bid
+
+        print(car_list[i].bid)
+        print()
 
         # Scraping the damage
         damage_soup = souping.findAll("div", {"class": "col-7 col-value flex-self-end"})
@@ -174,15 +195,36 @@ def get_cars(url):  # parameter 'url' is the link to a specific auction
         damage = damage.replace("&amp;", "&")
         car_list[i].damage = damage
 
+        stock_soup = souping.findAll("div", {"id": "promptYes"})
+
         # Scraping the image
-        import urllib
-        resource = uReq("http://www.digimouth.com/news/media/2011/09/google-logo.jpg")
-        output = open("file01.jpg", "wb")
+        item_id = ''
+        ifound = True
+        stock = str(stock_soup)
+        s = stock.find('Yesclick(') + 10
+        while ifound:
+            strng = stock[s]
+            if strng == '\'':
+                ifound = False
+            else:
+                item_id += stock[s]
+
+            s += 1
+
+        car_list[i].specific(item_id, branch)
+
+        # Scraping the image
+        resource = uReq(car_list[i].specific_url, context=context)
+        filename = "/Users/salvag/Documents/GitHub/computerIA/Images/file" + str(globavar) + ".png"
+        output = open(filename, "wb")
+        car_list[i].filename = filename
         output.write(resource.read())
         output.close()
-    print()
+
+        globavar = globavar + 1
+
     for i in range(0, len(indexes)):
-        car_list[i].show()
+        qualifying_cars_list.append(car_list[i])
 
 
 # Checks if the date of auction is within 2 weeks. Returns true or false. Its parameter is the date of the auction
@@ -241,5 +283,21 @@ def cleanup(url):
     return url
 
 
+def initiate():
+    get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=438&aucDate=02212019")
+    get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=660&aucDate=02182019")
+
+
+def outer():
+    time.sleep(2)
+    print("Done 2")
+    # GUI.Clock.schedule_once(GUI.App.get_running_app().show_main_screen)
+
+
 # initiate()
-# get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=438&aucDate=02072019")
+
+# get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=438&aucDate=02212019")
+# get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=660&aucDate=02182019")
+
+# for i in range(len(qualifying_cars_list)):
+#    print(qualifying_cars_list[i].show())
