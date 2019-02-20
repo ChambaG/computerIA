@@ -184,8 +184,6 @@ def read_weights_from_file():					# run before run() is called
                 print(temp[count])
                 count += 1
 
-    # print(temp)
-
     fr.close()
 
 
@@ -211,7 +209,7 @@ def train():
 
 def run():
 
-    #ead_weights_from_file()
+    read_weights_from_file()
     train()
 
     input = [125, 687.5, 8000]

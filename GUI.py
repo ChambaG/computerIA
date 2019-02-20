@@ -13,68 +13,78 @@ from kivy.uix.image import Image
 from Copart import copart_Scraping
 from IAAI import iaai_Scraping
 import webbrowser
-from kivy.core.text import Label as CoreLabel
-from kivy.graphics import Color, Ellipse, Rectangle
-from kivy.uix.progressbar import ProgressBar
 import threading
-import time
 from kivy.clock import Clock
+import time
 
 kivy.require('1.10.1')
 
 
-def function1():
-    Clock.schedule_once(App.get_running_app().show_main_screen)
+def iaai():
+    iaai_Scraping.testing()
+    Clock.schedule_once(App.get_running_app().show_results)
+
+
+def retrain():
+    time.sleep(10)
+    Clock.schedule_once(App.get_running_app().show_results)
+
+
+def copart():
+    copart_Scraping.run()
+    Clock.schedule_once(App.get_running_app().show_results)
 
 
 class MainScreen(Screen, FloatLayout):  # Main Screen Class that holds every method in the Start Screen
 
     auction_name = " "
-    default = "Select an auction"
-    selected_auction = StringProperty('Select an auction')
+    default = "Select an Auction"
+    selected_auction = StringProperty("")
     x_value = 450
     y_value = 500
+    error = "TO START, PLEASE SELECT AN AUCTION"
+
+    def start(self):
+        self.auction_name = ""
+        self.selected_auction = 'Select an Auction'
 
     def change_label(self, change):  # Changes the text that shows what auction is selected
 
         strtst = "Selected: " + change
 
-        if self.selected_auction == self.default and (change == "Copart" or change == "IAAI"):
+        if (self.selected_auction == self.default or self.selected_auction == self.error) and (change == "Copart" or change == "IAAI"):
+            print("First")
             self.selected_auction = "Selected: " + change
-            self.selected_auction = "Selected: " + change
-        elif self.selected_auction == strtst or self.selected_auction == "Main":
+        elif self.selected_auction == strtst:
             self.selected_auction = self.default
         elif change != self.selected_auction:
             if self.selected_auction == "Selected: Copart and IAAI":
                 self.selected_auction = "Selected: " + change
             else:
                 if change == "None":
-                    self.selected_auction == "TO START, PLEASE SELECT AN AUCTION"
-                else:
-                    self.selected_auction = "Selected: Copart and IAAI"
+                    print("here 1")
+                    self.selected_auction = "TO START, PLEASE SELECT AN AUCTION"
 
     def change_screen(self):
         self.manager.current = "Loading Screen"
 
-    t2 = threading.Thread(target=iaai_Scraping.outer)
-    t3 = threading.Thread(target=copart_Scraping.run)
+    t1 = threading.Thread(target=iaai)
+    t2 = threading.Thread(target=copart)
 
     def start_process(self):  # Used to start the web scraping
+        print(self.selected_auction)
         if self.selected_auction == 'Selected: Copart':
             self.manager.current = "Loading Screen"
-            self.t3.start()
-            print("Done it")
-            Clock.schedule_once(App.get_running_app().show_main_screen)
-            self.selected_auction = "Select an auction"
+            self.t2.start()
         elif self.selected_auction == 'Selected: IAAI':
             self.manager.current = "Loading Screen"
-            self.t2.start()
-            self.selected_auction = "Select an auction"
+            self.t1.start()
         elif self.selected_auction == 'Selected: Copart and IAAI':
             self.manager.current = "Loading Screen"
+            self.t1.start()
             self.t2.start()
-            self.t3.start()
         else:
+            print("Nothing")
             self.change_label("None")
 
         # self.manager.current = "Results Screen"
@@ -103,11 +113,6 @@ class LoadingScreen(Screen):
     def back(self):
         self.manager.current = "Main Screen"
         MainScreen.selected_auction = MainScreen.default
-
-    def test_continue(self):
-        self.manager.current = "Results Screen"
-        s2 = self.manager.get_screen('Results Screen')
-        s2.start()
 
 
 class ResultScreen(Screen, BoxLayout):
@@ -182,13 +187,17 @@ class ResultScreen(Screen, BoxLayout):
             self.i += 1
 
     def continue_(self):
-        self.manager.current = "Retrain Screen"
-        self.ids['result_image'].source = self.source_image_list[0]
-        # TODO Remove all the elemnts from the source_image_list porque si maje ahuevo
+            command = self.manager.get_screen('Retrain Screen')
+            command.start()
 
 
 class RetrainingScreen(Screen):
-    pass
+
+        t1 = threading.Thread(target=retrain)
+
+        def start(self):
+            self.manager.current = "Retrain Screen"
+            self.t1.start()
 
 
 class Manager(ScreenManager):
@@ -196,6 +205,7 @@ class Manager(ScreenManager):
     main_screen = ObjectProperty(None)
     loading_screen = ObjectProperty(None)
     results_screen = ObjectProperty(None)
+    retraining_screen = ObjectProperty(None)
 
 
 class MainApp(App):
@@ -205,10 +215,14 @@ class MainApp(App):
 
     def build(self):
         self.m = Manager(transition=NoTransition())
+        s2 = self.m.get_screen('Main Screen')
+        s2.start()
         return self.m
 
-    def show_main_screen(self, dt):
+    def show_results(self, dt):
         self.m.current = "Results Screen"
+        s2 = self.m.get_screen('Results Screen')
+        s2.start()
 
 
 if __name__ == "__main__":

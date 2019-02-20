@@ -12,7 +12,7 @@ qualifying_cars_list = []
 globavar = 0
 
 
-def initiate2():
+def initiate():
     aucLocation_url = 'https://www.iaai.com/locations'
     # Open a connection between the program and IAAI website
     uClient = uReq(aucLocation_url, context=context)
@@ -24,7 +24,7 @@ def initiate2():
     locations = page_soup.findAll("a", {"class": "detailsLink"})
 
     # Scrapes the link
-    for i in range(0, 3):
+    for i in range(0, len(locations)):
         print("Working on Location #" + str(i) + " out of " + str(len(locations)))
         html = str(locations[i])
         location_url = 'https://iaai.com'
@@ -64,9 +64,12 @@ def get_auction(url):
 
 
 def get_cars(url):  # parameter 'url' is the link to a specific auction
+    print("Loading...")
     global globavar, qualifying_cars_list
     newclient = uReq(url, context= context)  # Opens the url into the variable newClient
+    print("Loading...")
     new_html = newclient.read()  # Assigns the HTML code from 'newclient' to variable 'new_html'
+    print("Loading...")
     newclient.close()  # Closes the connection to the website to save connectivity
     new_soup = soup(new_html, "html.parser")  # Parses the HTML code from 'new_html' into 'new_soup'
     bFound = True
@@ -283,15 +286,14 @@ def cleanup(url):
     return url
 
 
-def initiate():
-    get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=438&aucDate=02212019")
+def testing():
+    # get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=438&aucDate=02212019")
     get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=660&aucDate=02182019")
 
 
 def outer():
     time.sleep(2)
     print("Done 2")
-    # GUI.Clock.schedule_once(GUI.App.get_running_app().show_main_screen)
 
 
 # initiate()
