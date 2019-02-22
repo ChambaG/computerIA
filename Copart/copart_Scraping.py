@@ -4,6 +4,7 @@ import pyperclip
 from bs4 import BeautifulSoup as Soup
 from CarClass import Car
 import datetime
+import make_nn
 
 p.FAILSAFE = True  # Failsafe if you want to stop the movements from pyautogui
 car_list = []
@@ -42,10 +43,24 @@ def fetch_data_location():  # Gathers the html code from Copart
         if url != "https://www.copart.com=":
 
             url = cleanup(url)
-            print(url)
-            p.hotkey("command", "w")
-            p.hotkey("command", "t")
-            fetch_cars_from_auction(url)
+            x = url.rpartition("Result")
+            url_tup = list(x)
+            previous = url_tup[2]
+            url_tup[2] = "All"
+            url_tup.append(previous)
+            url = "".join(map(str, url_tup))
+
+            x = url.find("?location") - 10
+            date = ""
+            while url[x] != "?":
+                date += url[x]
+                x += 1
+
+            if check_date(date):
+                p.hotkey("command", "w")
+                p.hotkey("command", "t")
+                print(url)
+                fetch_cars_from_auction(url)
 
 
 def fetch_cars_from_auction(link):  # fetches the car data from a specific auction
@@ -56,41 +71,34 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
     time.sleep(1)
     p.typewrite(link)
     p.hotkey("enter")
-    time.sleep(10)
-    # Clicks show all
-    p.moveTo(827, 351)
-    time.sleep(2)
-    p.click()  # Click of mouse
-    p.click()
-    time.sleep(8)
+    time.sleep(30)
     p.hotkey("shift", "command", "c")  # Opens the inspector of the webpage
-    p.click()
+    time.sleep(10)
+    p.hotkey("command", "f")
+    time.sleep(2)
+    p.typewrite("serverSideDataTable_wrapper")
     time.sleep(5)
-    print("waiting")
-
-    # Copies the code of the table of cars
-    p.hotkey("command", "shift", "c")
-    p.hotkey("command", "shift", "c")
-    time.sleep(2)
-    p.moveTo(724, 500)
-    time.sleep(2)
+    p.moveTo(979, 620)
+    p.click(button='right')
+    time.sleep(0.5)
+    p.moveTo(1010, 612)
+    time.sleep(1)
     p.click()
-    p.hotkey("command", "c")
-    p.hotkey("command", "c")
+    print("Clicked")
+    time.sleep(2)
+    p.hotkey("command", "a")
     p.hotkey("command", "c")
     # p.moveTo(1428, 12)
     another_new_html = pyperclip.paste()  # Copy the data from the clipboard into the variable s
-    print(another_new_html)
 
     new_soup = Soup(another_new_html, "html.parser")
     new_soup.prettify()  # Organizes the containers
-    print(new_soup)
 
     # Scrape the year
     car_year_soup = new_soup.findAll("span", {"data-uname": "lotsearchLotcenturyyear"})
     indexes = []
-    previous_list = len(car_list)
-    print(car_year_soup)
+    # print(car_year_soup)
+    year = ""
     for i in range(0, len(car_year_soup)):
         year = ""
         strng = str(car_year_soup[i])
@@ -99,10 +107,21 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
 
         if int(year) >= 2016:
             indexes.append(i)
-            car_list.append(Car(year))
-            print(strng + " || " + year)
 
     print("There are " + str(len(indexes)) + " vehicles that are greater than 2016")
+    car_list = [Car() for x in range(len(indexes))]  # Creates a list of type Car
+
+    # Scrape the year
+    i = 0
+    while i < len(indexes):
+        year = ""
+        strng = str(car_year_soup[indexes[i]])
+        for x in range(43, 47):
+            year += str(strng[x])
+        car_list[i].year = int(year)
+        i += 1
+
+    previous_list = len(car_list)
 
     # Scrape the make
     car_make_soup = new_soup.findAll("span", {"data-uname": "lotsearchLotmake"})
@@ -114,8 +133,7 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
         while strng[x] != "<":
             make += strng[x]
             x += 1
-        car_list[c + previous_list].make = make
-        print(strng + " || " + make)
+        car_list[c].make = make
         c += 1
 
     # Scrape the model
@@ -128,8 +146,20 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
         while strng[x] != "<":
             model += strng[x]
             x += 1
-        car_list[c + previous_list].model = model
-        print(strng + " || " + model)
+        car_list[c].model = model
+        c += 1
+
+    # Scrape the url of each car
+    url_lot_soup = new_soup.findAll("a", {"data-uname": "lotsearchLotnumber"})
+    c = 0
+    while c < len(indexes):
+        url = "https://www.copart.com"
+        strng = str(url_lot_soup[indexes[c]])
+        x = strng.find("href=") + 7
+        while strng[x] != '"':
+            url += strng[x]
+            x += 1
+        car_list[c].url = url
         c += 1
 
     # Scrape the damage and bid
@@ -162,18 +192,24 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
             while damage_raw[x] != "<":
                 damage += damage_raw[x]
                 x += 1
-            print(damage_raw + " || " + damage)  # This is used to check if the damage was well scraped
-            car_list[i + previous_list].damage = damage
+            car_list[i].damage = damage
             # Takes the current bid from the line of code
             x = 39
             while bid_raw[x] != " ":
                 bid += bid_raw[x]
                 x += 1
-            print(bid_raw + " || " + bid)  # Used for debugging
-            car_list[i + previous_list].bid = bid.replace(",", "")  # Removes the
+            car_list[i].bid = bid.replace(",", "")  # Removes the
         except IndexError:  # Catches an IndexError and sets the damage and bid to "None"
-            car_list[i + previous_list].damage = "None"
-            car_list[i + previous_list].bid = "None"
+            car_list[i].damage = "None"
+            car_list[i].bid = "None"
+
+        print("Damage: " + damage)
+        print("Bid: " + bid)
+
+    for i in range(0, len(car_list)):
+        car_list[i].show()
+
+    make_nn.quali(car_list)
 
 
 def cleanup(url):  # Makes the scraped url accessible
@@ -184,7 +220,7 @@ def cleanup(url):  # Makes the scraped url accessible
     return url
 
 
-def check_date(date):
+def check_date(date):  # MM-DD-YYYY
 
     on_bound = True
     now = datetime.datetime.now()
@@ -193,24 +229,26 @@ def check_date(date):
     year = date[0] + date[1] + date[2] + date[3]
 
     week = now.date().isocalendar()[1] + 1
-
+    today = datetime.datetime.now().day
     d = str(now.year) + "-W" + str(week)
     # Limit date
     r = datetime.datetime.strptime(d + '-0', "%Y-W%W-%w")
-    print(r)
+    print(r.day)
+    print(day)
+    print(today)
 
     if r.year == int(year):
         on_bound = True
         if r.month == int(month) and on_bound:
             on_bound = True
-            if 1 <= int(day) <= r.day and on_bound:
+            if 1 <= int(day) <= r.day and on_bound and (int(day) != int(today)):
                 on_bound = True
                 print("Date on bound")
             else:
                 print("Date not in bound")
                 on_bound = False
         else:
-            if r.month > int(month):
+            if r.month > int(month) and (int(day) != int(today)):
                 on_bound = True
                 print("Date on Bound")
             else:
@@ -243,6 +281,6 @@ def run2():
         print()
         i += 1
 
+# fetch_data_location()
+fetch_cars_from_auction("https://www.copart.com/saleListResultAll/23/2019-02-26?location=CT%20-%20Hartford&saleDate=1551193200000&liveAuction=false&from=&yardNum=23")
 
-
-#fetch_cars_from_auction("https://www.copart.com/saleListResult/137/2019-02-15?location=FL%20-%20Punta%20Gorda&saleDate=1550242800000&liveAuction=false&from=&yardNum=137")

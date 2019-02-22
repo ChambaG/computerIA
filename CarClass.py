@@ -15,6 +15,7 @@ class Car:
         self.make_input = []
         self.model_input = []
         self.damage_input = []
+        self.qualification = 0
 
     def specific(self, id, branch):
         self.specific_url = "https://vis.iaai.com/resizer?imageKeys=" + id + \
@@ -24,12 +25,9 @@ class Car:
         make = self.make
         if make.upper().find('MERCEDES') == 0:
             self.make_input = self.qualify_make('MERCEDES')
-            print(self.make_input)
-            print("Here")
         else:
             make = self.make.upper()
             self.make_input = self.qualify_make(make)
-            print(self.make_input)
 
         model = self.model
         model_list = ["A4", "A3", "A6", "R8", "A8", "A5", "A7", "PACIFIC", "CIVIC", "CR-V", "ACCORD", "FIT", "HR-V",
@@ -46,7 +44,6 @@ class Car:
                 self.model_input = self.qualify_model(model_list[i])
                 i = len(model_list)
             i += 1
-        print(self.model_input)
 
         damage = self.damage
         damage_list = ["ALL", "BURN", "HAIL", "PARTIAL", "STRIPPED", "FLOOD", "BIO", "MECHANICAL", "REAR", "ROOF",
@@ -60,19 +57,20 @@ class Car:
             elif damage.upper().find("LEFT") == 0 or damage.upper().find("RIGHT") == 0:
                 self.damage_input = self.qualify_damage("SIDE")
                 i = len(damage_list)
+            else:
+                self.damage_input = [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0]
             i += 1
-        print(self.damage_input)
 
         for y in range(0, 26):
-            self.input.append(car_example.damage_input[y])
+            self.input.append(self.damage_input[y])
         for y in range(0, 26):
-            self.input.append(car_example.make_input[y])
-        for y in range(0, len(car_example.model_input)):
-            self.input.append(car_example.model_input[y])
+            self.input.append(self.make_input[y])
+        for y in range(0, len(self.model_input)):
+            self.input.append(self.model_input[y])
 
     def qualify_make(self, make):
         return {
-            'AUDI': lambda: [1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            'AUDI': lambda: [1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, "AUDI"],
             'CHRYSLER': lambda: [0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0],
             'HONDA': lambda: [1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             'KIA': lambda: [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -192,24 +190,8 @@ class Car:
             'NORMAL': lambda: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
             'SIDE': lambda: [0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
             'VANDALISM': lambda: [1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0],
-        }.get(damage, lambda: [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0])()
+        }.get(damage, lambda: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])()
 
     def show(self):
         print(str(self.year) + " " + self.make + " " + self.model + " " + self.bid + " " + self.damage +
               "\n" + self.url + "\n" + self.specific_url)
-
-
-car_example = Car()
-car_example.make = "Nissan"
-car_example.model = "4runner"
-car_example.damage = "left ^ right"
-car_example.qualify()
-
-for y in range(0, 26):
-    car_example.input.append(car_example.damage_input[y])
-for y in range(0, 26):
-    car_example.input.append(car_example.make_input[y])
-for y in range(0, 26):
-    car_example.input.append(car_example.model_input[y])
-
-print(car_example.input)

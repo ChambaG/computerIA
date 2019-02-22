@@ -235,6 +235,7 @@ def check_date(date_of_auction):
 
     on_bound = True
     now = datetime.datetime.now()  # Uses datetime.now to retreive the current date in the form of MM-DD-YYYY
+    today = datetime.datetime.now().day  # gets today's day number
 
     # Retrieve the month, day and year from the date of the auction
     month = date_of_auction[0] + date_of_auction[1]
@@ -258,16 +259,16 @@ def check_date(date_of_auction):
         on_bound = True
         if limit_date.month == int(month) and on_bound:  # If the auction happens in the same month from limit_date...
             on_bound = True
-            # Check if the auction happens before the last day of the limit_date
-            if 1 <= int(day) <= limit_date.day and on_bound:
+            # Check if the auction happens: before the last day of the limit_date or today
+            if 1 <= int(day) <= limit_date.day and on_bound and (int(day) != int(today)):
                 on_bound = True
                 print("Date on bound")
             else:
                 print("Date not in bound")
                 on_bound = False
-        else:
-            if limit_date.month > int(month):  # Check if the month is before the month of limit_date
-                on_bound = True  # There is no need to check for the day as the month is before the limit
+        else: # Check if the month of the auction is before the month of limit_date and if the auction day is today
+            if limit_date.month > int(month) and (int(day) != int(today)):
+                on_bound = True
                 print("Date on Bound")
             else:  # If the month is after the month of limit_date dismiss this auction
                 print("Date not in bound")
