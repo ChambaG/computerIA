@@ -1,4 +1,6 @@
 import datetime
+import pyperclip
+from bs4 import BeautifulSoup as Soup
+s = pyperclip.paste()
+print(s[0])
 
-today = datetime.datetime.now().day
-print(today)

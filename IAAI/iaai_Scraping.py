@@ -4,7 +4,7 @@ import ssl
 from CarClass import Car
 import datetime
 import time
-# import GUI
+import make_nn
 
 context = ssl._create_unverified_context()
 
@@ -168,21 +168,15 @@ def get_cars(url):  # parameter 'url' is the link to a specific auction
             bid += bid_soup_str[c]
             c += 1
 
-        print(bid)
-        print(car_list[i].url)
         if bid == "":
-            print("TRUE")
             car_list[i].bid = '0'
 
         elif bid[0] == 'd':
-            print("TRUE")
             car_list[i].bid = '0'
 
         else:
             car_list[i].bid = bid
 
-        print(car_list[i].bid)
-        print()
 
         # Scraping the damage
         damage_soup = souping.findAll("div", {"class": "col-7 col-value flex-self-end"})
@@ -216,18 +210,24 @@ def get_cars(url):  # parameter 'url' is the link to a specific auction
 
         car_list[i].specific(item_id, branch)
 
-        # Scraping the image
-        resource = uReq(car_list[i].specific_url, context=context)
-        filename = "/Users/salvag/Documents/GitHub/computerIA/Images/file" + str(globavar) + ".png"
-        output = open(filename, "wb")
-        car_list[i].filename = filename
-        output.write(resource.read())
-        output.close()
+    make_nn.quali(car_list)
+    for i in range(0, len(car_list)):
+        if car_list[i].qualification >= 0.6:
+            qualifying_cars_list.append(car_list[i])
+            print("Added a " + car_list[i].make + " " + car_list[i].model + "To the list")
 
-        globavar = globavar + 1
 
-    for i in range(0, len(indexes)):
-        qualifying_cars_list.append(car_list[i])
+def download_image(car):
+    global globavar
+    # Scraping the image
+    resource = uReq(car.specific_url, context=context)
+    filename = "/Users/salvag/Documents/GitHub/computerIA/Images/file" + str(globavar) + ".png"
+    output = open(filename, "wb")
+    car.filename = filename
+    output.write(resource.read())
+    output.close()
+
+    globavar = globavar + 1
 
 
 # Checks if the date of auction is within 2 weeks. Returns true or false. Its parameter is the date of the auction
@@ -297,7 +297,7 @@ def outer():
     print("Done 2")
 
 
-# initiate()
+initiate()
 
 # get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=438&aucDate=02212019")
 # get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=660&aucDate=02182019")

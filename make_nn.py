@@ -70,8 +70,6 @@ def print_layer(layer):
 def forward_propagation(test_case):
 
     # Set inputs for the first hidden layer
-    print(len(make_input))
-    print(len(hidden_layer1))
     for x in range(0, len(hidden_layer1)):
         for y in range(0, len(input_layer)):
             hidden_layer1[x].value_list[y] = make_input[test_case][y]
@@ -181,14 +179,9 @@ def train():
 
 def quali(car_input):
     read_weights_from_file()
-    print("Entered neural network")
     for i in range(0, len(car_input)):
         car_input[i].qualify()
         make_input.append(car_input[i].input)
-        print(car_input[i].show())
-        print(make_input[i])
 
     for i in range(0, len(make_input)):
         forward_propagation(i)
-        car_input[i].show()
-        print_layer(output_layer)

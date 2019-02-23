@@ -7,8 +7,8 @@ class Car:
         self.damage = ""
         self.bid = "0"
         self.image = ""
-        self.url = ""
-        self.specific_url = ""
+        self.url = ""  # Url of car
+        self.specific_url = ""  # url of the picture
         self.filename = ""
         self.liked = False
         self.input = []
@@ -43,6 +43,8 @@ class Car:
             if model.upper().find(model_list[i]) == 0:
                 self.model_input = self.qualify_model(model_list[i])
                 i = len(model_list)
+            else:
+                self.model_input = [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0]
             i += 1
 
         damage = self.damage
@@ -194,4 +196,5 @@ class Car:
 
     def show(self):
         print(str(self.year) + " " + self.make + " " + self.model + " " + self.bid + " " + self.damage +
-              "\n" + self.url + "\n" + self.specific_url)
+              "\n" + self.url + "\n" + self.specific_url + "\n" + str(self.input) + "\nQualification: "
+              + str(self.qualification))

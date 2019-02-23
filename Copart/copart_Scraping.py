@@ -7,7 +7,7 @@ import datetime
 import make_nn
 
 p.FAILSAFE = True  # Failsafe if you want to stop the movements from pyautogui
-car_list = []
+qualifying_cars_list = []
 
 
 def fetch_data_location():  # Gathers the html code from Copart
@@ -64,6 +64,7 @@ def fetch_data_location():  # Gathers the html code from Copart
 
 
 def fetch_cars_from_auction(link):  # fetches the car data from a specific auction
+    global qualifying_cars_list
 
     time.sleep(2)  # Sets a pause
     p.moveTo(1428, 12)  # Moves the mouse to a specific location of the screen
@@ -87,15 +88,18 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
     print("Clicked")
     time.sleep(2)
     p.hotkey("command", "a")
+    time.sleep(0.5)
     p.hotkey("command", "c")
-    # p.moveTo(1428, 12)
+    p.hotkey("command", "c")
     another_new_html = pyperclip.paste()  # Copy the data from the clipboard into the variable s
+    print(another_new_html)
 
     new_soup = Soup(another_new_html, "html.parser")
     new_soup.prettify()  # Organizes the containers
 
     # Scrape the year
     car_year_soup = new_soup.findAll("span", {"data-uname": "lotsearchLotcenturyyear"})
+    print("--------------------------------------------------------------")
     indexes = []
     # print(car_year_soup)
     year = ""
@@ -168,48 +172,44 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
     # Done for every qualifying car
     for i in range(0, len(indexes)):
         strng = str(car_damage_soup[indexes[i]])
-        counter = 0
-        damage_raw = ""
+        print(strng)
+        # car_list[i].show()
+        damage_bid_soup = Soup(strng, "html.parser")
+        td_soup = damage_bid_soup.findAll("td")
+        damage_raw = str(td_soup[11])
+        damage_raw = damage_raw.splitlines()
+        damage_raw = str(damage_raw[2])
+        counter = 6
         damage = ""
-        bid_raw = ""
-        bid = ""
-        # Gets the line where the damage and bid are written
-        for y in range(0, len(strng)):
-            if strng[y] == "\n":
+        while damage_raw[counter] != "<":
+            damage += damage_raw[counter]
+            counter += 1
+        car_list[i].damage = damage
+        bid_raw = str(td_soup[13])
+        bid_raw = bid_raw.splitlines()
+        counter = 0
+        done = False
+        while not done:
+            if bid_raw[counter].find("Current Bid") != -1:
+                done = True
+            else:
                 counter += 1
-            # Damage
-            if counter == 60:
-                damage_raw += strng[y]
-
-            # Bid
-            if counter == 72:
-                bid_raw += strng[y]
-
-        # IndexError thrown when the listing is not a car as sometimes the auctions have
-        # motorcycles or boats with no damage.
-        try:
-            x = 7
-            while damage_raw[x] != "<":
-                damage += damage_raw[x]
-                x += 1
-            car_list[i].damage = damage
-            # Takes the current bid from the line of code
-            x = 39
-            while bid_raw[x] != " ":
-                bid += bid_raw[x]
-                x += 1
-            car_list[i].bid = bid.replace(",", "")  # Removes the
-        except IndexError:  # Catches an IndexError and sets the damage and bid to "None"
-            car_list[i].damage = "None"
-            car_list[i].bid = "None"
+        bid_raw = bid_raw[counter]
+        counter = 38
+        bid = ""
+        while bid_raw[counter] != " ":
+            bid += bid_raw[counter]
+            counter += 1
+        car_list[i].bid = bid
 
         print("Damage: " + damage)
         print("Bid: " + bid)
 
-    for i in range(0, len(car_list)):
-        car_list[i].show()
-
     make_nn.quali(car_list)
+    for i in range(0, len(car_list)):
+        if car_list[i].qualification > 0.6:
+            qualifying_cars_list.append(car_list[i])
+            print("Added a " + car_list[i].make + " " + car_list[i].model + " to the list")
 
 
 def cleanup(url):  # Makes the scraped url accessible
@@ -261,16 +261,9 @@ def check_date(date):  # MM-DD-YYYY
 
 
 def run():
-    print("Started")
-    i = 0
-    print("Hello")
-    while i < 100:
-        print()
-        i += 1
 
     fetch_data_location()
 
-    # run2()
 
 
 def run2():
@@ -281,6 +274,6 @@ def run2():
         print()
         i += 1
 
-# fetch_data_location()
-fetch_cars_from_auction("https://www.copart.com/saleListResultAll/23/2019-02-26?location=CT%20-%20Hartford&saleDate=1551193200000&liveAuction=false&from=&yardNum=23")
+fetch_data_location()
+# fetch_cars_from_auction("https://www.copart.com/saleListResultAll/137/2019-03-01?location=FL%20-%20Punta%20Gorda&saleDate=1551452400000&liveAuction=false&from=&yardNum=137")
 
