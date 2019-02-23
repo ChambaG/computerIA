@@ -5,9 +5,13 @@ from bs4 import BeautifulSoup as Soup
 from CarClass import Car
 import datetime
 import make_nn
+from urllib.request import urlopen as uReq
+import ssl
 
+context = ssl._create_unverified_context()
 p.FAILSAFE = True  # Failsafe if you want to stop the movements from pyautogui
 qualifying_cars_list = []
+globalvar = 0
 
 
 def fetch_data_location():  # Gathers the html code from Copart
@@ -32,7 +36,8 @@ def fetch_data_location():  # Gathers the html code from Copart
     page_soup.prettify()  # Organizes the containers in page_soup to have them in an HTML syntax.
     # Finds all <li>'s that havve a class called 'auction-yard-location' and adds them to a list called location_soup
     location_soup = page_soup.findAll("li", {"class": "auction-yard-loctaion"})
-    for i in range(0, len(location_soup)):
+    # for i in range(0, len(location_soup)):
+    for i in range(0, 1):
         url = "https://www.copart.com"
         html = str(location_soup[i])
         x = html.find("data-url") + len('data-url"') + 1
@@ -88,10 +93,21 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
     print("Clicked")
     time.sleep(2)
     p.hotkey("command", "a")
-    time.sleep(0.5)
-    p.hotkey("command", "c")
+    time.sleep(2)
     p.hotkey("command", "c")
     another_new_html = pyperclip.paste()  # Copy the data from the clipboard into the variable s
+    copied_correctly = False
+    while not copied_correctly:
+        if str(another_new_html[0]) == "<" and str(another_new_html[1]) == "d" and str(another_new_html[2]) == "i" \
+                and len(another_new_html) > 10000:
+            copied_correctly = True
+        else:
+            print(str(another_new_html[0]) + str(another_new_html[1]) + str(another_new_html[2]))
+            time.sleep(5)
+            p.hotkey("command", "a")
+            time.sleep(2)
+            p.hotkey("command", "c")
+            another_new_html = pyperclip.paste()
     print(another_new_html)
 
     new_soup = Soup(another_new_html, "html.parser")
@@ -207,9 +223,66 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
 
     make_nn.quali(car_list)
     for i in range(0, len(car_list)):
-        if car_list[i].qualification > 0.6:
+        if float(car_list[i].qualification) > 0.6:
             qualifying_cars_list.append(car_list[i])
             print("Added a " + car_list[i].make + " " + car_list[i].model + " to the list")
+            download_image(car_list[i])
+
+
+def download_image(vehicle):
+    global globalvar, context
+    p.hotkey("command", "t")
+    p.hotkey("command", "l")
+    p.typewrite(vehicle.url)
+    p.hotkey("enter")
+    time.sleep(15)
+    p.hotkey("shift", "command", "c")
+    time.sleep(5)
+    p.hotkey("command", "f")
+    time.sleep(0.5)
+    p.typewrite("lazy-url")
+    time.sleep(0.5)
+    p.hotkey("enter")
+    p.moveTo(979, 620)
+    p.click(button='right')
+    time.sleep(0.5)
+    p.moveTo(1010, 612)
+    time.sleep(1)
+    p.click()
+    print("Clicked")
+    time.sleep(2)
+    p.hotkey("command", "a")
+    time.sleep(2)
+    p.hotkey("command", "c")
+    image_html = pyperclip.paste()  # Copy the data from the clipboard into the variable s
+    copied_correctly = False
+    while not copied_correctly:
+        if str(image_html[0]) == "<" and str(image_html[1]) == "i" and str(image_html[2]) == "m" \
+                and len(image_html) > 100:
+            copied_correctly = True
+        else:
+            print(str(image_html[0]) + str(image_html[1]) + str(image_html[2]))
+            time.sleep(5)
+            p.hotkey("command", "a")
+            time.sleep(2)
+            p.hotkey("command", "c")
+            image_html = pyperclip.paste()
+
+    specific = ""
+    counter = 15
+    while image_html[counter] != '"':
+        specific += image_html[counter]
+        counter += 1
+    vehicle.specific_url = specific
+    resource = uReq(vehicle.specific_url, context=context)
+    filename = "/Users/salvag/Documents/GitHub/computerIA/Images/file" + str(globalvar) + "c.png"
+    output = open(filename, "wb")
+    vehicle.filename = filename
+    output.write(resource.read())
+    output.close()
+
+    globalvar = globalvar + 1
+    p.hotkey("command", "w")
 
 
 def cleanup(url):  # Makes the scraped url accessible
@@ -233,9 +306,6 @@ def check_date(date):  # MM-DD-YYYY
     d = str(now.year) + "-W" + str(week)
     # Limit date
     r = datetime.datetime.strptime(d + '-0', "%Y-W%W-%w")
-    print(r.day)
-    print(day)
-    print(today)
 
     if r.year == int(year):
         on_bound = True
@@ -274,6 +344,6 @@ def run2():
         print()
         i += 1
 
-fetch_data_location()
-# fetch_cars_from_auction("https://www.copart.com/saleListResultAll/137/2019-03-01?location=FL%20-%20Punta%20Gorda&saleDate=1551452400000&liveAuction=false&from=&yardNum=137")
+# fetch_data_location()
+# fetch_cars_from_auction("https://www.copart.com/saleListResultAll/105/2019-02-25/?location=FL%20-%20Miami%20Central&saleDate=1551106800000&liveAuction=false&from=&yardNum=105")
 

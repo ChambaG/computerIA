@@ -4,6 +4,7 @@ import time
 from  CarClass import Car
 
 make_input = []
+make_output = []
 
 class Neuron():
 
@@ -178,10 +179,19 @@ def train():
 
 
 def quali(car_input):
+    global make_input
     read_weights_from_file()
     for i in range(0, len(car_input)):
         car_input[i].qualify()
         make_input.append(car_input[i].input)
 
     for i in range(0, len(make_input)):
+        print("entered neural")
         forward_propagation(i)
+        print(len(make_input))
+        print(len(car_input))
+        print(car_input[i].make + " " + car_input[i].model + " " + car_input[i].damage)
+        car_input[i].qualification = float(output_layer[0].output)
+        print_layer(output_layer)
+
+    make_input = []

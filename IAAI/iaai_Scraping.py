@@ -297,7 +297,7 @@ def outer():
     print("Done 2")
 
 
-initiate()
+# initiate()
 
 # get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=438&aucDate=02212019")
 # get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=660&aucDate=02182019")

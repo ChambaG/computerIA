@@ -134,10 +134,11 @@ class ResultScreen(Screen, BoxLayout):
     def start(self):
         print(len(iaai_Scraping.qualifying_cars_list))
 
-        self.info = [[] for i in range(0, len(iaai_Scraping.qualifying_cars_list))]
         for i in range(0, len(iaai_Scraping.qualifying_cars_list)):
-            self.info[i] = iaai_Scraping.qualifying_cars_list[i]
-            print(str(self.info[i].specific_url))
+            self.info.append(iaai_Scraping.qualifying_cars_list[i])
+
+        for i in range(0, len(copart_Scraping.qualifying_cars_list)):
+            self.info.append(copart_Scraping.qualifying_cars_list[i])
 
         print(self.i)
         self.ids['result_image'].source = self.info[self.i].filename
