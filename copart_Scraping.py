@@ -4,7 +4,7 @@ import pyperclip
 from bs4 import BeautifulSoup as Soup
 from CarClass import Car
 import datetime
-import make_nn
+import nn
 from urllib.request import urlopen as uReq
 import ssl
 
@@ -95,19 +95,35 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
     p.hotkey("command", "a")
     time.sleep(2)
     p.hotkey("command", "c")
+    print("copied")
     another_new_html = pyperclip.paste()  # Copy the data from the clipboard into the variable s
     copied_correctly = False
+    counter = 0
     while not copied_correctly:
         if str(another_new_html[0]) == "<" and str(another_new_html[1]) == "d" and str(another_new_html[2]) == "i" \
                 and len(another_new_html) > 10000:
             copied_correctly = True
         else:
-            print(str(another_new_html[0]) + str(another_new_html[1]) + str(another_new_html[2]))
-            time.sleep(5)
-            p.hotkey("command", "a")
-            time.sleep(2)
-            p.hotkey("command", "c")
-            another_new_html = pyperclip.paste()
+            if counter > 5:
+                p.moveTo(941, 560)
+                p.click(button='right')
+                time.sleep(0.1)
+                p.moveTo(982, 608)
+                p.click()
+                time.sleep(5)
+                p.hotkey("command", "a")
+                time.sleep(2)
+                p.hotkey("command", "c")
+                another_new_html = pyperclip.paste()
+                counter += 1
+            else:
+                print(str(another_new_html[0]) + str(another_new_html[1]) + str(another_new_html[2]))
+                time.sleep(5)
+                p.hotkey("command", "a")
+                time.sleep(2)
+                p.hotkey("command", "c")
+                another_new_html = pyperclip.paste()
+                counter += 1
     print(another_new_html)
 
     new_soup = Soup(another_new_html, "html.parser")
@@ -188,7 +204,6 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
     # Done for every qualifying car
     for i in range(0, len(indexes)):
         strng = str(car_damage_soup[indexes[i]])
-        print(strng)
         # car_list[i].show()
         damage_bid_soup = Soup(strng, "html.parser")
         td_soup = damage_bid_soup.findAll("td")
@@ -218,15 +233,23 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
             counter += 1
         car_list[i].bid = bid
 
-        print("Damage: " + damage)
-        print("Bid: " + bid)
-
-    make_nn.quali(car_list)
+    for i in range(0, len(car_list)):
+        car_list[i].qualify()
+        car_list[i].qualification = nn.quali(car_list[i].input)
+    check = 0
     for i in range(0, len(car_list)):
         if float(car_list[i].qualification) > 0.6:
             qualifying_cars_list.append(car_list[i])
             print("Added a " + car_list[i].make + " " + car_list[i].model + " to the list")
             download_image(car_list[i])
+            check += 1
+        else:
+            print()
+            print("This didn't do it")
+            car_list[i].show()
+
+    if check == 0:
+        print("No cars qualified from this auction")
 
 
 def download_image(vehicle):
@@ -331,19 +354,4 @@ def check_date(date):  # MM-DD-YYYY
 
 
 def run():
-
     fetch_data_location()
-
-
-
-def run2():
-    print("It did")
-    i = 0
-    print("Hello")
-    while i < 100:
-        print()
-        i += 1
-
-# fetch_data_location()
-# fetch_cars_from_auction("https://www.copart.com/saleListResultAll/105/2019-02-25/?location=FL%20-%20Miami%20Central&saleDate=1551106800000&liveAuction=false&from=&yardNum=105")
-

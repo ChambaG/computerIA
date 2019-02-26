@@ -1,7 +1,4 @@
 import random
-import math
-import time
-from  CarClass import Car
 
 make_input = []
 make_output = []
@@ -144,7 +141,7 @@ def write_weights_to_file():  # run after a successful train() is called
     fw.close()
 
 
-def read_weights_from_file():					# run before run() is called
+def read_weights_from_file():  # run before run() is called
     count = 0
     fr = open("/Users/salvag/Documents/GitHub/computerIA/file_weights.txt", "r")
     temp = fr.read().splitlines()
@@ -155,19 +152,17 @@ def read_weights_from_file():					# run before run() is called
                 network[x][y].weight_list[z] = float(temp[count])
                 count += 1
 
-    # print(temp)
-
     fr.close()
 
 
 def train():
     iterations = 0
     learning_rate = 0.5
-    while iterations < 1:
+    while iterations < 50:
         test_case = 0
 
         print(iterations)
-        while test_case < 1709:
+        while test_case < len(make_input):
             forward_propagation(test_case)
             backward_propagation(test_case, learning_rate)
             print(str(output_layer[0].output) + " " + str(test_case + 1) + " | Expected output: " + str(make_output[test_case]))
@@ -181,17 +176,17 @@ def train():
 def quali(car_input):
     global make_input
     read_weights_from_file()
-    for i in range(0, len(car_input)):
-        car_input[i].qualify()
-        make_input.append(car_input[i].input)
+    make_input.append(car_input)
+    forward_propagation(len(make_input) - 1)
+    output = output_layer[0].output
 
-    for i in range(0, len(make_input)):
-        print("entered neural")
-        forward_propagation(i)
-        print(len(make_input))
-        print(len(car_input))
-        print(car_input[i].make + " " + car_input[i].model + " " + car_input[i].damage)
-        car_input[i].qualification = float(output_layer[0].output)
-        print_layer(output_layer)
+    return output
 
-    make_input = []
+
+def retrain(final_list):
+    global make_input, make_output
+    read_weights_from_file()
+    for i in range(0, len(final_list)):
+        make_input.append(map(int, final_list[i]))
+    make_output = [1 for i in range(0, len(make_input))]
+    train()

@@ -10,36 +10,44 @@ from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from kivy.uix.image import Image
-from Copart import copart_Scraping
-from IAAI import iaai_Scraping
+from kivy.clock import Clock
+import copart_Scraping
+import iaai_Scraping
 import webbrowser
 import threading
-from kivy.clock import Clock
-import time
+import nn
+
+
+# These functions are used to set the target tasks for the threads
+def iaai():  # Function that starts the web scraping for IAAI
+    iaai_Scraping.initiate()  # Line accessing and running initiate() from iaai_Scraping.py class
+    Clock.schedule_once(App.get_running_app().show_results)  # Runs the show_results() function in the MainApp class
+
+
+def retrain(inputs):  # Function that sends the liked cars to the neural network so that it retrains
+    nn.retrain(inputs)
+    Clock.schedule_once(App.get_running_app().done) # Runs the done() function in the MainApp class
+
+
+def copart():  # Function that starts the web scraping for Copart
+    copart_Scraping.run()
+    Clock.schedule_once(App.get_running_app().show_results)  # Runs the show_results() function in the MainApp class
+
+
+def both():  # Function that starts the web scraping for both auctions
+    copart_Scraping.run()
+    iaai_Scraping.initiate()
+    Clock.schedule_once(App.get_running_app().show_results)  # Runs the show_results() function in the MainApp class
+
 
 kivy.require('1.10.1')
-
-
-def iaai():
-    iaai_Scraping.testing()
-    Clock.schedule_once(App.get_running_app().show_results)
-
-
-def retrain():
-    time.sleep(10)
-    Clock.schedule_once(App.get_running_app().show_results)
-
-
-def copart():
-    copart_Scraping.run()
-    Clock.schedule_once(App.get_running_app().show_results)
 
 
 class MainScreen(Screen, FloatLayout):  # Main Screen Class that holds every method in the Start Screen
 
     auction_name = " "
     default = "Select an Auction"
-    selected_auction = StringProperty("")
+    selected_auction = StringProperty("")  # This is the string that holds the user feedback in the main screen
     x_value = 450
     y_value = 500
     error = "TO START, PLEASE SELECT AN AUCTION"
@@ -51,28 +59,31 @@ class MainScreen(Screen, FloatLayout):  # Main Screen Class that holds every met
     def change_label(self, change):  # Changes the text that shows what auction is selected
 
         strtst = "Selected: " + change
+        print(change)
 
         if (self.selected_auction == self.default or self.selected_auction == self.error) and (change == "Copart" or change == "IAAI"):
-            print("First")
             self.selected_auction = "Selected: " + change
         elif self.selected_auction == strtst:
             self.selected_auction = self.default
-        elif change != self.selected_auction:
+        elif strtst != self.selected_auction:
             if self.selected_auction == "Selected: Copart and IAAI":
                 self.selected_auction = "Selected: " + change
             else:
                 if change == "None":
-                    print("here 1")
                     self.selected_auction = "TO START, PLEASE SELECT AN AUCTION"
+                else:
+                    self.selected_auction = "Selected: Copart and IAAI"
 
+    #
     def change_screen(self):
         self.manager.current = "Loading Screen"
 
-    t1 = threading.Thread(target=iaai)
-    t2 = threading.Thread(target=copart)
+    t1 = threading.Thread(target=iaai)  # Creates a thread and sets its target to function iaai() in the outer scope
+    t2 = threading.Thread(target=copart)  # Creates a thread and sets its target to function copart() in the outer scope
+    t3 = threading.Thread(target=both)
 
-    def start_process(self):  # Used to start the web scraping
-        print(self.selected_auction)
+    def start_process(self):  # Used to start the web scraping. Each thread is started according to the specified
+        # auctions the user wants to be scraped
         if self.selected_auction == 'Selected: Copart':
             self.manager.current = "Loading Screen"
             self.t2.start()
@@ -81,13 +92,9 @@ class MainScreen(Screen, FloatLayout):  # Main Screen Class that holds every met
             self.t1.start()
         elif self.selected_auction == 'Selected: Copart and IAAI':
             self.manager.current = "Loading Screen"
-            self.t1.start()
-            self.t2.start()
+            self.t3.start()
         else:
-            print("Nothing")
             self.change_label("None")
-
-        # self.manager.current = "Results Screen"
 
 
 class LoadingScreen(Screen):
@@ -96,7 +103,7 @@ class LoadingScreen(Screen):
         box = BoxLayout(orientation='vertical')
         padding = Label(text= "If you say yes all progress will be lost!")
         buttons = BoxLayout()
-        warning = Image(source="Data/warning.png")
+        warning = Image(source="/Users/salvag/Documents/GitHub/computerIA/Data/warning.png")
         yes_button = Button(text= "Yes, do cancel it.", on_release=lambda x:self.back(),
                             on_press=lambda *args: pop.dismiss(), size=(250, 120), background_color=(300, 0.5, 0, .7))
         no_button = Button(text="No, don't cancel.", on_press=lambda *args: pop.dismiss(), size=(250, 120),
@@ -115,12 +122,11 @@ class LoadingScreen(Screen):
         MainScreen.selected_auction = MainScreen.default
 
 
-class ResultScreen(Screen, BoxLayout):
+class ResultScreen(Screen, FloatLayout):
 
     retrain_list = []
 
     car_list = ObjectProperty(None)
-    source_image_list = ['Data/file01.png', 'Data/file03.png']
 
     info = []
 
@@ -129,34 +135,35 @@ class ResultScreen(Screen, BoxLayout):
     source_makemod = StringProperty("")
     source_extra = StringProperty("")
     index_like = 0
-    source_like = 'Data/like_inactive.png'
+    source_like = '/Users/salvag/Documents/GitHub/computerIA/Data/like_inactive.png.png'
 
     def start(self):
-        print(len(iaai_Scraping.qualifying_cars_list))
-
+        print("Length of info: " + str(len(self.info)))
         for i in range(0, len(iaai_Scraping.qualifying_cars_list)):
             self.info.append(iaai_Scraping.qualifying_cars_list[i])
+
+        print("Length of info after iaai: " + str(len(self.info)))
 
         for i in range(0, len(copart_Scraping.qualifying_cars_list)):
             self.info.append(copart_Scraping.qualifying_cars_list[i])
 
-        print(self.i)
+        print("Length of info after copart: " + str(len(self.info)))
+
         self.ids['result_image'].source = self.info[self.i].filename
         self.source_makemod = str(self.info[self.i].year) + " " + self.info[self.i].make + " " + self.info[self.i].model
         self.source_extra = self.info[self.i].damage + " | $" + self.info[self.i].bid
-        self.source_like = 'Data/like_inactive.png'
+        self.source_like = '/Users/salvag/Documents/GitHub/computerIA/Data/like_inactive.png.png'
 
     def hyperlink(self):
         webbrowser.open(self.info[self.i].url)
 
     def change_like_button(self):
         if self.index_like == 0:
-            self.ids['like_button_image'].source = 'Data/like_active.png'
+            self.ids['like_button_image'].source = '/Users/salvag/Documents/GitHub/computerIA/Data/like_active.png'
             self.info[self.i].liked = True
             self.index_like = 1
-            print(self.info[self.i].liked)
         elif self.index_like == 1:
-            self.ids['like_button_image'].source = 'Data/like_inactive.png'
+            self.ids['like_button_image'].source = '/Users/salvag/Documents/GitHub/computerIA/Data/like_inactive.png.png'
             self.info[self.i].liked = False
             self.index_like = 0
 
@@ -167,9 +174,9 @@ class ResultScreen(Screen, BoxLayout):
             self.source_makemod = str(self.info[self.i].year) + " " + self.info[self.i].make + " " + self.info[self.i].model
             self.source_extra = self.info[self.i].damage + " | $" + self.info[self.i].bid
             if self.info[self.i].liked:
-                self.ids['like_button_image'].source = 'Data/like_active.png'
+                self.ids['like_button_image'].source = '/Users/salvag/Documents/GitHub/computerIA/Data/like_active.png'
             else:
-                self.ids['like_button_image'].source = 'Data/like_inactive.png'
+                self.ids['like_button_image'].source = '/Users/salvag/Documents/GitHub/computerIA/Data/like_inactive.png.png'
         else:
             self.i -= 1
 
@@ -178,27 +185,34 @@ class ResultScreen(Screen, BoxLayout):
         if self.i >= 0:
             self.ids['result_image'].source = self.info[self.i].filename
             self.source_makemod = str(self.info[self.i].year) + " " + self.info[self.i].make + " " + self.info[self.i].model
-            print(str(self.ids['result_image'].source))
             self.source_extra = self.info[self.i].damage + " | $" + self.info[self.i].bid
             if self.info[self.i].liked:
-                self.ids['like_button_image'].source = 'Data/like_active.png'
+                self.ids['like_button_image'].source = '/Users/salvag/Documents/GitHub/computerIA/Data/like_active.png'
             else:
-                self.ids['like_button_image'].source = 'Data/like_inactive.png'
+                self.ids['like_button_image'].source = '/Users/salvag/Documents/GitHub/computerIA/Data/like_inactive.png.png'
         else:
             self.i += 1
 
     def continue_(self):
-            command = self.manager.get_screen('Retrain Screen')
-            command.start()
+        for i in range(0, len(self.info)):
+            if self.info.liked:
+                self.retrain_list.append(self.info[i].input)
+
+        command = self.manager.get_screen('Retrain Screen')
+        command.start()
 
 
 class RetrainingScreen(Screen):
 
-        t1 = threading.Thread(target=retrain)
+    d1 = threading.Thread(target=retrain)
 
-        def start(self):
-            self.manager.current = "Retrain Screen"
-            self.t1.start()
+    def start(self):
+        self.manager.current = "Retrain Screen"
+        self.d1.start()
+
+    def change(self):
+        self.ids['img_gif'].source = '/Users/salvag/Documents/GitHub/computerIA/Data/done.gif'
+        self.ids['img_gif'].anim_delay = 0.045
 
 
 class Manager(ScreenManager):
@@ -220,10 +234,13 @@ class MainApp(App):
         s2.start()
         return self.m
 
+    def done(self, dt):
+        self.m.current = "Main Screen"
+
     def show_results(self, dt):
         self.m.current = "Results Screen"
-        s2 = self.m.get_screen('Results Screen')
-        s2.start()
+        s2 = self.m.get_screen('Results Screen')  # Stores the Results Screen widget as s2
+        s2.start()  # Runs the function start() in the ResultScreen class
 
 
 if __name__ == "__main__":

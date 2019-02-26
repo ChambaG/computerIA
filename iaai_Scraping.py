@@ -4,7 +4,7 @@ import ssl
 from CarClass import Car
 import datetime
 import time
-import make_nn
+import nn
 
 context = ssl._create_unverified_context()
 
@@ -210,7 +210,7 @@ def get_cars(url):  # parameter 'url' is the link to a specific auction
 
         car_list[i].specific(item_id, branch)
 
-    make_nn.quali(car_list)
+    nn.quali(car_list)
     for i in range(0, len(car_list)):
         if car_list[i].qualification >= 0.6:
             qualifying_cars_list.append(car_list[i])
@@ -285,22 +285,3 @@ def cleanup(url):
     url = url.replace("mVehicle", "m/Vehicle")
 
     return url
-
-
-def testing():
-    # get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=438&aucDate=02212019")
-    get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=660&aucDate=02182019")
-
-
-def outer():
-    time.sleep(2)
-    print("Done 2")
-
-
-# initiate()
-
-# get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=438&aucDate=02212019")
-# get_cars("https://www.iaai.com/Auctions/BranchListingView.aspx?branchCode=660&aucDate=02182019")
-
-# for i in range(len(qualifying_cars_list)):
-#    print(qualifying_cars_list[i].show())
