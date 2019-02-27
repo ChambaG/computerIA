@@ -16,15 +16,18 @@ def initiate():
     aucLocation_url = 'https://www.iaai.com/locations'
     # Open a connection between the program and IAAI website
     uClient = uReq(aucLocation_url, context=context)
+    print("Request successful")
     # Copies the html code into the variable page_html
     page_html = uClient.read()
+    print("HTML code read")
     uClient.close()
 
     page_soup = soup(page_html, "html.parser")
     locations = page_soup.findAll("a", {"class": "detailsLink"})
 
     # Scrapes the link
-    for i in range(0, len(locations)):
+    for i in range(0, 3):
+        print()
         print("Working on Location #" + str(i) + " out of " + str(len(locations)))
         html = str(locations[i])
         location_url = 'https://iaai.com'
@@ -64,12 +67,11 @@ def get_auction(url):
 
 
 def get_cars(url):  # parameter 'url' is the link to a specific auction
-    print("Loading...")
     global globavar, qualifying_cars_list
     newclient = uReq(url, context= context)  # Opens the url into the variable newClient
-    print("Loading...")
+    print("Successful request")
     new_html = newclient.read()  # Assigns the HTML code from 'newclient' to variable 'new_html'
-    print("Loading...")
+    print("HTML code read correctly")
     newclient.close()  # Closes the connection to the website to save connectivity
     new_soup = soup(new_html, "html.parser")  # Parses the HTML code from 'new_html' into 'new_soup'
     bFound = True
@@ -210,11 +212,25 @@ def get_cars(url):  # parameter 'url' is the link to a specific auction
 
         car_list[i].specific(item_id, branch)
 
-    nn.quali(car_list)
     for i in range(0, len(car_list)):
-        if car_list[i].qualification >= 0.6:
+        car_list[i].qualify()
+        car_list[i].qualification = nn.quali(car_list[i].input)
+    check = 0
+    for i in range(0, len(car_list)):
+        if float(car_list[i].qualification) >= 0.00000000001:
             qualifying_cars_list.append(car_list[i])
-            print("Added a " + car_list[i].make + " " + car_list[i].model + "To the list")
+            print("Added this car to the list final list:")
+            car_list[i].show()
+            download_image(car_list[i])
+            check += 1
+            print()
+        else:
+            print()
+            print("This car didnt make it")
+            car_list[i].show()
+
+    if check == 0:
+        print("No cars were qualified from this auction")
 
 
 def download_image(car):

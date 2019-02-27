@@ -17,6 +17,7 @@ globalvar = 0
 def fetch_data_location():  # Gathers the html code from Copart
 
     # Open the web browser to obtain the auctions location html code using pyautogui
+    print("Copart is starting...")
     p.hotkey('command', 'space')  # Command for the mac to search for something
     p.typewrite("google chrome")  # Writes whatever is passed as the parameter
     p.hotkey('enter')
@@ -24,26 +25,35 @@ def fetch_data_location():  # Gathers the html code from Copart
     p.hotkey('command', 't')
     time.sleep(0.5)
     p.hotkey('command', 'l')
-    p.typewrite('https://www.copart.com/auctionCalendar/')
+    p.typewrite('www.copart.com/auctionCalendar/')
     p.hotkey('enter')
-    time.sleep(15)
+    print("Waiting for webpage to load [15 seconds]...")
+    time.sleep(5)
     p.hotkey('shift', 'command', 'c')
     time.sleep(5)
     p.hotkey('command', 'c')
     new_html = pyperclip.paste()  # Pastes HTML code from the clipboard into 'new_html' that will have
-
+    time.sleep(10)
     page_soup = Soup(new_html, "html.parser")  # Parses the HTML of new_html
     page_soup.prettify()  # Organizes the containers in page_soup to have them in an HTML syntax.
-    # Finds all <li>'s that havve a class called 'auction-yard-location' and adds them to a list called location_soup
-    location_soup = page_soup.findAll("li", {"class": "auction-yard-loctaion"})
+    # Finds all <li>'s that have a class called 'auction-yard-location' and adds them to a list called location_soup
+    location_soup_error = page_soup.findAll("li", {"class": "auction-yard-loctaion"})
+    location_soup = []
+    for i in range(0, len(location_soup_error)):
+        if str(location_soup_error[i]).find('class="past-sale"') == int("-1"):
+            location_soup.append(location_soup_error[i])
+
+    print("___________________________________________________________")
+    print(len(location_soup))
     # for i in range(0, len(location_soup)):
-    for i in range(0, 1):
+    for i in range(0, 3):
         url = "https://www.copart.com"
         html = str(location_soup[i])
         x = html.find("data-url") + len('data-url"') + 1
         while html[x] != '"':
             url += html[x]
             x += 1
+            print(url)
 
         if url != "https://www.copart.com=":
 
@@ -64,7 +74,8 @@ def fetch_data_location():  # Gathers the html code from Copart
             if check_date(date):
                 p.hotkey("command", "w")
                 p.hotkey("command", "t")
-                print(url)
+                print("Now working on the following auction: " + url)
+                time.sleep(10)
                 fetch_cars_from_auction(url)
 
 
@@ -131,7 +142,6 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
 
     # Scrape the year
     car_year_soup = new_soup.findAll("span", {"data-uname": "lotsearchLotcenturyyear"})
-    print("--------------------------------------------------------------")
     indexes = []
     # print(car_year_soup)
     year = ""
@@ -240,9 +250,10 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
     for i in range(0, len(car_list)):
         if float(car_list[i].qualification) > 0.6:
             qualifying_cars_list.append(car_list[i])
-            print("Added a " + car_list[i].make + " " + car_list[i].model + " to the list")
+            print("Added this car to the final list: ")
             download_image(car_list[i])
             check += 1
+            print()
         else:
             print()
             print("This didn't do it")

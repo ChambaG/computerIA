@@ -16,21 +16,26 @@ import iaai_Scraping
 import webbrowser
 import threading
 import nn
+import time
+import os.path
 
 
 # These functions are used to set the target tasks for the threads
 def iaai():  # Function that starts the web scraping for IAAI
     iaai_Scraping.initiate()  # Line accessing and running initiate() from iaai_Scraping.py class
+    print("IAAI IS DONE")
     Clock.schedule_once(App.get_running_app().show_results)  # Runs the show_results() function in the MainApp class
 
 
 def retrain(inputs):  # Function that sends the liked cars to the neural network so that it retrains
-    nn.retrain(inputs)
+    #nn.retrain(inputs)
+    time.sleep(120)
     Clock.schedule_once(App.get_running_app().done) # Runs the done() function in the MainApp class
 
 
 def copart():  # Function that starts the web scraping for Copart
     copart_Scraping.run()
+    print("COPART IS DONE")
     Clock.schedule_once(App.get_running_app().show_results)  # Runs the show_results() function in the MainApp class
 
 
@@ -236,6 +241,10 @@ class MainApp(App):
 
     def done(self, dt):
         self.m.current = "Main Screen"
+        mypath = "/Users/salvag/Documents/GitHub/computerIA/Images"  # Enter your path here
+        for root, dirs, files in os.walk(mypath):
+            for file in files:
+                os.remove(os.path.join(root, file))
 
     def show_results(self, dt):
         self.m.current = "Results Screen"

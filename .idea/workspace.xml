@@ -2,19 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6262d6ad-3218-4d4a-9394-cd4c158b7419" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarClass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Copart/copart_Scraping.py" beforeDir="false" afterPath="$PROJECT_DIR$/copart_Scraping.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IAAI/iaai_Scraping.py" beforeDir="false" afterPath="$PROJECT_DIR$/iaai_Scraping.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Images/file0c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file10c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file11c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file12c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file13c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file14c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file15c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file16c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file17c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file18c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file19c.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Images/file1c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file20c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file21c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file22c.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Images/file2c.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Images/file3c.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Images/file4c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.kv" beforeDir="false" afterPath="$PROJECT_DIR$/main.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/make_nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/nn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file5c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file6c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file7c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file8c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file9c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/copart_Scraping.py" beforeDir="false" afterPath="$PROJECT_DIR$/copart_Scraping.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iaai_Scraping.py" beforeDir="false" afterPath="$PROJECT_DIR$/iaai_Scraping.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/positionn.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,89 +40,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/copart_Scraping.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.kv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
-              <caret line="70" column="80" selection-start-line="70" selection-start-column="80" selection-end-line="70" selection-end-column="80" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/iaai_Scraping.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="665">
-              <caret line="287" selection-start-line="287" selection-end-line="287" />
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nn.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1885">
-              <caret line="167" column="128" lean-forward="true" selection-start-line="167" selection-start-column="128" selection-end-line="167" selection-end-column="128" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/GUI.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-583">
-              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
-              <folding>
-                <element signature="e#10#21#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CarClass.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="85" column="108" selection-start-line="85" selection-start-column="30" selection-end-line="85" selection-end-column="108" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/file_weights2.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3215">
-              <caret line="73149" column="19" selection-start-line="73149" selection-start-column="19" selection-end-line="73149" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/file_weights.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="691">
-              <caret line="73423" selection-start-line="73423" selection-end-line="73423" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -116,9 +51,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>1</find>
-      <find>25</find>
-      <find>burn</find>
       <find>hail</find>
       <find>partial</find>
       <find>stripped</find>
@@ -141,11 +73,14 @@
       <find>0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0</find>
       <find>print</find>
       <find>length</find>
-      <find>length</find>
       <find>#</find>
       <find>input</find>
-      <find>Data/</find>
       <find>make_nn</find>
+      <find>Data/</find>
+      <find>Pierce&amp;saleDate=1551279600000&amp;liveAuction=false&amp;from=&amp;yardNum=86</find>
+      <find>___________________________________________________________</find>
+      <find>Length</find>
+      <find>https://www.copart.com/saleListResult/86/2019-02-27?location=FL%20-%20Ft.%20Pierce&amp;saleDate=1551279600000&amp;liveAuction=false&amp;from=&amp;yardNum=86</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -157,7 +92,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/venv/kivyex.kv" />
         <option value="$PROJECT_DIR$/example1.py" />
         <option value="$PROJECT_DIR$/venv/testing.py" />
@@ -197,7 +131,6 @@
         <option value="$PROJECT_DIR$/file_weights2.txt" />
         <option value="$PROJECT_DIR$/file_weights.txt" />
         <option value="$PROJECT_DIR$/positionn.py" />
-        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/output" />
         <option value="$PROJECT_DIR$/retrain.py" />
         <option value="$PROJECT_DIR$/CarClass.py" />
@@ -205,9 +138,11 @@
         <option value="$PROJECT_DIR$/make_nn.py" />
         <option value="$PROJECT_DIR$/Copart/copart_Scraping.py" />
         <option value="$PROJECT_DIR$/IAAI/iaai_Scraping.py" />
-        <option value="$PROJECT_DIR$/copart_Scraping.py" />
         <option value="$PROJECT_DIR$/main.kv" />
+        <option value="$PROJECT_DIR$/iaai_Scraping.py" />
         <option value="$PROJECT_DIR$/GUI.py" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/copart_Scraping.py" />
       </list>
     </option>
   </component>
@@ -222,6 +157,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -238,7 +174,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -254,6 +189,7 @@
       <recent name="$PROJECT_DIR$/IAAI" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Images" />
       <recent name="$PROJECT_DIR$/Copart" />
     </key>
   </component>
@@ -385,10 +321,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.GUI" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.copart_Scraping" />
         <item itemvalue="Python.make_nn" />
         <item itemvalue="Python.positionn" />
-        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -494,21 +430,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="-180" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49520767" visible="true" weight="0.11269089" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49520767" visible="true" weight="0.11269089" />
       <window_info id="Structure" order="1" sideWeight="0.50479233" side_tool="true" weight="0.15081044" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32848486" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4989429" visible="true" weight="0.24653466" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989429" weight="0.51386136" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.49518073" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32969698" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.15180723" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32969698" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32848486" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32772276" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5010571" side_tool="true" weight="0.28727272" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -544,12 +479,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gui_test.py" />
-    <entry file="file://$PROJECT_DIR$/IAAI/test.py" />
-    <entry file="file://$PROJECT_DIR$/Copart/test.py" />
-    <entry file="file://$PROJECT_DIR$/IAAI/iaai_location.txt" />
-    <entry file="file://$PROJECT_DIR$/IAAI/file0.png" />
-    <entry file="file://$PROJECT_DIR$/Data/asdf.gif" />
     <entry file="file://$PROJECT_DIR$/Data/background_down.png" />
     <entry file="file://$PROJECT_DIR$/Data/copart.png">
       <provider selected="true" editor-type-id="images" />
@@ -607,16 +536,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Data/retrain_loader.gif">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -638,21 +557,11 @@
     <entry file="file://$PROJECT_DIR$/Data/like_inactive.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Images/file0c.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Images/file1c.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Images/file2c.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Images/file3c.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Images/file4c.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Images/file0c.png" />
+    <entry file="file://$PROJECT_DIR$/Images/file1c.png" />
+    <entry file="file://$PROJECT_DIR$/Images/file2c.png" />
+    <entry file="file://$PROJECT_DIR$/Images/file3c.png" />
+    <entry file="file://$PROJECT_DIR$/Images/file4c.png" />
     <entry file="file://$PROJECT_DIR$/positionn.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -660,13 +569,6 @@
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="1698" column="22" lean-forward="true" selection-start-line="1698" selection-start-column="22" selection-end-line="1698" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -691,21 +593,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/retrain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="1709" column="277" lean-forward="true" selection-start-line="1709" selection-start-column="277" selection-end-line="1709" selection-end-column="277" />
-          <folding>
-            <element signature="e#13#473637#0" />
-            <element signature="e#473681#518053#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/retrain.py" />
     <entry file="file://$PROJECT_DIR$/CarClass.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="85" column="108" selection-start-line="85" selection-start-column="30" selection-end-line="85" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.kv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="70" column="80" selection-start-line="70" selection-start-column="80" selection-end-line="70" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iaai_Scraping.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3450">
+          <caret line="236" selection-start-line="236" selection-end-line="236" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Images/file13.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Images/file12.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Images/file11.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Images/file10.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/urllib/request.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9360">
+          <caret line="649" selection-start-line="649" selection-end-line="649" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Images/file9.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
+          <folding>
+            <element signature="e#10#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="135" selection-start-column="135" selection-end-column="135" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="1698" column="22" lean-forward="true" selection-start-line="1698" selection-start-column="22" selection-end-line="1698" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/copart_Scraping.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -718,45 +683,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1885">
-          <caret line="167" column="128" lean-forward="true" selection-start-line="167" selection-start-column="128" selection-end-line="167" selection-end-column="128" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/copart_Scraping.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.kv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="70" column="80" selection-start-line="70" selection-start-column="80" selection-end-line="70" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/iaai_Scraping.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="287" selection-start-line="287" selection-end-line="287" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GUI.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-583">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
-          <folding>
-            <element signature="e#10#21#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="436">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
         </state>
       </provider>
     </entry>
