@@ -140,7 +140,7 @@ class ResultScreen(Screen, FloatLayout):
     source_makemod = StringProperty("")
     source_extra = StringProperty("")
     index_like = 0
-    source_like = '/Users/salvag/Documents/GitHub/computerIA/Data/like_inactive.png.png'
+    source_like = '/Users/salvag/Documents/GitHub/computerIA/Data/like_inactive.png'
 
     def start(self):
         print("Length of info: " + str(len(self.info)))

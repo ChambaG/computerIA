@@ -196,5 +196,5 @@ class Car:
 
     def show(self):
         print(str(self.year) + " " + self.make + " " + self.model + " " + self.bid + " " + self.damage +
-              "\n" + self.url + "\n" + self.specific_url + "\n" + str(self.input) + "\nQualification: "
-              + str(self.qualification))
+              "\nCar Url: " + self.url + "\nInput: " + str(self.input) + "\nQualification: "
+              + str(self.qualification) + "\n")

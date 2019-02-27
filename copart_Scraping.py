@@ -43,8 +43,6 @@ def fetch_data_location():  # Gathers the html code from Copart
         if str(location_soup_error[i]).find('class="past-sale"') == int("-1"):
             location_soup.append(location_soup_error[i])
 
-    print("___________________________________________________________")
-    print(len(location_soup))
     # for i in range(0, len(location_soup)):
     for i in range(0, 3):
         url = "https://www.copart.com"
@@ -53,7 +51,6 @@ def fetch_data_location():  # Gathers the html code from Copart
         while html[x] != '"':
             url += html[x]
             x += 1
-            print(url)
 
         if url != "https://www.copart.com=":
 
@@ -251,6 +248,7 @@ def fetch_cars_from_auction(link):  # fetches the car data from a specific aucti
         if float(car_list[i].qualification) > 0.6:
             qualifying_cars_list.append(car_list[i])
             print("Added this car to the final list: ")
+            car_list[i].show()
             download_image(car_list[i])
             check += 1
             print()
