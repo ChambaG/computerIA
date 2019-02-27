@@ -44,7 +44,7 @@ def fetch_data_location():  # Gathers the html code from Copart
             location_soup.append(location_soup_error[i])
 
     # for i in range(0, len(location_soup)):
-    for i in range(0, 3):
+    for i in range(0, 2):
         url = "https://www.copart.com"
         html = str(location_soup[i])
         x = html.find("data-url") + len('data-url"') + 1

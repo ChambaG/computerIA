@@ -199,10 +199,6 @@ class ResultScreen(Screen, FloatLayout):
             self.i += 1
 
     def continue_(self):
-        for i in range(0, len(self.info)):
-            if self.info.liked:
-                self.retrain_list.append(self.info[i].input)
-
         command = self.manager.get_screen('Retrain Screen')
         command.start()
 

@@ -2,6 +2,68 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6262d6ad-3218-4d4a-9394-cd4c158b7419" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file0c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file1c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file20.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file21.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file22.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file23.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file24.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file25.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file26.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file27.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file28.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file29.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file2c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file30.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file31.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file33.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file34.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file35.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file36.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file37.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file38.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file39.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file3c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file41.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file42.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file43.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file44.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file45.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file46.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file47.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file48.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file49.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file4c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file50.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file51.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file52.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file53.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file54.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/file9.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/copart_Scraping.py" beforeDir="false" afterPath="$PROJECT_DIR$/copart_Scraping.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,11 +74,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GUI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2025">
-              <caret line="142" column="83" lean-forward="true" selection-start-line="142" selection-start-column="83" selection-end-line="142" selection-end-column="83" />
+            <state relative-caret-position="2862">
+              <caret line="202" column="23" lean-forward="true" selection-start-line="202" selection-start-column="23" selection-end-line="202" selection-end-column="23" />
               <folding>
                 <element signature="e#10#21#0" expanded="true" />
               </folding>
@@ -24,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/copart_Scraping.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="77" column="29" selection-start-line="77" selection-start-column="29" selection-end-line="77" selection-end-column="29" />
+            <state relative-caret-position="-2915">
+              <caret line="46" column="23" selection-start-line="46" selection-start-column="23" selection-end-line="46" selection-end-column="23" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -146,8 +208,8 @@
         <option value="$PROJECT_DIR$/iaai_Scraping.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/CarClass.py" />
-        <option value="$PROJECT_DIR$/GUI.py" />
         <option value="$PROJECT_DIR$/copart_Scraping.py" />
+        <option value="$PROJECT_DIR$/GUI.py" />
       </list>
     </option>
   </component>
@@ -437,12 +499,12 @@
     <frame x="1440" y="-180" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49520767" visible="true" weight="0.083728276" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49520767" visible="true" weight="0.083728276" />
       <window_info id="Structure" order="1" sideWeight="0.50479233" side_tool="true" weight="0.15081044" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32848486" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989429" visible="true" weight="0.44554454" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4989429" visible="true" weight="0.44554454" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.49518073" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -653,22 +715,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GUI.py">
+    <entry file="file://$PROJECT_DIR$/copart_Scraping.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2025">
-          <caret line="142" column="83" lean-forward="true" selection-start-line="142" selection-start-column="83" selection-end-line="142" selection-end-column="83" />
+        <state relative-caret-position="-2915">
+          <caret line="46" column="23" selection-start-line="46" selection-start-column="23" selection-end-line="46" selection-end-column="23" />
           <folding>
-            <element signature="e#10#21#0" expanded="true" />
+            <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/copart_Scraping.py">
+    <entry file="file://$PROJECT_DIR$/GUI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="77" column="29" selection-start-line="77" selection-start-column="29" selection-end-line="77" selection-end-column="29" />
+        <state relative-caret-position="2862">
+          <caret line="202" column="23" lean-forward="true" selection-start-line="202" selection-start-column="23" selection-end-line="202" selection-end-column="23" />
           <folding>
-            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#10#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
