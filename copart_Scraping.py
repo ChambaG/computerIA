@@ -75,6 +75,8 @@ def fetch_data_location():  # Gathers the html code from Copart
                 time.sleep(10)
                 fetch_cars_from_auction(url)
 
+    p.hotkey("command", "tab")
+
 
 def fetch_cars_from_auction(link):  # fetches the car data from a specific auction
     global qualifying_cars_list

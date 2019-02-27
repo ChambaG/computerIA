@@ -27,7 +27,7 @@ def iaai():  # Function that starts the web scraping for IAAI
     Clock.schedule_once(App.get_running_app().show_results)  # Runs the show_results() function in the MainApp class
 
 
-def retrain(inputs):  # Function that sends the liked cars to the neural network so that it retrains
+def retrain():  # Function that sends the liked cars to the neural network so that it retrains
     #nn.retrain(inputs)
     time.sleep(120)
     Clock.schedule_once(App.get_running_app().done) # Runs the done() function in the MainApp class
