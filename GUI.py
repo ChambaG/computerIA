@@ -157,7 +157,7 @@ class ResultScreen(Screen, FloatLayout):
         self.ids['result_image'].source = self.info[self.i].filename
         self.source_makemod = str(self.info[self.i].year) + " " + self.info[self.i].make + " " + self.info[self.i].model
         self.source_extra = self.info[self.i].damage + " | $" + self.info[self.i].bid
-        self.source_like = '/Users/salvag/Documents/GitHub/computerIA/Data/like_inactive.png.png'
+        self.source_like = '/Users/salvag/Documents/GitHub/computerIA/Data/like_inactive.png'
 
     def hyperlink(self):
         webbrowser.open(self.info[self.i].url)
@@ -168,7 +168,7 @@ class ResultScreen(Screen, FloatLayout):
             self.info[self.i].liked = True
             self.index_like = 1
         elif self.index_like == 1:
-            self.ids['like_button_image'].source = '/Users/salvag/Documents/GitHub/computerIA/Data/like_inactive.png.png'
+            self.ids['like_button_image'].source = '/Users/salvag/Documents/GitHub/computerIA/Data/like_inactive.png'
             self.info[self.i].liked = False
             self.index_like = 0
 
@@ -181,7 +181,7 @@ class ResultScreen(Screen, FloatLayout):
             if self.info[self.i].liked:
                 self.ids['like_button_image'].source = '/Users/salvag/Documents/GitHub/computerIA/Data/like_active.png'
             else:
-                self.ids['like_button_image'].source = '/Users/salvag/Documents/GitHub/computerIA/Data/like_inactive.png.png'
+                self.ids['like_button_image'].source = '/Users/salvag/Documents/GitHub/computerIA/Data/like_inactive.png'
         else:
             self.i -= 1
 
@@ -194,7 +194,7 @@ class ResultScreen(Screen, FloatLayout):
             if self.info[self.i].liked:
                 self.ids['like_button_image'].source = '/Users/salvag/Documents/GitHub/computerIA/Data/like_active.png'
             else:
-                self.ids['like_button_image'].source = '/Users/salvag/Documents/GitHub/computerIA/Data/like_inactive.png.png'
+                self.ids['like_button_image'].source = '/Users/salvag/Documents/GitHub/computerIA/Data/like_inactive.png'
         else:
             self.i += 1
 
